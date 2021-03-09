@@ -10,7 +10,7 @@ from '@angular/forms';
 export class CategorieService {
   private baseUrl = '/api/categories';
   choixmenu : string  = 'A';
-  listData : Categorie[];
+  list : Categorie[];
   public dataForm:  FormGroup; 
   constructor(private http: HttpClient) { }
  

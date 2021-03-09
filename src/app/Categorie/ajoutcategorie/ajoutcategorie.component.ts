@@ -11,7 +11,6 @@ import { CategorieService } from 'src/app/service/categorie.service';
   styleUrls: ['./ajoutcategorie.component.css']
 })
 export class AjoutcategorieComponent implements OnInit {
-
   constructor(public crudApi: CategorieService ,public fb: FormBuilder,public toastr: ToastrService,
     private router : Router,@Inject(MAT_DIALOG_DATA)  public data,
     public dialogRef:MatDialogRef<AjoutcategorieComponent>,
@@ -55,13 +54,12 @@ export class AjoutcategorieComponent implements OnInit {
    
 
 addData() {
-  console.log(this.crudApi.dataForm.value)
   this.crudApi.createData(this.crudApi.dataForm.value).
   subscribe( data => {
     this.dialogRef.close();
    
     this.crudApi.getAll().subscribe(
-      response =>{this.crudApi.listData = response;}
+      response =>{this.crudApi.list = response;}
      );
     this.router.navigate(['/categories']); 
   });
@@ -73,7 +71,7 @@ addData() {
       this.dialogRef.close();
    
       this.crudApi.getAll().subscribe(
-        response =>{this.crudApi.listData = response;}
+        response =>{this.crudApi.list = response;}
        );
       this.router.navigate(['/categories']);
     });

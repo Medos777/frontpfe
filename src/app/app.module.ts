@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {NgxPaginationModule} from 'ngx-pagination'
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSliderModule } from '@angular/material/slider';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,7 +16,9 @@ import { MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/materia
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
-
+const MATERIAL_MODULES = [MatToolbarModule,
+  MatIconModule
+];
 
 @NgModule({
   declarations: [
@@ -30,7 +36,11 @@ import { ToastrModule } from 'ngx-toastr';
     HttpClientModule,
     MatDialogModule,
     BrowserAnimationsModule,
-    
+    NgxPaginationModule,
+    MatSliderModule,
+    MatToolbarModule,
+    MatIconModule,
+    NgbModule,
     
     
     
