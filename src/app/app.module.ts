@@ -16,6 +16,7 @@ import { MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/materia
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
+import { MenuComponent } from './menu/menu.component';
 const MATERIAL_MODULES = [MatToolbarModule,
   MatIconModule
 ];
@@ -25,7 +26,8 @@ const MATERIAL_MODULES = [MatToolbarModule,
     
     AppComponent,
     AjoutcategorieComponent,
-    ListecategorieComponent
+    ListecategorieComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
