@@ -61,11 +61,11 @@ export class AjoutScategorieComponent implements OnInit {
     }
    
 }
-  
    
 
 addData() {
-  this.crudApi.createData(this.crudApi.dataForm.value).
+  console.log(this.crudApi.dataForm.value,this.crudApi.dataForm.value['ccateg'])
+  this.crudApi.createData(this.crudApi.dataForm.value,this.crudApi.dataForm.value['ccateg']).
   subscribe( data => {
     this.dialogRef.close();
    
@@ -77,6 +77,8 @@ addData() {
 }
   updateData()
   {
+    console.log(this.crudApi.dataForm.value,this.crudApi.dataForm.value['ccateg'])
+
     this.crudApi.updatedata(this.crudApi.dataForm.value.id,this.crudApi.dataForm.value).
     subscribe( data => {
       this.dialogRef.close();

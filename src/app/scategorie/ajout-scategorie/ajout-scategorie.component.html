@@ -5,7 +5,7 @@
         </button>
     </div>
     <div>
-    <h1>Gestion Article</h1> 
+    <h1>Gestion Sous-Categorie</h1> 
     </div>
   </mat-toolbar> 
         <div class="col-md-12 col-md-offset-2">
@@ -21,7 +21,7 @@
                 <label>Code Catégorie </label>
                 <select class="form-control" formControlName="ccateg" id="ccateg">
   <option value="0">-Select-</option>
-  <option *ngFor="let item of CategorieList" value="{{item.code}}">{{item.libelle}}</option>
+  <option *ngFor="let item of CategorieList" value="{{item.id}}">{{item.libelle}}</option>
       </select>
                
               </div>
