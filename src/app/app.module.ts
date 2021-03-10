@@ -17,6 +17,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { MenuComponent } from './menu/menu.component';
+import { ListScategorieComponent } from './scategorie/list-scategorie/list-scategorie.component';
+import { AjoutScategorieComponent } from './scategorie/ajout-scategorie/ajout-scategorie.component';
 const MATERIAL_MODULES = [MatToolbarModule,
   MatIconModule
 ];
@@ -27,7 +29,9 @@ const MATERIAL_MODULES = [MatToolbarModule,
     AppComponent,
     AjoutcategorieComponent,
     ListecategorieComponent,
-    MenuComponent
+    MenuComponent,
+    ListScategorieComponent,
+    AjoutScategorieComponent
   ],
   imports: [
     BrowserModule,

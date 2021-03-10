@@ -3,4 +3,5 @@ export class Categorie {
     code: string;
     libelle: string;
     
+    
 }
