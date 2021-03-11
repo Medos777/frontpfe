@@ -25,8 +25,8 @@ export class ScategorieService {
     return this.http.get(`${this.baseUrl}/${id}`);
   }
  
-  createData(info: Object, value :any): Observable<Object> {
-    return this.http.post(`${this.baseUrl}`, info,value);
+  createData(info: Object, idcat :any): Observable<Object> {
+    return this.http.post(`${this.baseUrl}/${idcat}`, info);
   }
   
   updatedata(id: number, value: any): Observable<Object> {

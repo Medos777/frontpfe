@@ -5,6 +5,6 @@ export class Scategorie {
     code: string;
     libelle: string;
     rang : number;
-    code_categ : Categorie;
+    categorie : Categorie;
 }
 

@@ -19,6 +19,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { MenuComponent } from './menu/menu.component';
 import { ListScategorieComponent } from './scategorie/list-scategorie/list-scategorie.component';
 import { AjoutScategorieComponent } from './scategorie/ajout-scategorie/ajout-scategorie.component';
+import { AjoutArticleComponent } from './article/ajout-article/ajout-article.component';
+import { ListeArticleComponent } from './article/liste-article/liste-article.component';
 const MATERIAL_MODULES = [MatToolbarModule,
   MatIconModule
 ];
@@ -31,7 +33,9 @@ const MATERIAL_MODULES = [MatToolbarModule,
     ListecategorieComponent,
     MenuComponent,
     ListScategorieComponent,
-    AjoutScategorieComponent
+    AjoutScategorieComponent,
+    AjoutArticleComponent,
+    ListeArticleComponent
   ],
   imports: [
     BrowserModule,
