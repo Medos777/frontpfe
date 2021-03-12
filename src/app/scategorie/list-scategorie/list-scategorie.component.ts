@@ -14,6 +14,7 @@ import { AjoutScategorieComponent } from '../ajout-scategorie/ajout-scategorie.c
 })
 export class ListScategorieComponent implements OnInit {
   scategorie : Scategorie;
+  tab:Scategorie[];
   p: number = 1;
   control: FormControl = new FormControl('');
   constructor(public crudApi: ScategorieService, public toastr: ToastrService,
@@ -41,10 +42,12 @@ export class ListScategorieComponent implements OnInit {
 
   
   getData() {
+
     this.crudApi.getAll().subscribe(
-      response =>{this.crudApi.listData = response;}
+      response =>{this.crudApi.listData = response;
+      }
      );
-   
+
   }
   
   
