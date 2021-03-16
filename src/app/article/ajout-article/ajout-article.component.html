@@ -2,24 +2,19 @@
 <div>
 <form [formGroup]="this.crudApi.dataForm" (ngSubmit)="onSubmit()">
   <input type="hidden" formControlName="id" id="id">
-  <div class="orm-group">
+  <div class="form-group">
 
-    <div class="orm-group">
-
-      <label>Code Catégorie </label>
-      <select class="form-control" formControlName="code_categ" id="code_categ"
-        (change)="onSelectCateg($event.target.value)">
-        <option value="0">-Select-</option>
-        <option *ngFor="let item of CategorieList" value="{{item.code}}">{{item.libelle}}</option>
-      </select>
-    </div>
+ 
 
     <div class="form-group">
       <label>Code SCatégorie </label>
-      <select class="form-control" formControlName="code_scateg" id="code_scateg"
-        (change)="onSelectScateg($event.target.value)">
+      <select class="form-control"  formControlName="code_scateg" id="code_scateg"
+        > <!-- attriute teb3a el code_scateg
+          (change)="onSelectScateg($event.target.value)"
+      -->
+       
         <option value="0">-Select-</option>
-        <option *ngFor="let item of ScategorieList" value="{{item.code}}">{{item.libelle}}</option>
+        <option *ngFor="let item of scategorieList" value="{{item.id}}">{{item.libelle}}</option>
       </select>
     </div>
     <div class="form-group">

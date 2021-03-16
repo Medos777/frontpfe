@@ -14,7 +14,7 @@ import { ScategorieService } from 'src/app/service/scategorie.service';
   styleUrls: ['./ajout-article.component.css']
 })
 export class AjoutArticleComponent implements OnInit {
-  CategorieList: any;
+  scategorieList: any;
   scategorie: any;
   wcode: any;
   constructor(public crudApi: ArticleService ,public fb: FormBuilder,public toastr: ToastrService,
@@ -28,8 +28,8 @@ export class AjoutArticleComponent implements OnInit {
   ngOnInit() {
    if (this.crudApi.choixmenu == "A")
     {this.infoForm()};
-    this.categorieService.getAll().subscribe(
-      response =>{this.CategorieList = response;}
+    this.scategorieService.getAll().subscribe(
+      response =>{this.scategorieList = response;}
      );
    }
   
@@ -80,7 +80,7 @@ onSelectScateg(id_scateg: string)
 } 
 
 addData() {
-  this.crudApi.createData(this.crudApi.dataForm.value).
+  this.crudApi.createData(this.crudApi.dataForm.value,this.crudApi.dataForm.value['code_scateg']).
   subscribe( data => {
     this.toastr.success( 'Validation Faite avec Success'); 
     this.router.navigate(['/articles']);
