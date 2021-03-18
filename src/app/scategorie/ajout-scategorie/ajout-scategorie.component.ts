@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -25,13 +25,20 @@ export class AjoutScategorieComponent implements OnInit {
   ngOnInit() {
   
     if (this.crudApi.choixmenu == "A")
-    {this.infoForm()};
+    {this.infoForm();}
+    else 
+    {
+      this.crudApi.dataForm.addControl('ccateg', new FormControl('', Validators.required));
+    }
+    console.log(this.crudApi.dataForm);
     this.categorieService.getAll().subscribe(
       response =>{this.CategorieList = response;}
      );
    }
 
-
+get f(){
+  return this.crudApi.dataForm.controls;
+}
   
   infoForm() {
     this.crudApi.dataForm = this.fb.group({
@@ -40,10 +47,11 @@ export class AjoutScategorieComponent implements OnInit {
         libelle: ['', [Validators.required]],
         rang: [1],
         ccateg: ['', [Validators.required]],
+      
       });
     }
    
-  
+   
 
   ResetForm() {
       this.crudApi.dataForm.reset();
@@ -61,13 +69,28 @@ export class AjoutScategorieComponent implements OnInit {
     }
    
 }
-   
+OnSelectCateg(ctrl){
+  if(ctrl.selectedIndex==0)
+  {
+    console.log("c1")
+    console.log(this.crudApi.dataForm.value);
+
+    this.f['ccateg'].setValue('');
+
+  }
+  else{
+    console.log("c2");
+    console.log( this.f['ccateg']);
+
+  }
+
+}
 
 addData() {
-  console.log(this.crudApi.dataForm.value,this.crudApi.dataForm.value['ccateg'])
   this.crudApi.createData(this.crudApi.dataForm.value,this.crudApi.dataForm.value['ccateg']).
   subscribe( data => {
     this.dialogRef.close();
+    
    
     this.crudApi.getAll().subscribe(
       response =>{this.crudApi.listData = response;}
@@ -77,9 +100,9 @@ addData() {
 }
   updateData()
   {
-    console.log(this.crudApi.dataForm.value,this.crudApi.dataForm.value['ccateg'])
+    console.log(this.crudApi.dataForm.value);
 
-    this.crudApi.updatedata(this.crudApi.dataForm.value.id,this.crudApi.dataForm.value).
+    this.crudApi.updatedata(this.crudApi.dataForm.value.id,this.crudApi.dataForm.value['ccateg'],this.crudApi.dataForm.value).
     subscribe( data => {
       this.dialogRef.close();
      

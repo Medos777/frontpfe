@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Scategorie } from 'src/app/model/scategorie';
@@ -27,7 +27,11 @@ export class AjoutArticleComponent implements OnInit {
     get f() { return this.crudApi.dataForm.controls; }
   ngOnInit() {
    if (this.crudApi.choixmenu == "A")
-    {this.infoForm()};
+    {this.infoForm();}
+    {
+      this.crudApi.dataForm.addControl('cscateg', new FormControl('', Validators.required));
+    }
+
     this.scategorieService.getAll().subscribe(
       response =>{this.scategorieList = response;}
      );
@@ -46,7 +50,7 @@ export class AjoutArticleComponent implements OnInit {
         stock: [0, [Validators.required]],
         stkinit: [0, [Validators.required]],
         code_categ: ['', [Validators.required]],
-        code_scateg: ['', [Validators.required]],
+        cscateg: ['', [Validators.required]],
         profile : [],
       });
     }
@@ -80,17 +84,27 @@ onSelectScateg(id_scateg: string)
 } 
 
 addData() {
-  this.crudApi.createData(this.crudApi.dataForm.value,this.crudApi.dataForm.value['code_scateg']).
+  this.crudApi.createData(this.crudApi.dataForm.value,this.crudApi.dataForm.value['cscateg']).
   subscribe( data => {
-    this.toastr.success( 'Validation Faite avec Success'); 
+    this.dialogRef.close();
+    
+   
+    this.crudApi.getAll().subscribe(
+      response =>{this.crudApi.listData = response;}
+     );
     this.router.navigate(['/articles']);
   });
 }
   updateData()
   {
-    this.crudApi.updatedata(this.crudApi.dataForm.value.id,this.crudApi.dataForm.value).
+    console.log(this.crudApi.dataForm.value)
+
+    this.crudApi.updatedata(this.crudApi.dataForm.value.id,this.crudApi.dataForm.value['cscateg'],this.crudApi.dataForm.value).
     subscribe( data => {
       this.dialogRef.close();
+      this.crudApi.getAll().subscribe(
+        response =>{this.crudApi.listData = response;}
+       );
       this.router.navigate(['/articles']); 
     });
   }

@@ -11,7 +11,6 @@ export class ArticleService {
   private baseUrl = 'http://localhost:8088/api/articles';
   choixmenu : string  = 'A';
   listData : Article[];
-
   public dataForm:  FormGroup; 
   constructor(private http: HttpClient) { }
 
@@ -29,8 +28,8 @@ export class ArticleService {
     return this.http.post(`${this.baseUrl}/${idscat}`, info);
   }
   
-  updatedata(id: number, value: any): Observable<Object> {
-    return this.http.put(`${this.baseUrl}/${id}`, value);
+  updatedata(id: number,idcsat:any ,value: Object ): Observable<Object> {
+    return this.http.put(`${this.baseUrl}/${idcsat}/${id}`, value);
   }
  
   updateRang(id: number, value: any): Observable<Object> {

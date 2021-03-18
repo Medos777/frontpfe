@@ -29,8 +29,8 @@ export class ScategorieService {
     return this.http.post(`${this.baseUrl}/${idcat}`, info);
   }
   
-  updatedata(id: number, value: any): Observable<Object> {
-    return this.http.put(`${this.baseUrl}/${id}`, value);
+  updatedata(id: number, idsct:any,value: any): Observable<Object> {
+    return this.http.put(`${this.baseUrl}/${idsct}/${id}`, value);
   }
  
   updateRang(id: number, value: any): Observable<Object> {

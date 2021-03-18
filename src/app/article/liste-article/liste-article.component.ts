@@ -32,7 +32,9 @@ export class ListeArticleComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.disableClose = true;
-    dialogConfig.width="50%";
+    dialogConfig.width="45%";
+    dialogConfig.height="100%";
+
     //dialogConfig.data="gdddd";
     this.matDialog.open(AjoutArticleComponent, dialogConfig);
   }
@@ -49,6 +51,9 @@ export class ListeArticleComponent implements OnInit {
   
   
   removeData(id: number) {
+    const message = `Are you sure you want to do this?`;
+
+
     if (window.confirm('Are sure you want to delete this Scatégorie ?')) {
     this.crudApi.deleteData(id)
       .subscribe(
@@ -67,6 +72,7 @@ export class ListeArticleComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.disableClose = true;
     dialogConfig.width="50%";
+    
     
     this.matDialog.open(AjoutArticleComponent, dialogConfig);
   }
