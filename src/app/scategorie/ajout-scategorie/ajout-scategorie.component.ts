@@ -72,15 +72,26 @@ get f(){
 OnSelectCateg(ctrl){
   if(ctrl.selectedIndex==0)
   {
-    console.log("c1")
-    console.log(this.crudApi.dataForm.value);
+   
 
     this.f['ccateg'].setValue('');
 
   }
   else{
-    console.log("c2");
-    console.log( this.f['ccateg']);
+    let num:number;
+    let code:any;
+  code=this.CategorieList[ctrl.selectedIndex-1].code;
+  this.crudApi.getNumero(code).subscribe(
+ reponse=>{
+   num=reponse;
+   if (num>0)
+   code=(100000+num+1).toString().substring(1);
+   else  code=code+'01';
+   this.f['code'].setValue(code);
+ }
+
+
+  );
 
   }
 

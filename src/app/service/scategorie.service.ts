@@ -18,7 +18,7 @@ export class ScategorieService {
 
   
   listScateg(id: string): Observable<any> {
-    return this.http.get(`${this.baseUrl}/${id}`);
+    return this.http.get(`${this.baseUrl}/categ/${id}`);
   }
  
   getData(id: string): Observable<Object> {
@@ -39,6 +39,10 @@ export class ScategorieService {
   deleteData(id: number): Observable<any> {
    
     return this.http.delete(`${this.baseUrl}/${id}`, { responseType: 'text' });
+  }
+
+  getNumero(code: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}/generationcode/${code}`);
   }
   getAll(): Observable<any> {
    

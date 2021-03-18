@@ -54,7 +54,7 @@ removeData(id: number) {
     .subscribe(
       data => {
         console.log(data);
-        this.toastr.warning(' data successfully deleted!'); 
+        this.toastr.warning(' Categorie deleted!',); 
         this.getData();
       },
       error => console.log(error));

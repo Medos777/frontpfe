@@ -22,17 +22,18 @@
    
       <tr>
       <th style="color: black;"scope="col">Code</th>
-      <th style="color: black;"scope="col"> Catégorie</th>
+    
       <th style="color: black;"scope="col">Libelle </th>
+      <th style="color: black;"scope="col"> Catégorie</th>
       <th   class="text-center"  style="width: 13%; color: black;" scope="col">Action</th>
     </tr>
       </thead>
       <tbody>
         <tr *ngFor="let item of crudApi.listData | paginate: { itemsPerPage: 3, currentPage: p }">
       <td>{{item.code}}</td>
-      <td>{{item.categorie.libelle}}</td>
+     
       <td>{{item.libelle}}</td>
-      
+      <td>{{item.categorie.libelle}}</td>
 
      
       <td><button class="btn btn-warning" (click)="selectData(item)">

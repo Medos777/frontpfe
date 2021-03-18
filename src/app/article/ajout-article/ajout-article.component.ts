@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Categorie } from 'src/app/model/categorie';
 import { Scategorie } from 'src/app/model/scategorie';
 import { ArticleService } from 'src/app/service/article.service';
 import { CategorieService } from 'src/app/service/categorie.service';
@@ -15,6 +16,8 @@ import { ScategorieService } from 'src/app/service/scategorie.service';
 })
 export class AjoutArticleComponent implements OnInit {
   scategorieList: any;
+  CategorieList: Categorie[];
+
   scategorie: any;
   wcode: any;
   constructor(public crudApi: ArticleService ,public fb: FormBuilder,public toastr: ToastrService,
@@ -26,6 +29,9 @@ export class AjoutArticleComponent implements OnInit {
     ) { }
     get f() { return this.crudApi.dataForm.controls; }
   ngOnInit() {
+    this.categorieService.getAll().subscribe(
+      response =>{this.CategorieList = response;}
+     );
    if (this.crudApi.choixmenu == "A")
     {this.infoForm();}
     {
@@ -70,14 +76,21 @@ export class AjoutArticleComponent implements OnInit {
 }
   
 
-
-onSelectScateg(id_scateg: string)
+onSelectCateg(id_categ)
 {
- this.scategorieService.getData(id_scateg).subscribe(
+  this.scategorieService.listScateg(id_categ.value).subscribe(
+    response =>{this.scategorieList = response;}
+   );  
+} 
+onSelectScateg(id_scateg)
+{
+  console.log(id_scateg);
+
+ this.scategorieService.getData(id_scateg.value).subscribe(
     response =>{
       this.scategorie = response;
       this.wcode = (10000 + this.scategorie.rang).toString().substring(1);
-      this.wcode = this.scategorie.categorie+this.scategorie.code+this.wcode;
+      this.wcode = this.scategorie.categorie.libelle+this.scategorie.code+this.wcode;
       this.f['code'].setValue(this.wcode);
       }
    );  

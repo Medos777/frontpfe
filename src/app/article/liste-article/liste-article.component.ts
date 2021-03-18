@@ -59,7 +59,7 @@ export class ListeArticleComponent implements OnInit {
       .subscribe(
         data => {
           console.log(data);
-          this.toastr.warning(' data successfully deleted!'); 
+          this.toastr.warning('Article deleted!'); 
           this.getData();
         },
         error => console.log(error));
@@ -71,7 +71,8 @@ export class ListeArticleComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.disableClose = true;
-    dialogConfig.width="50%";
+    dialogConfig.width="45%";
+    dialogConfig.height="100%";
     
     
     this.matDialog.open(AjoutArticleComponent, dialogConfig);

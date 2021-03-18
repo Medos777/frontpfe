@@ -57,7 +57,7 @@ export class ListScategorieComponent implements OnInit {
       .subscribe(
         data => {
           console.log(data);
-          this.toastr.warning(' data successfully deleted!'); 
+          this.toastr.warning(' Sous Categorie deleted!'); 
           this.getData();
         },
         error => console.log(error));
