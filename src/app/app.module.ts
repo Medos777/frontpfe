@@ -21,6 +21,9 @@ import { ListScategorieComponent } from './scategorie/list-scategorie/list-scate
 import { AjoutScategorieComponent } from './scategorie/ajout-scategorie/ajout-scategorie.component';
 import { AjoutArticleComponent } from './article/ajout-article/ajout-article.component';
 import { ListeArticleComponent } from './article/liste-article/liste-article.component';
+import { LoginComponent } from './user/login/login.component';
+import { RegisterComponent } from './user/register/register.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 const MATERIAL_MODULES = [MatToolbarModule,
   MatIconModule
 ];
@@ -35,7 +38,9 @@ const MATERIAL_MODULES = [MatToolbarModule,
     ListScategorieComponent,
     AjoutScategorieComponent,
     AjoutArticleComponent,
-    ListeArticleComponent
+    ListeArticleComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -51,6 +56,8 @@ const MATERIAL_MODULES = [MatToolbarModule,
     MatToolbarModule,
     MatIconModule,
     NgbModule,
+    BrowserModule,
+    Ng2SearchPipeModule,
     
     
     

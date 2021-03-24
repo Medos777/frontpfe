@@ -18,6 +18,8 @@ import { HttpClientModule} from '@angular/common/http';
 import { MatSliderModule } from '@angular/material/slider';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ListeArticleComponent } from './article/liste-article/liste-article.component';
+import { LoginComponent } from './user/login/login.component';
+import { RegisterComponent } from './user/register/register.component';
 const routes : Routes = [
   {path: '', component:MenuComponent,children : [
   {path: 'categories', component: ListecategorieComponent},
@@ -25,8 +27,10 @@ const routes : Routes = [
   {path: 'scategories', component: ListScategorieComponent},
   {path: 'addscategories', component: AjoutScategorieComponent},
   {path: 'articles', component: ListeArticleComponent},
+
   ]},
-  
+    {path: 'login', component: LoginComponent},
+  {path: 'register', component: RegisterComponent},
 ];
 
 @NgModule({

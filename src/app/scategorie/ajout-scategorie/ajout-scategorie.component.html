@@ -1,33 +1,36 @@
+<div class="col-md-12 col-md-offset-2">
 
-      <div class="col-md-12 col-md-offset-2">
-             
-          <form [formGroup]="this.crudApi.dataForm" (ngSubmit)="onSubmit()">
-            <input type="hidden"  formControlName="id" id="id">
-            <div class="form-group">
-              <label>Code Scatégorie </label>
-              <input type="text" class="form-control" formControlName="code" id="code">
-              
-            </div>
-            <div class="form-group">
-              <label>Code Catégorie </label>
-              <select class="form-control" formControlName="ccateg" (change)="OnSelectCateg($event.target)" id="ccateg">
-<option value="0">-Select-</option>
-<option *ngFor="let item of CategorieList" value="{{item.id}}">{{item.libelle}}</option>
-    </select>
-             
-            </div>
-            <div class="form-group">
-              <label>Libelle</label>
-              <input type="text" class="form-control" formControlName="libelle" id="libelle">
-              
-            </div>
-            <input type="hidden"  formControlName="rang" id="rang">
-            <div class="form-group">
-          
-              <button type="submit" class="btn btn-dark"><i class="fa fa-database"></i> Submit</button>
-              <button type="button" class="btn btn-outline-dark ml-1" [mat-dialog-close]><i class="fa fa-close"></i> Close</button>
-          
-  
+  <form [formGroup]="this.crudApi.dataForm" (ngSubmit)="onSubmit()">
+    <input type="hidden" formControlName="id" id="id">
+    <div class="form-group">
+      <label>Code Scatégorie </label>
+      <input type="text" formControlName="code" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.code.errors }" />
+      <div *ngIf="submitted && f.code.errors" class="invalid-feedback">
+          <div *ngIf="f.code.errors.required">code Sous_Categorie doit etre au minimum 4 caractères</div>
+          </div>
+    </div>
+    <div class="form-group">
+      <label>Code Catégorie </label>
+      <select class="form-control" formControlName="ccateg" (change)="OnSelectCateg($event.target)" id="ccateg">
+        <option value="0">-Select-</option>
+        <option *ngFor="let item of CategorieList" value="{{item.id}}">{{item.libelle}}</option>
+      </select>
+
+    </div>
+    <div class="form-group">
+      <label>Libelle </label>
+      <input type="text" formControlName="libelle" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.libelle.errors }" />
+      <div *ngIf="submitted && f.libelle.errors" class="invalid-feedback">
+          <div *ngIf="f.libelle.errors.required">libelle doit etre au minimum 4 caractères</div>
+    </div>
+    </div>
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-dark"><i class="fa fa-database"></i> Submit</button>
+      <button type="button" class="btn btn-outline-dark ml-1" [mat-dialog-close]><i class="fa fa-close"></i>
+        Close</button>
+
+
+    </div>
+  </form>
 </div>
-          </form>
-      </div>

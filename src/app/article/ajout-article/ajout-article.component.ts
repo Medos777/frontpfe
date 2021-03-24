@@ -17,9 +17,12 @@ import { ScategorieService } from 'src/app/service/scategorie.service';
 export class AjoutArticleComponent implements OnInit {
   scategorieList: any;
   CategorieList: Categorie[];
-
+  userFile ;
+  public imagePath;
+  imgURL: any;
   scategorie: any;
   wcode: any;
+  submitted= false;
   constructor(public crudApi: ArticleService ,public fb: FormBuilder,public toastr: ToastrService,
     public scategorieService: ScategorieService,
     public categorieService: CategorieService,
@@ -47,8 +50,8 @@ export class AjoutArticleComponent implements OnInit {
     this.crudApi.dataForm = this.fb.group({
         id: null,
         code: ['', [Validators.required]],
-        code_b: ['', [Validators.required]],
-        libelle: ['', [Validators.required]],
+        code_b: ['6192421101009', [Validators.required,Validators.minLength(13)]],
+        libelle: ['', [Validators.required,Validators.minLength(4)]],
         pa: [0, [Validators.required]],
         pv: [0, [Validators.required]],
         tva: [0, [Validators.required]],
@@ -61,10 +64,18 @@ export class AjoutArticleComponent implements OnInit {
       });
     }
 
+    
+
   ResetForm() {
       this.crudApi.dataForm.reset();
   }
   onSubmit() {
+
+    this.submitted = true;
+       if(this.crudApi.dataForm.invalid){
+        return;
+
+       }
     if (this.crudApi.choixmenu == "A")
     {
       this.addData();
@@ -97,7 +108,18 @@ onSelectScateg(id_scateg)
 } 
 
 addData() {
-  this.crudApi.createData(this.crudApi.dataForm.value,this.crudApi.dataForm.value['cscateg']).
+  let form=this.crudApi.dataForm;
+  let codecscateg=this.crudApi.dataForm.value['cscateg'];
+
+  form.removeControl('code_categ');
+  form.removeControl('cscateg');
+  form.removeControl('profile');
+  const formData = new  FormData();
+  const article = form.value;
+  formData.append('article',JSON.stringify(article));
+  formData.append('file',this.userFile);
+
+  this.crudApi.createData(formData,codecscateg).
   subscribe( data => {
     this.dialogRef.close();
     
@@ -121,7 +143,30 @@ addData() {
       this.router.navigate(['/articles']); 
     });
   }
-
+  onSelectFile(event) {
+    if (event.target.files.length > 0)
+    {
+      const file = event.target.files[0];
+      this.userFile = file;
+     // this.f['profile'].setValue(file);
+ 
+    var mimeType = event.target.files[0].type;
+    if (mimeType.match(/image\/*/) == null) {
+      this.toastr.success( 'Only images are supported.');
+      
+      return;
+    }
+ 
+    var reader = new FileReader();
+    
+    this.imagePath = file;
+    reader.readAsDataURL(file); 
+    reader.onload = (_event) => { 
+      this.imgURL = reader.result; 
+    }
+  }
+     
 
     
   }
+}

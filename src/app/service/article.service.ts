@@ -8,7 +8,7 @@ import { Article } from '../model/article';
   providedIn: 'root'
 })
 export class ArticleService {
-  private baseUrl = 'http://localhost:8088/api/articles';
+  public baseUrl = 'http://localhost:8088/api/articles';
   choixmenu : string  = 'A';
   listData : Article[];
   public dataForm:  FormGroup; 
@@ -24,8 +24,8 @@ export class ArticleService {
     return this.http.get(`${this.baseUrl}/${id}`);
   }
  
-  createData(info: Object, idscat :any): Observable<Object> {
-    return this.http.post(`${this.baseUrl}/${idscat}`, info);
+  createData(formData: FormData, idscat :any): Observable<Object> {
+    return this.http.post(`${this.baseUrl}/${idscat}`, formData);
   }
   
   updatedata(id: number,idcsat:any ,value: Object ): Observable<Object> {

@@ -36,18 +36,28 @@
   </div>
   <div class="form-group ">
     <label>Libelle </label>
-    <input type="text" class="form-control" formControlName="libelle" id="libelle">
+    <input type="text" formControlName="libelle" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.libelle.errors }" />
+    <div *ngIf="submitted && f.libelle.errors" class="invalid-feedback">
+        <div *ngIf="f.libelle.errors.required">libelle doit etre au minimum 4 caractères</div>
+  </div>
   </div>
   <div class="form-group">
 
     <div class="form-group">
       <label>Prix Achat </label>
-      <input type="text" class="form-control" formControlName="pa" id="pa">
+      <input type="text" class="form-control" formControlName="pa" id="pa" [ngClass]="{ 'is-invalid': submitted && f.pa.errors }">
+      <div *ngIf="submitted && f.pa.errors" class="invalid-feedback">
+        <div *ngIf="f.pa.errors.required">prix d'achat ne doit être vide</div>
     </div>
+  </div>
+</div>
     <div class="form-group">
       <label>Prix Vente </label>
-      <input type="text" class="form-control" formControlName="pv" id="pv">
+      <input type="text" class="form-control" formControlName="pv" id="pv" [ngClass]="{ 'is-invalid': submitted && f.pv.errors }">
+      <div *ngIf="submitted && f.pv.errors" class="invalid-feedback">
+        <div *ngIf="f.pv.errors.required">prix de vente ne doit être vide</div>
     </div>
+  </div>
     <div class="form-group">
       <label>TVA </label>
       <select class="form-control" formControlName="tva" id="tva">
@@ -63,20 +73,23 @@
     </div>
     <div class="form-group">
       <label>Stock Init </label>
-      <input type="text" class="form-control" formControlName="stkinit" id="stkinit">
+      <input type="text" class="form-control" formControlName="stock" id="stock" [ngClass]="{ 'is-invalid': submitted && f.stock.errors }">
+      <div *ngIf="submitted && f.stock.errors" class="invalid-feedback">
+        <div *ngIf="f.stock.errors.required">stock initial ne doit être vide</div>
     </div>
+  </div>
     <div class="form-group">
       <label>Stock  </label>
-      <input type="text" class="form-control" formControlName="stock" id="stock">
-      </div>
+      <input type="text" class="form-control" formControlName="stock" id="stock" [ngClass]="{ 'is-invalid': submitted && f.stock.errors }">
+      <div *ngIf="submitted && f.stock.errors" class="invalid-feedback">
+        <div *ngIf="f.stock.errors.required">stock  ne doit être vide</div>
+    </div>
   </div>
-  <!--stock: [0, [Validators.required]],
-  -->
- <!-- <div class="form-group">
-    <label>File Upload </label>
-    <input type="file" accept="image/*" (change)="onSelectFile($event)">
-    <img [src]="imgURL" height="200" *ngIf="imgURL">
-  </div>-->
+  <div class="form-group">
+   <label>File Upload  </label>
+            <input type="file" accept="image/*" (change)="onSelectFile($event)">
+            <img [src]="imgURL" height="200" *ngIf="imgURL">
+  </div>
   <div class="form-group">
     <button type="submit" class="btn btn-dark"><i class="fa fa-database"></i> Submit</button>
     <button type="button" class="btn btn-outline-dark ml-1" [mat-dialog-close]>

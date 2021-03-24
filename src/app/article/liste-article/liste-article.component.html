@@ -1,65 +1,62 @@
 <div class="row">
-    <h1> <i class="fas fa-boxes"></i>&nbsp; Liste des articles</h1>
+  <h1> <i class="fas fa-boxes"></i>&nbsp; Liste des articles</h1>
+
+
+</div>
+<br>
+
+
+<div class="row"s>
+
+  <a class="btn btn-success" style="color: white;" (click)="addArticle()"><i class="fa fa-plus-square"></i> Create New articles</a>
   
-  
-  </div>
-  <br>
-  
-  
-  <div class="row"s>
-  
-    <a class="btn btn-success" style="color: white;" (click)="addArticle()"><i class="fa fa-plus-square"></i> Create New articles</a>
-    
-  
-  </div>
-  <br><br>
-  <div class="row">
-  
-    <table class="table table-bordered  table-hover table-responsive-sm table-responsive-md   table-responsive-lg">
-  
-      <thead calss="thead-light">
-  
-        <tr>
-          <th style="color: black;" scope="col">Code</th>
-          <th style="color: black;" scope="col">Libelle </th>
-          <th style="color: black;" scope="col">Prix Achat</th>
-          <th style="color: black;" scope="col">Prix Vente </th>
-          <th style="color: black;" scope="col">TVa </th>
-          <th style="color: black;" scope="col">Stock </th>
-          <th hidden>stkinit</th>
-  
-          <th hidden>categorie</th>
-          <!--  <th style="color: black;" scope="col">Image </th>
-          -->
-  
-          <th class="text-center" style="width: 13%; color: black;" scope="col" >Action</th>
-  
-  
-        </tr>
-      </thead>
-      <tbody>
-  
-  
-        <tr *ngFor="let item of crudApi.listData | paginate: { itemsPerPage: 3, currentPage: p }">
-          <td>{{item.code}}</td>
-          <td hidden>{{item.code_b}}</td>
-          <td>{{item.libelle}}</td>
-          <td >{{item.pa}}</td>
-          <td>{{item.pv}}</td>
-          <td>{{item.tva}}</td>
-          <td>{{item.stock}}</td>
-          <td hidden>{{item.stkinit}}S</td>
-          <td hidden>{{item.scategorie.libelle}}</td>
-          <!-- <td><a href="#"><img class="card-img-top img-responsive" src="{{this.crudApi.host+'/api/Imgarticles/'+item.id}}"
-                style="height :200px;width:fil-content" alt=""></a></td>-->
-                <td><button class="btn btn-warning" (click)="selectData(item)">
-                    <i class="fa fa-pencil-square-o"></i></button > &nbsp;<button class="btn btn-danger"
-                    (click)="removeData(item.id)">
-                    <i class="fa fa-trash-o"></i></button></td>
-        </tr>
-      </tbody>
-    </table>
-  
-    <pagination-controls (pageChange)="p = $event"></pagination-controls>
-  
-  </div>
+
+</div>
+<br><br>
+<div class="row">
+
+  <table class="table table-bordered  table-hover table-responsive-sm table-responsive-md   table-responsive-lg">
+
+    <thead calss="thead-light">
+
+      <tr>
+        <th style="color: black;" scope="col">Code</th>
+        <th style="color: black;" scope="col">Libelle </th>
+        <th style="color: black;" scope="col">Prix Achat</th>
+        <th style="color: black;" scope="col">Prix Vente </th>
+        <th style="color: black;" scope="col">TVa </th>
+        <th style="color: black;" scope="col">Stock </th>
+        <th  style="color: black;" scope="col" >image</th>
+        <!--  <th style="color: black;" scope="col">Image </th>
+        -->
+
+        <th class="text-center" style="width: 13%; color: black;" scope="col" >Action</th>
+
+
+      </tr>
+    </thead>
+    <tbody>
+
+
+      <tr *ngFor="let item of crudApi.listData | paginate: { itemsPerPage: 6, currentPage: p }">
+        <td>{{item.code}}</td>
+        <td hidden>{{item.code_b}}</td>
+        <td>{{item.libelle}}</td>
+        <td >{{item.pa}}</td>
+        <td>{{item.pv}}</td>
+        <td>{{item.tva}}</td>
+        <td>{{item.stock}}</td>
+        
+        <td><a href="#"><img class="card-img-top img-responsive" src="{{this.crudApi.baseUrl+'/Imgarticles/'+item.id}}"
+              style="height :200px;width:fil-content" alt=""></a></td>
+              <td><button class="btn btn-warning" (click)="selectData(item)">
+                  <i class="fa fa-pencil-square-o"></i></button > &nbsp;<button class="btn btn-danger"
+                  (click)="removeData(item.id)">
+                  <i class="fa fa-trash-o"></i></button></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+</div>

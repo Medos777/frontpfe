@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormControl, FormBuilder } from '@angular/forms';
+import { FormControl, FormBuilder, Validators } from '@angular/forms';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -26,6 +26,8 @@ export class ListeArticleComponent implements OnInit {
     
     this.getData();
   }
+
+
   addArticle()
   {
  
@@ -59,7 +61,7 @@ export class ListeArticleComponent implements OnInit {
       .subscribe(
         data => {
           console.log(data);
-          this.toastr.warning('Article deleted!'); 
+          this.toastr.warning(' data successfully deleted!'); 
           this.getData();
         },
         error => console.log(error));
@@ -71,8 +73,7 @@ export class ListeArticleComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.disableClose = true;
-    dialogConfig.width="45%";
-    dialogConfig.height="100%";
+    dialogConfig.width="50%";
     
     
     this.matDialog.open(AjoutArticleComponent, dialogConfig);

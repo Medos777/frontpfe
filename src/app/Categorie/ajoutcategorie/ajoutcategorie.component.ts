@@ -11,6 +11,7 @@ import { CategorieService } from 'src/app/service/categorie.service';
   styleUrls: ['./ajoutcategorie.component.css']
 })
 export class AjoutcategorieComponent implements OnInit {
+  submitted=false;
   constructor(public crudApi: CategorieService ,public fb: FormBuilder,public toastr: ToastrService,
     private router : Router,@Inject(MAT_DIALOG_DATA)  public data,
     public dialogRef:MatDialogRef<AjoutcategorieComponent>,
@@ -27,8 +28,8 @@ export class AjoutcategorieComponent implements OnInit {
   infoForm() {
     this.crudApi.dataForm = this.fb.group({
         id: null,
-        code: ['', [Validators.required]],
-        libelle: ['', [Validators.required]],
+        code: ['', [Validators.required,Validators.minLength(4)]],
+        libelle: ['', [Validators.required,Validators.minLength(4)]],
       });
     }
    
@@ -37,7 +38,14 @@ export class AjoutcategorieComponent implements OnInit {
   ResetForm() {
       this.crudApi.dataForm.reset();
   }
+  get f() { return this.crudApi.dataForm.controls; }
+
   onSubmit() {
+    this.submitted = true;
+    if(this.crudApi.dataForm.invalid){
+     return;
+
+    }
    
     if (this.crudApi.choixmenu == "A")
     {

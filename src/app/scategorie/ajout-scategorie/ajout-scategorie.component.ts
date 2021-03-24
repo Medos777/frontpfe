@@ -14,6 +14,7 @@ import { ScategorieService } from 'src/app/service/scategorie.service';
 })
 export class AjoutScategorieComponent implements OnInit {
   CategorieList: Categorie[];
+  submitted=false;
   constructor(public crudApi: ScategorieService ,public fb: FormBuilder,public toastr: ToastrService,
     
     public categorieService: CategorieService,
@@ -56,7 +57,13 @@ get f(){
   ResetForm() {
       this.crudApi.dataForm.reset();
   }
+  
   onSubmit() {
+    this.submitted = true;
+    if(this.crudApi.dataForm.invalid){
+     return;
+
+    }
    
     if (this.crudApi.choixmenu == "A")
     {
