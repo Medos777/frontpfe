@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Categorie } from 'src/app/model/categorie';
 import { CategorieService } from 'src/app/service/categorie.service';
+import { UserService } from 'src/app/service/user.service';
+
 import { AjoutcategorieComponent } from '../ajoutcategorie/ajoutcategorie.component';
 
 @Component({
@@ -16,7 +18,7 @@ export class ListecategorieComponent implements OnInit {
 categorie : Categorie;
 control: FormControl = new FormControl('');
 p: number = 1;
-constructor(public crudApi: CategorieService, public toastr: ToastrService,
+constructor(private userService: UserService,public crudApi: CategorieService, public toastr: ToastrService,
   private router : Router,public fb: FormBuilder,
   private matDialog: MatDialog,
   @Inject(MAT_DIALOG_DATA) public data: any,
@@ -25,6 +27,8 @@ constructor(public crudApi: CategorieService, public toastr: ToastrService,
 ngOnInit() {
   
   this.getData();
+
+
 }
 addCategorie()
 {
@@ -44,7 +48,12 @@ getData() {
  this.crudApi.getAll().subscribe(
     response =>{this.crudApi.list = response;}
    );
- 
+
+   this.userService.listUser().subscribe(
+    response =>{   console.log(response);
+    }
+   );
+
 }
 
 

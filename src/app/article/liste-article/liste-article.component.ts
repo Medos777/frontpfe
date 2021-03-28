@@ -74,7 +74,7 @@ export class ListeArticleComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.disableClose = true;
     dialogConfig.width="50%";
-    
+    dialogConfig.height="100%";
     
     this.matDialog.open(AjoutArticleComponent, dialogConfig);
   }

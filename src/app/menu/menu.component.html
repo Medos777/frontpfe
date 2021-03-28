@@ -18,14 +18,12 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarText">
-        <ul class="navbar-nav animate side-nav">
+        <ul class="navbar-nav animate side-nav" id="sideb">
 
           <li  class="nav-item">
-            <a style="color: white;" class="nav-link"routerLink ="/clients" routerLinkActive="active" title="clients"> <i class="fas fa-users"></i><span class="ttip">Listes des clients</span></a>
+            <a style="color: white;" class="nav-link"routerLink ="/clients" routerLinkActive="active" title="clients"> <i class="fas fa-users"></i><span class="ttip">Liste des users</span></a>
 		  </li>
-		  <li class="nav-item">
-            <a  style="color: white;"  class="nav-link"routerLink ="/lcomm" routerLinkActive="active" title="Commande"> <i class="fas fa-cart-plus"></i><span class="ttip">Listes des commandes</span></a>
-          </li>
+		 
           <li class="nav-item">
             <a style="color: white;" class="nav-link" routerLink ="/articles" routerLinkActive="active"  title="article"> <i class="fas fa-boxes"></i><span class="ttip">Liste des articles</span></a>
 		  </li>
@@ -35,9 +33,7 @@
 		  <li class="nav-item">
             <a style="color: white;" class="nav-link" routerLink ="/scategories" routerLinkActive="active" title="sousCategories"> <i class="fas fa-th-large"></i><span class="ttip">Liste des sous categorie</span></a>
 		  </li>
-		  <li  class="nav-item">
-            <a style="color: white;" class="nav-link" routerLink ="/fournisseurs" routerLinkActive="active" title="fournisseurs"> <i class="fas fa-parachute-box"></i><span class="ttip">Liste des fournisseurs</span></a>
-          </li>
+		  
   <!--
           <li *ngIf="this.userService.admin" class="nav-item">
             <a style="color: white;" class="nav-link" routerLink ="/article" routerLinkActive="active" title="article"> <i class="fas fa-boxes"></i><span class="ttip">ajout</span></a>
