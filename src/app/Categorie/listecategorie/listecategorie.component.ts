@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Categorie } from 'src/app/model/categorie';
 import { CategorieService } from 'src/app/service/categorie.service';
+import { TokenStorageService } from 'src/app/service/tokenStorage.service';
 import { UserService } from 'src/app/service/user.service';
 
 import { AjoutcategorieComponent } from '../ajoutcategorie/ajoutcategorie.component';
@@ -18,15 +19,20 @@ export class ListecategorieComponent implements OnInit {
 categorie : Categorie;
 control: FormControl = new FormControl('');
 p: number = 1;
+  role: string;
 constructor(private userService: UserService,public crudApi: CategorieService, public toastr: ToastrService,
   private router : Router,public fb: FormBuilder,
   private matDialog: MatDialog,
   @Inject(MAT_DIALOG_DATA) public data: any,
-  public dialogRef:MatDialogRef<AjoutcategorieComponent>,) { }
+  public dialogRef:MatDialogRef<AjoutcategorieComponent>,public tokenService: TokenStorageService) { }
 
 ngOnInit() {
   
   this.getData();
+  if(this.tokenService.getToken())
+  {
+    this.role=this.tokenService.getUser().role;
+  }
 
 
 }

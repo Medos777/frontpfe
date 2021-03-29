@@ -18,8 +18,8 @@ export class LoginComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,private authentification:AuthentificationService,private tokenservice:TokenStorageService,private router:Router) { }
   ngOnInit() {
     this.LoginForm=this.formBuilder.group({
-      username: ['',[Validators.required]],
-      password:['',[Validators.required]],
+      username: ['',[Validators.required,Validators.minLength(4)]],
+      password:['',[Validators.required,Validators.minLength(8)]],
 
     })
     if(this.tokenservice.getToken())
@@ -44,12 +44,19 @@ this.authentification.login(this.f.username.value,this.f.password.value).subscri
     this.tokenservice.saveToken(data.accessToken);
     this.tokenservice.saveUser(data);
     this.isLoggedIn=true;
-    this.role="agent"
-    console.log('success');
+    this.role=this.tokenservice.getUser().role;    
     console.log(data);
     console.log(this.role);
     this.authentification.loginc=true;
-    this.router.navigate(['categorie']);
+    if(this.role=='admin')
+    this.router.navigate(['clients']);
+    else if (this.role=='agent')
+    this.router.navigate(['categories']);
+
+    
+    else if  (this.role=='facteur')
+    this.router.navigate(['/']);
+    else this.router.navigate(['/']);
 
 
     

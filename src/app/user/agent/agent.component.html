@@ -1,0 +1,64 @@
+<div> 
+    <mat-toolbar class="mat">
+      <div fxShow="true" fxHide.gt-sm="true">
+      </div>
+      <div fxShow="true" fxHide.lt-md="true">
+        <a mat-button routerLinkActive="active" routerLink="/facteurs"> &nbsp;Facteur&nbsp;  </a>
+        <a mat-button routerLink="/agents"> &nbsp; Agent &nbsp;</a>
+        <a mat-button routerLink="/clients"> &nbsp; client </a>
+       
+      </div>
+  
+    </mat-toolbar>
+  
+      <br>
+  
+      <div class="row">
+        <h1> <i class="fa fa-users"></i>&nbsp; Liste des Agents</h1>
+      
+      
+      </div>
+      <br>
+      
+      
+      <div class="row" *ngIf="this.role=='admin'">
+      
+        <a class="btn btn-success" style="color: white;" (click)="addAgent()"><i class="fa fa-plus-square"></i>
+          Nouveau Agent</a>
+      
+      </div>
+      <br><br>
+      <div class="row">
+      
+        <table class="table table-bordered  table-hover table-responsive-sm table-responsive-md   table-responsive-lg">
+      
+          <thead calss="thead-light">
+      
+            <tr>
+              <th style="color: black;">username</th>
+              <th style="color: black;" scope="col">matricule</th>
+              <th style="color: black;" scope="col">adresse</th>
+              <th style="color: black;" scope="col">Tel</th>
+      
+              <th *ngIf="this.role=='admin'" class="text-center" style="width: 13%; color: black;" scope="col">Action</th>
+      
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of crudApi.list | paginate: { itemsPerPage: 4, currentPage: p } ">
+              <th style="color: black;">{{item.username}}</th>
+              <td>{{item.matricule}}</td>
+              <td>{{item.adresse}}</td>
+              <td>{{item.tel}}</td>
+      
+              <td *ngIf="this.role=='admin'"><button class="btn btn-warning" style="margin-left: 20px; color: white;" (click)="selectData(item)">
+                  <i class="fa fa-pencil-square-o"></i></button> &nbsp;<button style="color: white;" class="btn btn-danger"
+                  (click)="removeData(item.id)">
+                  <i class="fa fa-trash-o"></i></button></td>
+            </tr>
+          </tbody>
+        </table>
+      
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      
+      </div>

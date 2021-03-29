@@ -1,83 +1,77 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormControl, FormBuilder } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Scategorie } from 'src/app/model/scategorie';
-import { ScategorieService } from 'src/app/service/scategorie.service';
+import { User } from 'src/app/model/User';
 import { TokenStorageService } from 'src/app/service/tokenStorage.service';
-import { AjoutScategorieComponent } from '../ajout-scategorie/ajout-scategorie.component';
+import { UserService } from 'src/app/service/user.service';
+import { AddUSerComponent } from '../add-user/add-user.component';
 
 @Component({
-  selector: 'app-list-scategorie',
-  templateUrl: './list-scategorie.component.html',
-  styleUrls: ['./list-scategorie.component.css']
+  selector: 'app-agent',
+  templateUrl: './agent.component.html',
+  styleUrls: ['./agent.component.css']
 })
-export class ListScategorieComponent implements OnInit {
-  scategorie : Scategorie;
-  tab:Scategorie[];
+export class AgentComponent implements OnInit {
   p: number = 1;
-  control: FormControl = new FormControl('');
-  role: string;
-  constructor(public crudApi: ScategorieService, public toastr: ToastrService,
+  role: any;
+  constructor(public crudApi: UserService, public toastr: ToastrService,
     private router : Router,public fb: FormBuilder,
     private matDialog: MatDialog,private tokenService: TokenStorageService,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    public dialogRef:MatDialogRef<AjoutScategorieComponent>,) { }
+    public dialogRef:MatDialogRef<AddUSerComponent>,) { }
  
   ngOnInit() {
-    
     this.getData();
     if(this.tokenService.getToken())
     {
       this.role=this.tokenService.getUser().role;
     }
   }
-  addScategorie()
+  
+  getData() {
+    this.crudApi.listUserByRole("agent").subscribe(
+      response =>{this.crudApi.list = response;}
+     );
+   
+  }
+  
+  addAgent()
   {
- 
+    this.crudApi.choixmenu = "A";
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.disableClose = true;
     dialogConfig.width="50%";
-    //dialogConfig.data="gdddd";
-    this.matDialog.open(AjoutScategorieComponent, dialogConfig);
+    dialogConfig.height="100%"
+    this.matDialog.open(AddUSerComponent, dialogConfig);
   }
- 
-  
-
-  
-  getData() {
-
-    this.crudApi.getAll().subscribe(
-      response =>{this.crudApi.listData = response;
-      }
-     );
-
-  }
-  
-  
   removeData(id: number) {
-    if (window.confirm('Are sure you want to delete this Scatégorie ?')) {
-    this.crudApi.deleteData(id)
+    if (window.confirm('Are sure you want to delete this agent ?')) {
+    this.crudApi.deleteUser(id)
       .subscribe(
         data => {
           console.log(data);
-          this.toastr.warning(' Sous Categorie deleted!'); 
+          this.toastr.success(' data successfully deleted!'); 
           this.getData();
         },
         error => console.log(error));
   }
   }
-  selectData(item : Scategorie) {
+  selectData(item : User) {
     this.crudApi.choixmenu = "M";
+   
+   console.log(item);
     this.crudApi.dataForm = this.fb.group(Object.assign({},item));
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.disableClose = true;
     dialogConfig.width="50%";
+    dialogConfig.height="100%"
     
-    this.matDialog.open(AjoutScategorieComponent, dialogConfig);
+    this.matDialog.open(AddUSerComponent, dialogConfig);
   }
+
 
 }

@@ -9,6 +9,7 @@ export class User {
     matricule : string;
     typec : string;
     role : string;
+    password : string;
 
 
 }

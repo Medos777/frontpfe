@@ -17,14 +17,16 @@ export class UserService {
     return this.http.post(`${this.baseUrl}/addUser`, user);
   }
   listUser() :Observable<Object> {
-    return this.http.get(`${this.baseUrl}/all`);
+    return this.http.get(`${this.baseUrl}/`);
   }
   listUserByRole( role:String) :Observable<Object> {
     return this.http.get(`${this.baseUrl}/findUser/${role}`);
   }
 
   updateUser(id: number, value: any): Observable<Object> {
-    return this.http.put(`${this.baseUrl}/update/${id}`, { responseType: 'text' });
+
+    return this.http.put(`${this.baseUrl}/update/${id}`, value,{ responseType: 'text' });
+
   }
   deleteUser(id: number): Observable<any> {
    

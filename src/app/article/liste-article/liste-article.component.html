@@ -6,7 +6,7 @@
 <br>
 
 
-<div class="row"s>
+<div class="row" *ngIf="this.role=='admin'">
 
   <a class="btn btn-success" style="color: white;" (click)="addArticle()"><i class="fa fa-plus-square"></i> Create New articles</a>
   
@@ -30,7 +30,7 @@
         <!--  <th style="color: black;" scope="col">Image </th>
         -->
 
-        <th class="text-center" style="width: 13%; color: black;" scope="col" >Action</th>
+        <th class="text-center" style="width: 13%; color: black;" scope="col" *ngIf="this.role=='admin'" >Action</th>
 
 
       </tr>
@@ -49,7 +49,7 @@
         
         <td><a href="#"><img class="card-img-top img-responsive" src="{{this.crudApi.baseUrl+'/Imgarticles/'+item.id}}"
               style="height :200px;width:fil-content" alt=""></a></td>
-              <td><button class="btn btn-warning" (click)="selectData(item)">
+              <td *ngIf="this.role=='admin'"><button class="btn btn-warning" (click)="selectData(item)">
                   <i class="fa fa-pencil-square-o"></i></button > &nbsp;<button class="btn btn-danger"
                   (click)="removeData(item.id)">
                   <i class="fa fa-trash-o"></i></button></td>

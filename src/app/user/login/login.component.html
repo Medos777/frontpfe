@@ -19,14 +19,22 @@
      <div class="input-group-prepend">  
       <span class="input-group-text"><i class="fa fa-user"></i></span>  
      </div>  
-     <input type="text" class="form-control sty1"  id="username" formControlName="username" placeholder="nom d'utilisateur" required>
-    </div>  
+     <input type="text" class="form-control sty1"  id="username" formControlName="username" placeholder="nom d'utilisateur" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+     <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+         <div *ngIf="f.username.errors.required">username doit etre au minimum 4 caractères</div>
+         </div>
+         </div>
+         
+         
     <div class="input-group mb-4">  
      <div class="input-group-prepend">  
       <span class="input-group-text"><i class="fa fa-lock"></i></span>  
      </div>
-      <input type="password" class="form-control sty1"  id="password" formControlName="password" placeholder="mot de passe" required>
+      <input type="password" class="form-control sty1"  id="password" formControlName="password" placeholder="mot de passe" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+      <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+          <div *ngIf="f.password.errors.required">le mot de passe doit etre au minimum 8 caractères</div>
      </div>  
+    </div>
     <div class="form-group">
       <div class="custom-control custom-checkbox small">
         <input type="checkbox" class="custom-control-input" id="customCheck">

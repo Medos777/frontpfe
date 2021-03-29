@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Article } from 'src/app/model/article';
 import { ArticleService } from 'src/app/service/article.service';
+import { TokenStorageService } from 'src/app/service/tokenStorage.service';
 import { AjoutArticleComponent } from '../ajout-article/ajout-article.component';
 
 @Component({
@@ -16,15 +17,20 @@ export class ListeArticleComponent implements OnInit {
   article : Article;
   p: number = 1;
   control: FormControl = new FormControl('');
+  role: any;
   constructor(public crudApi: ArticleService, public toastr: ToastrService,
     private router : Router,public fb: FormBuilder,
-    private matDialog: MatDialog,
+    private matDialog: MatDialog,public tokenService: TokenStorageService,
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef:MatDialogRef<AjoutArticleComponent>,) { }
  
   ngOnInit() {
     
     this.getData();
+    if(this.tokenService.getToken())
+    {
+      this.role=this.tokenService.getUser().role;
+    }
   }
 
 

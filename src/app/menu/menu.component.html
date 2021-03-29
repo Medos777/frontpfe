@@ -21,7 +21,7 @@
         <ul class="navbar-nav animate side-nav" id="sideb">
 
           <li  class="nav-item">
-            <a style="color: white;" class="nav-link"routerLink ="/clients" routerLinkActive="active" title="clients"> <i class="fas fa-users"></i><span class="ttip">Liste des users</span></a>
+            <a style="color: white;" class="nav-link"routerLink ="/agents" routerLinkActive="active" title="clients"> <i class="fas fa-users"></i><span class="ttip">Liste des users</span></a>
 		  </li>
 		 
           <li class="nav-item">
@@ -46,10 +46,10 @@
         </ul>
         <ul class="navbar-nav ml-md-auto d-md-flex">
           <li class="nav-item">
-            <a style="color: white;" class="nav-link" ><i class="fas fa-user"></i>Hello &nbsp; </a>
+            <a style="color: white;" class="nav-link" ><i class="fas fa-user"></i> &nbsp; {{this.user.username}} </a>
           </li>
           <li class="nav-item">
-            <a style="color: white;" class="nav-link" href="#"><i class="fas fa-key"></i> Logout</a>
+            <a style="color: white;" class="nav-link" (click)="logout()"><i class="fas fa-key"></i> Logout</a>
           </li>
         </ul>
       </div>

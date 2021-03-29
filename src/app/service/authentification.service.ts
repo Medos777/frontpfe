@@ -8,8 +8,7 @@ const httpOptions={
   providedIn: 'root'
 })
 export class AuthentificationService {
-  private baseUrl = 'http://localhost:8080/api/home';
-
+  private baseUrl = 'http://localhost:8088/api/home';
   connected=false;
   loginc=false;
   role = "";
@@ -18,4 +17,9 @@ export class AuthentificationService {
   {
    return this.http.post(`${this.baseUrl}/login`,{username,password},httpOptions);
   }
+
+logout(){
+  return this.http.post(`${this.baseUrl}/logout`,null);
+
+}
 }

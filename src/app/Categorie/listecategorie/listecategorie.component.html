@@ -6,7 +6,7 @@
 <br>
 
 
-<div class="row">
+<div *ngIf="this.role=='admin'" class="row">
 
   <a class="btn btn-success" style="color: white;" (click)="addCategorie()"><i class="fa fa-plus-square"></i> Create New
     categorie</a>
@@ -21,7 +21,7 @@
       <tr>
         <th style="color: black;"scope="col">Code</th>
         <th style="color: black;"scope="col">Libelle </th>
-        <th class="text-center" style="width: 13%; color: black;" scope="col">Action</th>
+        <th *ngIf="this.role=='admin'" class="text-center" style="width: 13%; color: black;" scope="col">Action</th>
 
       </tr>
     </thead>
@@ -33,7 +33,7 @@
         <td>{{item.libelle}}</td>
 
 
-        <td><button class="btn btn-warning" (click)="selectData(item)">
+        <td *ngIf="this.role=='admin'"><button class="btn btn-warning" (click)="selectData(item)">
             <i class="fa fa-pencil-square-o"></i></button> &nbsp;<button class="btn btn-danger"
             (click)="removeData(item.id)">
             <i class="fa fa-trash-o"></i></button></td>

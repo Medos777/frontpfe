@@ -20,6 +20,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { ListeArticleComponent } from './article/liste-article/liste-article.component';
 import { LoginComponent } from './user/login/login.component';
 import { RegisterComponent } from './user/register/register.component';
+import { AgentComponent } from './user/agent/agent.component';
+import { FacteurComponent } from './user/facteur/facteur.component';
+import { ClientComponent } from './user/client/client.component';
 const routes : Routes = [
   {path: '', component:MenuComponent,children : [
   {path: 'categories', component: ListecategorieComponent},
@@ -27,6 +30,10 @@ const routes : Routes = [
   {path: 'scategories', component: ListScategorieComponent},
   {path: 'addscategories', component: AjoutScategorieComponent},
   {path: 'articles', component: ListeArticleComponent},
+  {path: 'agents',component:AgentComponent},
+  {path: 'facteurs',component:FacteurComponent},
+  {path: 'clients',component:ClientComponent},
+
 
   ]},
     {path: 'login', component: LoginComponent},

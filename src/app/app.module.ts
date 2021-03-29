@@ -24,6 +24,10 @@ import { ListeArticleComponent } from './article/liste-article/liste-article.com
 import { LoginComponent } from './user/login/login.component';
 import { RegisterComponent } from './user/register/register.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { ClientComponent } from './user/client/client.component';
+import { FacteurComponent } from './user/facteur/facteur.component';
+import { AgentComponent } from './user/agent/agent.component';
+import { AddUSerComponent } from './user/add-user/add-user.component';
 const MATERIAL_MODULES = [MatToolbarModule,
   MatIconModule
 ];
@@ -40,7 +44,11 @@ const MATERIAL_MODULES = [MatToolbarModule,
     AjoutArticleComponent,
     ListeArticleComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ClientComponent,
+    FacteurComponent,
+    AgentComponent,
+    AddUSerComponent
   ],
   imports: [
     BrowserModule,
