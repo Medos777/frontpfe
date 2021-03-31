@@ -28,6 +28,7 @@ import { ClientComponent } from './user/client/client.component';
 import { FacteurComponent } from './user/facteur/facteur.component';
 import { AgentComponent } from './user/agent/agent.component';
 import { AddUSerComponent } from './user/add-user/add-user.component';
+import { AccueilComponent } from './accueil/accueil.component';
 const MATERIAL_MODULES = [MatToolbarModule,
   MatIconModule
 ];
@@ -48,7 +49,8 @@ const MATERIAL_MODULES = [MatToolbarModule,
     ClientComponent,
     FacteurComponent,
     AgentComponent,
-    AddUSerComponent
+    AddUSerComponent,
+    AccueilComponent
   ],
   imports: [
     BrowserModule,

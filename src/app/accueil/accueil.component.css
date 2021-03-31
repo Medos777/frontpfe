@@ -1,0 +1,11 @@
+.close {
+    background-color: rgb(0, 0, 255);
+    background-color: rgba(187, 255, 0, 1);
+    line-height:50px;
+    text-align:center;
+    vertical-align:middle;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+
+}

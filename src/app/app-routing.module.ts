@@ -23,6 +23,7 @@ import { RegisterComponent } from './user/register/register.component';
 import { AgentComponent } from './user/agent/agent.component';
 import { FacteurComponent } from './user/facteur/facteur.component';
 import { ClientComponent } from './user/client/client.component';
+import { AccueilComponent } from './accueil/accueil.component';
 const routes : Routes = [
   {path: '', component:MenuComponent,children : [
   {path: 'categories', component: ListecategorieComponent},
@@ -38,6 +39,8 @@ const routes : Routes = [
   ]},
     {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
+  {path: 'accueil', component: AccueilComponent},
+
 ];
 
 @NgModule({

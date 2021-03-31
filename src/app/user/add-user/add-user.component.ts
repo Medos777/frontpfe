@@ -17,6 +17,8 @@ export class AddUSerComponent implements OnInit {
     public dialogRef:MatDialogRef<AddUSerComponent>,) { }
     isClient:boolean=false;
     isAgentorFacteur:boolean=false;
+    submitted=false;
+
   ngOnInit() {
   
     if (this.crudApi.choixmenu == "A")
@@ -31,27 +33,35 @@ export class AddUSerComponent implements OnInit {
   infoForm() {
     this.crudApi.dataForm = this.fb.group({
         id: null,
-        username: ['', [Validators.required, Validators.minLength(3)]],
-        nom:['', [Validators.required, Validators.minLength(3)]],
-        email: ['', [Validators.required ,Validators.minLength(5)]],
-        adresnomse: ['', [Validators.required, Validators.minLength(5)]],
-        adresse: ['', [Validators.required, Validators.minLength(8)]],
-        tel: ['', [Validators.required,Validators.email, Validators.minLength(10)]],
-        matricule: ['', [Validators.required, Validators.minLength(8)]],
-        typec: ['', [Validators.required, Validators.minLength(8)]],
-        role: ['', [Validators.required, Validators.minLength(8)]],
-        password: ['', [Validators.required, Validators.minLength(6)]],
+        username: ['', [Validators.required, Validators.minLength(4)]],
+        nom:['', [Validators.required, Validators.minLength(4)]],
+        email: ['', [Validators.required ,Validators.email,Validators.minLength(10)]],
+        adresse: ['', [Validators.required, Validators.minLength(4)]],
+        tel: ['', [Validators.required, Validators.minLength(8)]],
+        matricule: ['',  ],
+        typec: ['', ],
+        role: ['', [Validators.required ]],
+        password: ['', [Validators.required, Validators.minLength(8)]],
        
     
         });
     }
    
   
+    get f() { return this.crudApi.dataForm.controls; }
 
   ResetForm() {
       this.crudApi.dataForm.reset();
   }
   onSubmit() {
+    console.log(this.crudApi.dataForm.value);
+    console.log(this.crudApi.dataForm);
+
+    this.submitted = true;
+    if(this.crudApi.dataForm.invalid){
+      return;
+ 
+     }
     if (this.crudApi.choixmenu == "A")
     {
       this.addData();
@@ -66,7 +76,6 @@ export class AddUSerComponent implements OnInit {
   
    
 onSelectRole(event){
-  console.log(event);
   if(event.value=="client"){
   this.isClient=false;
   this.isAgentorFacteur=true;

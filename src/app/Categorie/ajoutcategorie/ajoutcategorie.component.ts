@@ -43,6 +43,7 @@ export class AjoutcategorieComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     if(this.crudApi.dataForm.invalid){
+      console.log("invalid")
      return;
 
     }

@@ -38,7 +38,7 @@
     <tbody>
 
 
-      <tr *ngFor="let item of crudApi.listData | paginate: { itemsPerPage: 6, currentPage: p }">
+      <tr *ngFor="let item of crudApi.listData | paginate: { itemsPerPage: 2, currentPage: p }">
         <td>{{item.code}}</td>
         <td hidden>{{item.code_b}}</td>
         <td>{{item.libelle}}</td>
@@ -48,7 +48,7 @@
         <td>{{item.stock}}</td>
         
         <td><a href="#"><img class="card-img-top img-responsive" src="{{this.crudApi.baseUrl+'/Imgarticles/'+item.id}}"
-              style="height :200px;width:fil-content" alt=""></a></td>
+              style="height :120px;width:100px;" alt="no image"></a></td>
               <td *ngIf="this.role=='admin'"><button class="btn btn-warning" (click)="selectData(item)">
                   <i class="fa fa-pencil-square-o"></i></button > &nbsp;<button class="btn btn-danger"
                   (click)="removeData(item.id)">
