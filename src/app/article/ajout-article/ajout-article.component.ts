@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Article } from 'src/app/model/article';
 import { Categorie } from 'src/app/model/categorie';
 import { Scategorie } from 'src/app/model/scategorie';
 import { ArticleService } from 'src/app/service/article.service';
@@ -17,11 +18,15 @@ import { ScategorieService } from 'src/app/service/scategorie.service';
 export class AjoutArticleComponent implements OnInit {
   scategorieList: any;
   CategorieList: Categorie[];
+  ArticlesList: Article[];
+
   userFile ;
   public imagePath;
   imgURL: any;
   scategorie: any;
-  wcode: any;
+  code: any;
+  num: any;
+
   submitted= false;
   constructor(public crudApi: ArticleService ,public fb: FormBuilder,public toastr: ToastrService,
     public scategorieService: ScategorieService,
@@ -32,6 +37,8 @@ export class AjoutArticleComponent implements OnInit {
     ) { }
     get f() { return this.crudApi.dataForm.controls; }
   ngOnInit() {
+    this.getData();
+
     this.categorieService.getAll().subscribe(
       response =>{this.CategorieList = response;}
      );
@@ -50,21 +57,24 @@ export class AjoutArticleComponent implements OnInit {
     this.crudApi.dataForm = this.fb.group({
         id: null,
         code: ['', [Validators.required]],
-        code_b: ['6192421101009', [Validators.required,Validators.minLength(13)]],
         libelle: ['', [Validators.required,Validators.minLength(4)]],
         pa: [0, [Validators.required]],
         pv: [0, [Validators.required]],
         tva: [0, [Validators.required]],
-        fodec: [0, [Validators.required]],
         stock: [0, [Validators.required]],
         stkinit: [0, [Validators.required]],
         code_categ: ['', [Validators.required]],
         cscateg: ['', [Validators.required]],
-        profile : [],
       });
     }
 
-    
+    getData() {
+      this.crudApi.getAll().subscribe(
+         response =>{this.ArticlesList= response;}
+        );
+     
+     
+     }
 
   ResetForm() {
       this.crudApi.dataForm.reset();
@@ -96,19 +106,43 @@ onSelectCateg(id_categ)
 onSelectScateg(id_scateg)
 {
   console.log(id_scateg);
+  this.scategorieService.getData(id_scateg.value).subscribe(
+    response1 =>{
+      let scateg:any=response1;
+      this.crudApi.getNumero(id_scateg.value).subscribe(
+        response =>{
+          this.num = response;
+          console.log(this.num,scateg.code);
+          this.num=this.num+1
+          if(this.num>0)
+          {
+            if (this.num<10)
+            this.code = (scateg.code+'00'+this.num).toString().substring(1);
+            else if(this.num<100)
+            this.code = (scateg.code+'0'+this.num).toString().substring(1);
+            else
+            this.code = (scateg.code+this.num).toString().substring(1);
 
- this.scategorieService.getData(id_scateg.value).subscribe(
-    response =>{
-      this.scategorie = response;
-      this.wcode = (10000 + this.scategorie.rang).toString().substring(1);
-      this.wcode = this.scategorie.categorie.libelle+this.scategorie.code+this.wcode;
-      this.f['code'].setValue(this.wcode);
-      }
-   );  
+
+
+          }
+           
+    
+            else this.code=scateg.code+'001'
+          this.f['code'].setValue(this.code);
+          }
+       );  
+
+    }
+  );
+
 } 
 
 addData() {
-  let form=this.crudApi.dataForm;
+  let lib:String=this.crudApi.dataForm.value.libelle;
+  if(this.veriflib(lib))
+  {
+    let form=this.crudApi.dataForm;
   let codecscateg=this.crudApi.dataForm.value['cscateg'];
 
   form.removeControl('code_categ');
@@ -129,6 +163,9 @@ addData() {
      );
     this.router.navigate(['/articles']);
   });
+
+  }
+  
 }
   updateData()
   {
@@ -168,5 +205,13 @@ addData() {
      
 
     
+  }
+  veriflib(lib):boolean{
+    for(let art of this.ArticlesList){
+      if (art.libelle==lib)
+      return false
+    }
+    
+  return true;
   }
 }

@@ -18,7 +18,7 @@ export class AjoutcategorieComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-  
+    this.getData();
     if (this.crudApi.choixmenu == "A")
     {this.infoForm()};
    }
@@ -28,12 +28,31 @@ export class AjoutcategorieComponent implements OnInit {
   infoForm() {
     this.crudApi.dataForm = this.fb.group({
         id: null,
-        code: ['', [Validators.required,Validators.minLength(4)]],
+        code: ['', [Validators.required,Validators.minLength(3)]],
         libelle: ['', [Validators.required,Validators.minLength(4)]],
       });
+      this.crudApi.getCode().subscribe(
+        response =>{
+          let num=response+1;
+          if(num<10)
+            num = '00'+num.toString();
+          else if(num<100)
+          num = '0'+num.toString();
+          else num=num.toString(); 
+         
+
+          this.f['code'].setValue(num);
+          }
+       );  
     }
    
-  
+    getData() {
+      this.crudApi.getAll().subscribe(
+         response =>{this.crudApi.list = response;}
+        );
+     
+     
+     }
 
   ResetForm() {
       this.crudApi.dataForm.reset();
@@ -63,15 +82,19 @@ export class AjoutcategorieComponent implements OnInit {
    
 
 addData() {
-  this.crudApi.createData(this.crudApi.dataForm.value).
-  subscribe( data => {
-    this.dialogRef.close();
-   
-    this.crudApi.getAll().subscribe(
-      response =>{this.crudApi.list = response;}
-     );
-    this.router.navigate(['/categories']); 
-  });
+  let lib:String=this.crudApi.dataForm.value.libelle;
+  if(this.veriflib(lib)){
+    this.crudApi.createData(this.crudApi.dataForm.value).
+    subscribe( data => {
+      this.dialogRef.close();
+     
+      this.crudApi.getAll().subscribe(
+        response =>{this.crudApi.list = response;}
+       );
+      this.router.navigate(['/categories']); 
+    });
+  }
+ 
 }
   updateData()
   {
@@ -85,5 +108,12 @@ addData() {
       this.router.navigate(['/categories']);
     });
   }
-
+veriflib(lib):boolean{
+  for(let cat of this.crudApi.list ){
+    if (cat.libelle==lib)
+    return false
+  }
+  
+return true;
+}
 }

@@ -4,7 +4,7 @@
         <form [formGroup]="this.crudApi.dataForm" (ngSubmit)="onSubmit()">
             <input type="hidden" formControlName="id" id="id">
            
-            <div class="form-group">
+            <div class="form-group"  *ngIf="this.crudApi.choixmenu == 'A'">
                 <label>username</label>
                 <input type="text" class="form-control" formControlName="username" id="username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" >
                 <div *ngIf="submitted && f.username.errors" class="invalid-feedback">

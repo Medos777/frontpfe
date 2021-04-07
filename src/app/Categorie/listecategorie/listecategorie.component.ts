@@ -43,7 +43,6 @@ addCategorie()
   dialogConfig.autoFocus = true;
   dialogConfig.disableClose = true;
   dialogConfig.width="50%";
-  //dialogConfig.data="gdddd";
   this.matDialog.open(AjoutcategorieComponent, dialogConfig);
 }
 
@@ -55,10 +54,6 @@ getData() {
     response =>{this.crudApi.list = response;}
    );
 
-   this.userService.listUser().subscribe(
-    response =>{   console.log(response);
-    }
-   );
 
 }
 

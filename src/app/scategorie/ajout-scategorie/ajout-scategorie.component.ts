@@ -4,6 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Categorie } from 'src/app/model/categorie';
+import { Scategorie } from 'src/app/model/scategorie';
 import { CategorieService } from 'src/app/service/categorie.service';
 import { ScategorieService } from 'src/app/service/scategorie.service';
 
@@ -15,6 +16,7 @@ import { ScategorieService } from 'src/app/service/scategorie.service';
 export class AjoutScategorieComponent implements OnInit {
   CategorieList: Categorie[];
   submitted=false;
+  listsc:Scategorie[];
   constructor(public crudApi: ScategorieService ,public fb: FormBuilder,public toastr: ToastrService,
     
     public categorieService: CategorieService,
@@ -24,14 +26,13 @@ export class AjoutScategorieComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-  
+    this.getData();
     if (this.crudApi.choixmenu == "A")
     {this.infoForm();}
     else 
     {
       this.crudApi.dataForm.addControl('ccateg', new FormControl('', Validators.required));
     }
-    console.log(this.crudApi.dataForm);
     this.categorieService.getAll().subscribe(
       response =>{this.CategorieList = response;}
      );
@@ -76,6 +77,13 @@ get f(){
     }
    
 }
+getData() {
+  this.crudApi.getAll().subscribe(
+     response =>{this.listsc = response;}
+    );
+ 
+ 
+ }
 OnSelectCateg(ctrl){
   if(ctrl.selectedIndex==0)
   {
@@ -103,18 +111,30 @@ OnSelectCateg(ctrl){
   }
 
 }
-
+veriflib(lib):boolean{
+  for(let scat of this.listsc ){
+    if (scat.libelle==lib)
+    return false
+  }
+  
+return true;
+}
 addData() {
-  this.crudApi.createData(this.crudApi.dataForm.value,this.crudApi.dataForm.value['ccateg']).
-  subscribe( data => {
-    this.dialogRef.close();
-    
-   
-    this.crudApi.getAll().subscribe(
-      response =>{this.crudApi.listData = response;}
-     );
-    this.router.navigate(['/scategories']); 
-  });
+  let lib:String=this.crudApi.dataForm.value.libelle;
+  if(this.veriflib(lib))
+  {
+    this.crudApi.createData(this.crudApi.dataForm.value,this.crudApi.dataForm.value['ccateg']).
+    subscribe( data => {
+      this.dialogRef.close();
+      
+     
+      this.crudApi.getAll().subscribe(
+        response =>{this.crudApi.listData = response;}
+       );
+      this.router.navigate(['/scategories']); 
+    });
+  }
+ 
 }
   updateData()
   {

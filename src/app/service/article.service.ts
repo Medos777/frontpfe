@@ -17,10 +17,10 @@ export class ArticleService {
 
   
   listScateg(id: string): Observable<any> {
-    return this.http.get(`${this.baseUrl}/${id}`);
+    return this.http.get(`${this.baseUrl}/scateg/${id}`);
   }
  
-  getData(id: string): Observable<Object> {
+  getData(id: string): Observable<any> {
     return this.http.get(`${this.baseUrl}/${id}`);
   }
  
@@ -32,9 +32,7 @@ export class ArticleService {
     return this.http.put(`${this.baseUrl}/${idcsat}/${id}`, value);
   }
  
-  updateRang(id: number, value: any): Observable<Object> {
-      return this.http.patch(`${this.baseUrl}/${id}`, value);
-  }
+ 
   deleteData(id: number): Observable<any> {
    
     return this.http.delete(`${this.baseUrl}/${id}`, { responseType: 'text' });
@@ -42,5 +40,8 @@ export class ArticleService {
   getAll(): Observable<any> {
    
     return this.http.get(`${this.baseUrl}`);
+  }
+  getNumero(id: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}/generationcode/${id}`);
   }
 }
