@@ -29,6 +29,10 @@ import { FacteurComponent } from './user/facteur/facteur.component';
 import { AgentComponent } from './user/agent/agent.component';
 import { AddUSerComponent } from './user/add-user/add-user.component';
 import { AccueilComponent } from './accueil/accueil.component';
+import { AddDestinationComponent } from './destination/add-destination/add-destination.component';
+import { ListDestinationComponent } from './destination/list-destination/list-destination.component';
+import { ListTarifComponent } from './tarif/list-tarif/list-tarif.component';
+import { AddTarifComponent } from './tarif/add-tarif/add-tarif.component';
 const MATERIAL_MODULES = [MatToolbarModule,
   MatIconModule
 ];
@@ -50,7 +54,11 @@ const MATERIAL_MODULES = [MatToolbarModule,
     FacteurComponent,
     AgentComponent,
     AddUSerComponent,
-    AccueilComponent
+    AccueilComponent,
+    AddDestinationComponent,
+    ListDestinationComponent,
+    ListTarifComponent,
+    AddTarifComponent
   ],
   imports: [
     BrowserModule,

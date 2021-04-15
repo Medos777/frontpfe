@@ -24,6 +24,10 @@ import { AgentComponent } from './user/agent/agent.component';
 import { FacteurComponent } from './user/facteur/facteur.component';
 import { ClientComponent } from './user/client/client.component';
 import { AccueilComponent } from './accueil/accueil.component';
+import { AddDestinationComponent } from './destination/add-destination/add-destination.component';
+import { ListDestinationComponent } from './destination/list-destination/list-destination.component';
+import { ListTarifComponent } from './tarif/list-tarif/list-tarif.component';
+import { AddTarifComponent } from './tarif/add-tarif/add-tarif.component';
 const routes : Routes = [
   {path: '', component:MenuComponent,children : [
   {path: 'categories', component: ListecategorieComponent},
@@ -35,7 +39,10 @@ const routes : Routes = [
   {path: 'facteurs',component:FacteurComponent},
   {path: 'clients',component:ClientComponent},
 
-
+  {path: 'destinations', component: ListDestinationComponent},
+  {path: 'addcdestination', component: AddDestinationComponent},
+  {path: 'addtarif', component: AddTarifComponent},
+  {path: 'tarifs', component: ListTarifComponent},
   ]},
     {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},

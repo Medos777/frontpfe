@@ -1,0 +1,59 @@
+<div class="col-md-12 col-md-offset-2">
+
+    <form [formGroup]="this.crudApi.dataForm" (ngSubmit)="onSubmit()">
+      <input type="hidden" formControlName="id" id="id">
+      <div class="form-group">
+        <label>Code  </label>
+        <input type="text" formControlName="code" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.code.errors }" />
+        <div *ngIf="submitted && f.code.errors" class="invalid-feedback">
+            <div *ngIf="f.code.errors.required">code obligatoire</div>
+            </div>
+      </div>
+      <div class="form-group">
+        <label>Destination </label>
+        <select class="form-control" formControlName="iddest" (change)="OnSelectDest($event.target)" id="ccateg">
+          <option value="0">-Select-</option>
+          <option *ngFor="let item of DestinationList" value="{{item.id}}">{{item.libelle}}</option>
+        </select>
+  
+      </div>
+      <div class="form-group">
+        <label>Libelle </label>
+        <input type="text" formControlName="libelle" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.libelle.errors }" />
+        <div *ngIf="submitted && f.libelle.errors" class="invalid-feedback">
+            <div *ngIf="f.libelle.errors.required">libelle doit etre au minimum 4 caractères</div>
+      </div>
+      </div>
+      <div class="form-group">
+        <label>Montant</label>
+        <input type="text" formControlName="montant" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.montant.errors }" />
+        <div *ngIf="submitted && f.montant.errors" class="invalid-feedback">
+            <div *ngIf="f.montant.errors.required">Montant obligatoire</div>
+            </div>
+      </div>
+
+      <div class="form-group">
+        <label>Deb</label>
+        <input type="text" formControlName="deb" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.deb.errors }" />
+        <div *ngIf="submitted && f.deb.errors" class="invalid-feedback">
+            <div *ngIf="f.deb.errors.required">Deb obligatoire</div>
+            </div>
+      </div>
+
+      <div class="form-group">
+        <label>Fin</label>
+        <input type="text" formControlName="fin" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.fin.errors }" />
+        <div *ngIf="submitted && f.fin.errors" class="invalid-feedback">
+            <div *ngIf="f.fin.errors.required">fin obligatoire</div>
+            </div>
+      </div>
+  
+      <div class="form-group">
+        <button type="submit" class="btn btn-dark"><i class="fa fa-database"></i> Submit</button>
+        <button type="button" class="btn btn-outline-dark ml-1" [mat-dialog-close]><i class="fa fa-close"></i>
+          Close</button>
+  
+  
+      </div>
+    </form>
+  </div>
