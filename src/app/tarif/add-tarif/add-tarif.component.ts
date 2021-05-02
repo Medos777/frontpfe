@@ -48,6 +48,8 @@ get f(){
         id: null,
         code: ['', [Validators.required]],
         libelle: ['', [Validators.required]],
+        typecourrier: ['', [Validators.required]],
+
         deb: [, [Validators.required]],
         fin: [, [Validators.required]],
         montant: [, [Validators.required]],

@@ -1,32 +1,27 @@
 <div class="row">
-    <h1> <i class="fas fa-train"></i>&nbsp; Liste des destinations</h1>
+    <h1> <i class="fas fa-car"></i>&nbsp; Liste des voitures</h1>
   
   
   </div>
   <br>
   
-  <div  id="tarifbutton">
   
-    <a class="btn btn-info" style="color: white;" (click)="goTarif()"><i class="fa fas fa-dollar-sign"></i>
-      tarification</a>
-  
-  </div>
   <div *ngIf="this.role=='admin'" class="row">
   
-    <a class="btn btn-success" style="color: white;" (click)="addDestination()"><i class="fa fa-plus-square"></i>  New
-      Destination</a>
+    <a class="btn btn-success" style="color: white;" (click)="addVoiture()"><i class="fa fa-plus-square"></i> Create New
+      voiture</a>
   
   </div>
   <br><br>
-  
   <div class="row">
   
     <table class="table table-bordered  table-hover table-responsive-sm table-responsive-md   table-responsive-lg">
   
       <thead calss="thead-light">
         <tr>
-          <th style="color: black;"scope="col">Code</th>
-          <th style="color: black;"scope="col">Libelle </th>
+          <th style="color: black;"scope="col">matricule</th>
+          <th style="color: black;"scope="col">model </th>
+          <th style="color: black;"scope="col">marque</th>
           <th *ngIf="this.role=='admin'" class="text-center" style="width: 13%; color: black;" scope="col">Action</th>
   
         </tr>
@@ -35,8 +30,9 @@
   
   
         <tr *ngFor="let item of crudApi.list | paginate: { itemsPerPage: 3, currentPage: p } ">
-          <td>{{item.code}}</td>
-          <td>{{item.libelle}}</td>
+          <td>{{item.matricule}}</td>
+          <td>{{item.model}}</td>
+          <td>{{item.marque}}</td>
   
   
           <td *ngIf="this.role=='admin'"><button class="btn btn-warning" (click)="selectData(item)">

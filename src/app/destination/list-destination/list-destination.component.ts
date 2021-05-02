@@ -55,7 +55,10 @@ getData() {
 
 
 }
+goTarif(){
+  this.router.navigate(['/tarifs']);
 
+}
 
 removeData(id: number) {
   if (window.confirm('Are sure you want to delete this Destination ?')) {

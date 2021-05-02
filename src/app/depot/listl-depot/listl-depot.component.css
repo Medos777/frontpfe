@@ -1,3 +1,4 @@
+  
 div.scroll
 {
 
@@ -48,9 +49,4 @@ label
 
    color :"#0000FF";
 
-}
-#tarifbutton{
-position: fixed;
-left:90vw;
-top:15vh;
 }

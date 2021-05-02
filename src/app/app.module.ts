@@ -5,6 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSliderModule } from '@angular/material/slider';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -33,6 +34,14 @@ import { AddDestinationComponent } from './destination/add-destination/add-desti
 import { ListDestinationComponent } from './destination/list-destination/list-destination.component';
 import { ListTarifComponent } from './tarif/list-tarif/list-tarif.component';
 import { AddTarifComponent } from './tarif/add-tarif/add-tarif.component';
+import { ListDepotComponent } from './depot/list-depot/list-depot.component';
+import { ListVoitureComponent } from './voiture/list-voiture/list-voiture.component';
+import { AddVoitureComponent } from './voiture/add-voiture/add-voiture.component';
+import { ListChauffeurComponent } from './chauffeur/list-chauffeur/list-chauffeur.component';
+import { AddChauffeurComponent } from './chauffeur/add-chauffeur/add-chauffeur.component';
+import { AddDepotComponent } from './depot/add-depot/add-depot.component';
+import { AddlDepotComponent } from './depot/addl-depot/addl-depot.component';
+import { ListlDepotComponent } from './depot/listl-depot/listl-depot.component';
 const MATERIAL_MODULES = [MatToolbarModule,
   MatIconModule
 ];
@@ -58,7 +67,15 @@ const MATERIAL_MODULES = [MatToolbarModule,
     AddDestinationComponent,
     ListDestinationComponent,
     ListTarifComponent,
-    AddTarifComponent
+    AddTarifComponent,
+    ListDepotComponent,
+    ListVoitureComponent,
+    AddVoitureComponent,
+    ListChauffeurComponent,
+    AddChauffeurComponent,
+    AddDepotComponent,
+    AddlDepotComponent,
+    ListlDepotComponent
   ],
   imports: [
     BrowserModule,
@@ -76,6 +93,7 @@ const MATERIAL_MODULES = [MatToolbarModule,
     NgbModule,
     BrowserModule,
     Ng2SearchPipeModule,
+    FormsModule
     
     
     
@@ -83,6 +101,9 @@ const MATERIAL_MODULES = [MatToolbarModule,
   providers: [DatePipe,{ provide: MAT_DIALOG_DATA, useValue: {} ,},
     { provide: MatDialogRef, useValue: {} }],
   bootstrap: [AppComponent],
-  entryComponents: [AjoutcategorieComponent]
+  entryComponents: [AjoutcategorieComponent,
+    AjoutArticleComponent,
+    AddUSerComponent,
+    AddlDepotComponent]
 })
 export class AppModule { }

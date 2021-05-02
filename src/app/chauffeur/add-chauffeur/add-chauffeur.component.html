@@ -1,0 +1,59 @@
+<div class="col-md-12 col-md-offset-2">
+    <h1>Chauffeur</h1>    
+    <form [formGroup]="this.crudApi.dataForm" (ngSubmit)="onSubmit()">
+      <input type="hidden"  formControlName="id" id="id">
+      <div class="form-group">
+        <label>Code </label>
+        <input type="text" formControlName="code" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.code.errors }" />
+        <div *ngIf="submitted && f.code.errors" class="invalid-feedback">
+            <div *ngIf="f.code.errors.required">code doit etre au minimum 3 caractères</div>
+      </div>
+      </div>
+      <div class="form-group">
+        <label>nom </label>
+        <input type="text" formControlName="nom" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.nom.errors }" />
+        <div *ngIf="submitted && f.nom.errors" class="invalid-feedback">
+            <div *ngIf="f.nom.errors.required">nom doit etre au minimum 3 caractères</div>
+      </div>
+      </div>
+      <div class="form-group">
+        <label>nom </label>
+        <input type="text" formControlName="prenom" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.prenom.errors }" />
+        <div *ngIf="submitted && f.prenom.errors" class="invalid-feedback">
+            <div *ngIf="f.prenom.errors.required">prenom doit etre au minimum 3 caractères</div>
+      </div>
+      </div>
+      <div class="form-group">
+        <label>Cin </label>
+        <input type="text" formControlName="cin" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.cin.errors }" />
+        <div *ngIf="submitted && f.cin.errors" class="invalid-feedback">
+            <div *ngIf="f.cin.errors.required">Cin doit etre 8 chiffre</div>
+      </div>
+      </div>
+      <div class="form-group">
+        <label>tel </label>
+        <input type="text" formControlName="tel" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.tel.errors }" />
+        <div *ngIf="submitted && f.tel.errors" class="invalid-feedback">
+            <div *ngIf="f.tel.errors.required">Tel doit etre au minimum 8 chiffre</div>
+      </div>
+      </div>
+
+      
+      <div class="form-group">
+        <label>Adresse </label>
+        <input type="text" formControlName="adresse" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.adresse }" />
+        <div *ngIf="submitted && f.adresse.errors" class="invalid-feedback">
+            <div *ngIf="f.adresse.errors.required">adresse doit etre au minimum 3 caractères</div>
+      </div>
+      </div>
+     
+      <div class="form-group">
+    
+        <button type="submit" class="btn btn-dark"><i class="fa fa-database"></i> Submit</button>
+        <button type="button" class="btn btn-outline-dark ml-1" [mat-dialog-close]><i class="fa fa-close"></i> Close</button>
+    
+  
+  </div>
+    </form>
+  </div>
+  

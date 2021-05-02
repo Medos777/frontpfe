@@ -17,6 +17,18 @@
         </select>
   
       </div>
+      <div class="form-group" >
+        <label>type</label>
+        <select class="form-control" formControlName="typecourrier" id="typecourrier" [ngClass]="{ 'is-invalid': submitted && f.type.errors }">
+            <option value="Lettre">Lettre</option>
+            <option value="Colis">Colis</option>
+            <option value="télégramme">télégramme</option>
+        </select>
+        <div *ngIf="submitted && f.type.errors" class="invalid-feedback">
+            <div *ngIf="f.type.errors.required"> type obligatoire</div>
+      </div>
+
+    </div>
       <div class="form-group">
         <label>Libelle </label>
         <input type="text" formControlName="libelle" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.libelle.errors }" />
@@ -33,16 +45,16 @@
       </div>
 
       <div class="form-group">
-        <label>Deb</label>
-        <input type="text" formControlName="deb" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.deb.errors }" />
+        <label>Deb(en Kg)</label>
+        <input type="number" formControlName="deb" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.deb.errors }" />
         <div *ngIf="submitted && f.deb.errors" class="invalid-feedback">
             <div *ngIf="f.deb.errors.required">Deb obligatoire</div>
             </div>
       </div>
 
       <div class="form-group">
-        <label>Fin</label>
-        <input type="text" formControlName="fin" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.fin.errors }" />
+        <label>Fin(en Kg)</label>
+        <input type="number" formControlName="fin" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.fin.errors }" />
         <div *ngIf="submitted && f.fin.errors" class="invalid-feedback">
             <div *ngIf="f.fin.errors.required">fin obligatoire</div>
             </div>

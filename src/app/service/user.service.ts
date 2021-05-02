@@ -19,7 +19,7 @@ export class UserService {
   listUser() :Observable<Object> {
     return this.http.get(`${this.baseUrl}/`);
   }
-  listUserByRole( role:String) :Observable<Object> {
+  listUserByRole( role:String) :Observable<any> {
     return this.http.get(`${this.baseUrl}/findUser/${role}`);
   }
 

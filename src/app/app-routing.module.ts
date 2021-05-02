@@ -27,7 +27,16 @@ import { AccueilComponent } from './accueil/accueil.component';
 import { AddDestinationComponent } from './destination/add-destination/add-destination.component';
 import { ListDestinationComponent } from './destination/list-destination/list-destination.component';
 import { ListTarifComponent } from './tarif/list-tarif/list-tarif.component';
+import { ListDepotComponent } from './depot/list-depot/list-depot.component';
+import { AddDepotComponent } from './depot/add-depot/add-depot.component';
+import { AddlDepotComponent } from './depot/addl-depot/addl-depot.component';
+import { ListlDepotComponent } from './depot/listl-depot/listl-depot.component';
+
 import { AddTarifComponent } from './tarif/add-tarif/add-tarif.component';
+import { ListVoitureComponent } from './voiture/list-voiture/list-voiture.component';
+import { AddVoitureComponent } from './voiture/add-voiture/add-voiture.component';
+import { ListChauffeurComponent } from './chauffeur/list-chauffeur/list-chauffeur.component';
+import { AddChauffeurComponent } from './chauffeur/add-chauffeur/add-chauffeur.component';
 const routes : Routes = [
   {path: '', component:MenuComponent,children : [
   {path: 'categories', component: ListecategorieComponent},
@@ -40,9 +49,17 @@ const routes : Routes = [
   {path: 'clients',component:ClientComponent},
 
   {path: 'destinations', component: ListDestinationComponent},
-  {path: 'addcdestination', component: AddDestinationComponent},
+  {path: 'adddestination', component: AddDestinationComponent},
   {path: 'addtarif', component: AddTarifComponent},
   {path: 'tarifs', component: ListTarifComponent},
+
+  {path: 'adddepot', component: AddDepotComponent},
+  {path: 'depots', component: ListDepotComponent},
+  
+  {path: 'voitures', component: ListVoitureComponent},
+  {path: 'addvoitures', component: AddVoitureComponent},
+  {path: 'chauffeurs', component: ListChauffeurComponent},
+  {path: 'addchauffeur', component: AddChauffeurComponent},
   ]},
     {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},

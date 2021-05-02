@@ -21,7 +21,6 @@
    
    
       <tr>
-      <th style="color: black;"scope="col">Code</th>
     
       <th style="color: black;"scope="col">Libelle </th>
       <th style="color: black;"scope="col"> Montant</th>
@@ -30,10 +29,9 @@
       </thead>
       <tbody>
         <tr *ngFor="let item of crudApi.listData | paginate: { itemsPerPage: 3, currentPage: p }">
-      <td>{{item.code}}</td>
      
       <td>{{item.libelle}}</td>
-      <td>{{item.montant}}</td>
+      <td>{{item.montant}}(en DT)</td>
   
      
       <td *ngIf="this.role=='admin'"><button class="btn btn-warning" (click)="selectData(item)">

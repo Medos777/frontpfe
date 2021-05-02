@@ -1,0 +1,47 @@
+<div class="col-md-12 col-md-offset-2">
+    <h1>Voiture</h1>    
+    <form [formGroup]="this.crudApi.dataForm" (ngSubmit)="onSubmit()">
+      <input type="hidden"  formControlName="id" id="id">
+      <div class="form-group">
+        <label>Code </label>
+        <input type="text" formControlName="code" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.code.errors }" />
+        <div *ngIf="submitted && f.code.errors" class="invalid-feedback">
+            <div *ngIf="f.code.errors.required">code doit etre au minimum 3 caractères</div>
+      </div>
+      </div>
+      <div class="form-group">
+        <label>Model </label>
+        <input type="text" formControlName="model" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.model.errors }" />
+        <div *ngIf="submitted && f.model.errors" class="invalid-feedback">
+            <div *ngIf="f.model.errors.required">model doit etre au minimum 3 caractères</div>
+      </div>
+      </div>
+    
+
+      
+      <div class="form-group">
+        <label>Marque </label>
+        <input type="text" formControlName="marque" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.marque }" />
+        <div *ngIf="submitted && f.marque.errors" class="invalid-feedback">
+            <div *ngIf="f.marque.errors.required">marque doit etre au minimum 2 caractères</div>
+      </div>
+      </div>
+      <div class="form-group">
+        <label>matricule </label>
+        <input type="text" formControlName="matricule" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.matricule }" />
+        <div *ngIf="submitted && f.matricule.errors" class="invalid-feedback">
+            <div *ngIf="f.matricule.errors.required">matricule doit etre au minimum 4 caractères</div>
+      </div>
+    
+
+      </div>
+      <div class="form-group">
+    
+        <button type="submit" class="btn btn-dark"><i class="fa fa-database"></i> Submit</button>
+        <button type="button" class="btn btn-outline-dark ml-1" [mat-dialog-close]><i class="fa fa-close"></i> Close</button>
+    
+  
+  </div>
+    </form>
+  </div>
+  
