@@ -31,12 +31,16 @@ import { ListDepotComponent } from './depot/list-depot/list-depot.component';
 import { AddDepotComponent } from './depot/add-depot/add-depot.component';
 import { AddlDepotComponent } from './depot/addl-depot/addl-depot.component';
 import { ListlDepotComponent } from './depot/listl-depot/listl-depot.component';
+import { ProfilComponent } from './user/profil/profil.component';
 
 import { AddTarifComponent } from './tarif/add-tarif/add-tarif.component';
 import { ListVoitureComponent } from './voiture/list-voiture/list-voiture.component';
 import { AddVoitureComponent } from './voiture/add-voiture/add-voiture.component';
 import { ListChauffeurComponent } from './chauffeur/list-chauffeur/list-chauffeur.component';
 import { AddChauffeurComponent } from './chauffeur/add-chauffeur/add-chauffeur.component';
+
+import { AddFactureComponent } from './facture/add-facture/add-facture.component';
+import { ListFactureComponent } from './facture/list-facture/list-facture.component';
 const routes : Routes = [
   {path: '', component:MenuComponent,children : [
   {path: 'categories', component: ListecategorieComponent},
@@ -52,6 +56,11 @@ const routes : Routes = [
   {path: 'adddestination', component: AddDestinationComponent},
   {path: 'addtarif', component: AddTarifComponent},
   {path: 'tarifs', component: ListTarifComponent},
+
+  {path: 'profil', component: ProfilComponent},
+
+  {path: 'addfactures', component: AddFactureComponent},
+  {path: 'factures', component: ListFactureComponent},
 
   {path: 'adddepot', component: AddDepotComponent},
   {path: 'depots', component: ListDepotComponent},

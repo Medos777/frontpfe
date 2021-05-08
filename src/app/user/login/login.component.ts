@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TokenStorageService } from 'src/app/service/tokenStorage.service';
 import { AuthentificationService } from 'src/app/service/authentification.service';
+import { UserService } from 'src/app/service/user.service';
+
 
 @Component({
   selector: 'app-login',
@@ -15,7 +17,9 @@ export class LoginComponent implements OnInit {
   submitted=false;
   isLoggedIn=false;
   errore=false;
-  constructor(private formBuilder: FormBuilder,private authentification:AuthentificationService,private tokenservice:TokenStorageService,private router:Router) { }
+  logintest:any=false;
+  msgerreur:any;
+  constructor(private formBuilder: FormBuilder,private userService:UserService ,private authentification:AuthentificationService,private tokenservice:TokenStorageService,private router:Router) { }
   ngOnInit() {
     this.LoginForm=this.formBuilder.group({
       username: ['',[Validators.required,Validators.minLength(4)]],
@@ -33,11 +37,14 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
+    this.msgerreur = "";
+
 
     
     if (this.LoginForm.invalid) {
-        return console.log("errore")   }
+        return console.log("errorform")   }
         console.log(this.f.username.value,this.f.password.value)
+     
 this.authentification.login(this.f.username.value,this.f.password.value).subscribe(
   data=>{
     this.authentification.connected=true;
@@ -65,6 +72,17 @@ this.authentification.login(this.f.username.value,this.f.password.value).subscri
 
 console.log(err); 
 this.errore=true;
+this.userService.UserExist(this.f.username.value).subscribe(
+  data=>{this.logintest=data
+    console.log(this.msgerreur); 
+
+  });
+if(this.logintest==false)
+
+  this.msgerreur='User n’existe pas ';
+  else
+  this.msgerreur='Mot de passe Incorrect';
+
   }
 
 )

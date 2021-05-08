@@ -53,7 +53,17 @@ refreshListe(){
     this.service.choixmenu =1
   this.router.navigate(['/adddepot']);
   }
+  searchByLib(){
+    if(this.SearchText=='')
+    this.refreshListe();
+    else{
+      this.service.getDataByLib(this.SearchText).subscribe(
+        response =>{this.list = response;}
+       );
+    }
 
+    
+  }
 onSelect(item :Depot){
   this.service.formData = this.fb.group(Object.assign({},item));
   this.service.choixmenu =2

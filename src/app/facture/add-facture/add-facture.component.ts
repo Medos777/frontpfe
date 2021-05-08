@@ -1,54 +1,43 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogConfig, MAT_DIALOG_DATA,MatDialogRef } from '@angular/material/dialog';
-import { UserService} from '../../service/user.service'
-import { TarifService} from '../../service/tarif.service'
-import { DestinationService} from '../../service/destination.service'
-import { CompteurService} from '../../service/compteur.service';
-
-
-
-import { User} from '../../model/User';
-import { ToastrService } from 'ngx-toastr';
-import { Router, ActivatedRoute  } from '@angular/router';
-import { NgForm } from '@angular/forms';
-
-
-import { DepotService} from '../../service/depot.service';
-import { LdepotService} from '../../service/ldepot.service';
 import { DatePipe } from '@angular/common';
-import { AddlDepotComponent } from '../../depot/addl-depot/addl-depot.component';
-import { FormBuilder, FormGroup, FormControl, ReactiveFormsModule,Validators }
-from '@angular/forms';
-import { Observable } from "rxjs";
-import { Ldepot} from '../../model/ldepot';
-import { formatDate } from '@angular/common';
+import { Component, Inject, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { Lfacture } from 'src/app/model/lfacture';
+import { CompteurService } from 'src/app/service/compteur.service';
+import { FactureService } from 'src/app/service/facture.service';
+import { LfactureService } from 'src/app/service/lfacture.service';
+import { TarifService } from 'src/app/service/tarif.service';
+import { UserService } from 'src/app/service/user.service';
+import { AddLfactureComponent } from '../add-lfacture/add-lfacture.component';
 @Component({
-  selector: 'app-add-depot',
-  templateUrl: './add-depot.component.html',
-  styleUrls: ['./add-depot.component.css']
+  selector: 'app-add-facture',
+  templateUrl: './add-facture.component.html',
+  styleUrls: ['./add-facture.component.css']
 })
-export class AddDepotComponent implements OnInit {
+export class AddFactureComponent implements OnInit {
+
   numligne:number=1;
 
   ClientList: any[];
-  destinationList:any[];
   compteur : any={};
 
   isValid:boolean = true;
-  destinationCode:number;
-  articleService: any;
+
   Date;
+ 
 
   annee  = 0;
-  constructor(public service:DepotService,
+  constructor(public service:FactureService,
     
-    public LdepotService:LdepotService,
+    public LfactureService:LfactureService,
     private dialog:MatDialog,public fb: FormBuilder,
     public userService :UserService,
     private toastr :ToastrService,
 
     private tarifService :TarifService,
-    private destinationService :DestinationService,
     private compteurService :CompteurService,
 
 
@@ -68,23 +57,16 @@ export class AddDepotComponent implements OnInit {
        }
          else
        {
-        
-                  this.LdepotService.getAllByNumero(this.service.formData.value.numero).subscribe(
-        response =>{
-          console.log(response);
-          this.service.list = response}
+        this.LfactureService.getAllByNumero(this.service.formData.value.numero).subscribe(
+        response =>{this.service.list = response}
         );
-        this.f['date_mvt'].setValue(this.service.formData.value.date_mvt);
+        this.f['date_fct'].setValue(this.service.formData.value.date_fct);
        }
    
    this.userService.listUserByRole('client').subscribe(
      response =>{this.ClientList = response;}
     );
-    this.destinationService.getAll().subscribe(
-      response =>{this.destinationList = response;
-       
-      }
-     );
+  
 
     
      }
@@ -100,20 +82,18 @@ export class AddDepotComponent implements OnInit {
          id :null,
          annee : 0,
          numero : 0,
-         libelle:'',
-         date_mvt : '',
+         libelle : '',
+
+         date_fct : '',
          idclient : 0,
          libclient : '',
          totht : 0,
          tottva : 0,
 
          totttc : 0,
-         beneficier:'',
-         telbeneficier:0,
-         adressebeneficier:'',
-         destinationLibelle:'',
-         destinationId:0,
-         ldepots :[],
+         total:0,
+        
+         lfactures :[],
          });
        } 
      
@@ -121,34 +101,30 @@ export class AddDepotComponent implements OnInit {
          this.service.formData.reset();
      }
    
-   AddData(ldepotIndex,Id){  
+   AddData(lfactureIndex,Id){  
        const dialogConfig = new MatDialogConfig();
        dialogConfig.autoFocus = true;
        dialogConfig.disableClose = true;
        dialogConfig.width="50%";
-       for(let dest of this.destinationList ){
-        if (dest.id==this.service.formData.value.destinationId)
-        this.destinationCode=dest.code;
-      }
-       let destcode=this.destinationCode;
-       let numl=this.numligne
-       dialogConfig.data={ldepotIndex,Id,destcode,numl};
+       let numl=this.numligne;
+       let idclient=this.service.formData.value.idclient;
+
+       dialogConfig.data={lfactureIndex,Id,numl,idclient};
        this.numligne= this.numligne+1
 
        
-       this.dialog.open(AddlDepotComponent, dialogConfig).afterClosed().subscribe(b10=>{
+       this.dialog.open(AddLfactureComponent, dialogConfig).afterClosed().subscribe(b10=>{
          this.calcul();
        });
      }
    
      
-   onDelete(item : Ldepot,Id:number,i:number){
+   onDelete(item : Lfacture,Id:number,i:number){
        if(Id != null)
        this.service.formData.value.id+=Id ;
       this.service.list.splice(i,1);
-      this.LdepotService.deleteData(item.id).subscribe(
-       );
-
+      this.LfactureService.deleteData(item.id).subscribe(
+        );
       this.calcul();
       }
    
@@ -188,34 +164,22 @@ onSelectCompteur(annee: number)
 } 
    onSubmit(){
 
-       this.f['ldepots'].setValue(this.service.list);
+       this.f['lfactures'].setValue(this.service.list);
        console.log(this.service.formData.value);
 
          this.service.createData(this.service.formData.value).
          subscribe( data => {
            this.toastr.success( 'Validation Faite avec Success'); 
-           this.router.navigate(['/depots']);
+           this.router.navigate(['/factures']);
          });
          this.service.list = [];
-
       }
      
    transformDate(date){
         return this.datePipe.transform(date, 'yyyy-MM-dd');
       }
-      destinationId
-      OnSelectDest(ctrl){
-        if(ctrl.selectedIndex == 0){
-          this.f['destinationId'].setValue('');
-          this.f['destinationLibelle'].setValue('');
-         }
-         else{
-            this.f['destinationId'].setValue(this.destinationList[ctrl.selectedIndex - 1].id);
-            this.f['destinationLibelle'].setValue(this.destinationList[ctrl.selectedIndex - 1].libelle);
-            this.destinationCode=this.destinationList[ctrl.selectedIndex - 1].code;
-         }
-      }
-
+      
+  
    OnSelectClient(ctrl)
       {
          if(ctrl.selectedIndex == 0){
@@ -228,4 +192,4 @@ onSelectCompteur(annee: number)
          }
        }
       
-   }
+}

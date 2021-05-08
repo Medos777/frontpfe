@@ -2,12 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { Facture } from '../model/facture';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DepotService {
-  private baseUrl = 'http://localhost:8088/api/depots';
+export class FactureService {
+  private baseUrl = 'http://localhost:8088/api/factures';
   choixmenu : number = 1;
   list : any[];
   public formData:  FormGroup; 
@@ -19,14 +20,11 @@ export class DepotService {
   getData(id: number): Observable<Object> {
     return this.http.get(`${this.baseUrl}/id/${id}`);
   }
-  getDataByIdClient(id: number): Observable<any> {
-    return this.http.get(`${this.baseUrl}/client/${id}`);
+  getDataByCode(code: String): Observable<Object> {
+    return this.http.get(`${this.baseUrl}/code/${code}`);
   }
   getDataByLib(lib: string): Observable<any> {
     return this.http.get(`${this.baseUrl}/lib/${lib}`);
-  }
-  getDataByCode(code: String): Observable<Object> {
-    return this.http.get(`${this.baseUrl}/code/${code}`);
   }
   createData(info: Object): Observable<Object> {
 
@@ -38,8 +36,9 @@ export class DepotService {
   }
  
   deleteData(id: number): Observable<any> {
-   
+   console.log(id);
     return this.http.delete(`${this.baseUrl}/${id}`, { responseType: 'text' });
+
   }
 
   getAll(): Observable<any> {

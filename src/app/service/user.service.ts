@@ -19,6 +19,9 @@ export class UserService {
   listUser() :Observable<Object> {
     return this.http.get(`${this.baseUrl}/`);
   }
+  UserExist(username:String) :Observable<any> {
+    return this.http.get(`${this.baseUrl}/username/${username}`);
+  }
   listUserByRole( role:String) :Observable<any> {
     return this.http.get(`${this.baseUrl}/findUser/${role}`);
   }

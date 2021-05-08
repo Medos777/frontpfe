@@ -38,7 +38,6 @@ export class AddlDepotComponent implements OnInit {
        
 
   ngOnInit() {
-    console.log("code dest=",this.data.destcode)
     if(this.data.ldepotIndex==null)
     {
       this.InfoForm();
@@ -56,7 +55,7 @@ export class AddlDepotComponent implements OnInit {
 InfoForm() {
   this.formData = this.fb.group({
       id: null,
-      numero :this.data.numl,
+      numero :this.data.numl+this.depotService.list.length,
       poids : 0,
       pu : 0,
       tva : 0,
@@ -89,7 +88,7 @@ cal(){
   this.tarifService.findTarifByInter(this.data.destcode,parseFloat(this.formData.value.poids)).subscribe(
     response =>{this.tarif= response;}
    );
-   console.log(this.tarif)
+   console.log(this.tarif,this.data.destcode,this.formData.value.poids)
   this.wtotht =  parseFloat((this.tarif.montant).toFixed(3))+parseFloat((this.formData.value.pu).toFixed(3));
   this.wtottva = parseFloat(((this.wtotht * 13)*0.01).toFixed(3)); 
   this.wtotttc = parseFloat((this.wtotht + this.wtottva).toFixed(3));

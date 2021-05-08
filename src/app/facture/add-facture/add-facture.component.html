@@ -1,13 +1,12 @@
-
-    <div>
-    <h1>Gestion Depot</h1> 
+<div>
+    <h1>Gestion Facture</h1> 
     </div>
     
-<form [formGroup]="this.service.formData" (ngSubmit)="onSubmit()">
+<form [formGroup]="this.service.formData" (ngSubmit)="onSubmit()" >
 <input  type="hidden"  class="form-control" formControlName="libclient" id="libclient" >
 <div class="form-group row col-md-12">
   <div class="form-group col-md-6">
-      <label><strong>Num Depot : </strong></label>
+      <label><strong>Num facture : </strong></label>
       <input  type="text"  class="form-control" formControlName="numero" id="numero" readonly>
   </div>  
   <div class="form-group col-md-6">
@@ -16,16 +15,9 @@
   </div> 
   <div class="col-md-6 form-group">
         <label>Date</label>
-      <input  type="date"  class="form-control" formControlName="date_mvt"  id="date_mvt">
+      <input  type="date"  class="form-control" formControlName="date_fct"  id="date_fct">
   </div>
-  <div class="col-md-6 form-group">
-    <label>destination</label>
-    <select class="form-control" formControlName="destinationId" id="destinationId" 
-    (change)="OnSelectDest($event.target)">
-    <option value="0">-Select-</option>
-    <option *ngFor="let destination of this.destinationList" value="{{destination.id}}">{{destination.libelle}}</option>
-    </select>
-  </div>
+  
   <div class="col-md-6 form-group">
     <label>Client</label>
     <select class="form-control" formControlName="idclient" id="idclient" 
@@ -34,26 +26,17 @@
     <option *ngFor="let client of this.ClientList" value="{{client.id}}">{{client.nom}}</option>
     </select>
   </div>
-  <div class="form-group col-md-6">
-    <label><strong>beneficier </strong></label>
-    <input  type="text"  class="form-control" formControlName="beneficier" id="beneficier" >
-</div>  
-<div class="form-group col-md-6">
-  <label><strong>telephone beneficier </strong></label>
-  <input  type="tel"  class="form-control" formControlName="telbeneficier" id="telbeneficier" >
-</div>  
-<div class="form-group col-md-6">
-  <label><strong>adresse beneficier</strong></label>
-  <input  type="text"  class="form-control" formControlName="adressebeneficier" id="adressebeneficier" >
-</div> 
+ 
+
+
   </div>
   <table class="table table-borderless">
     <thead class="thead-light">
       <th>num</th>
-      <th>Article</th>
-      <th>Poids</th>
-      <th>Tva</th>
-      <th>Total Ht</th>
+      <th>num Depot</th>
+      <th>Tott Ht</th>
+      <th>Tottva </th>
+      <th>Totttc</th>
       <th>
         <a class="btn btn-sm btn-success text-white" (click)="AddData(null,1)">
             <i class="fa fa-plus"></i>Ajouter </a>
@@ -68,12 +51,13 @@
           </tr>
       <tr *ngFor="let item of service.list;let i=index;">
       <td>{{item.numero}}</td>  
-      <td>{{item.libart}}</td>
-      <td>{{item.poids}}</td>
-      <td>{{item.tva}}</td>
+      <td>{{item.numdepot}}</td>
       <td>{{item.totht}}</td>
+      <td>{{item.tottva}}</td>
+      <td>{{item.totttc}}</td>
+
       <td>
-          <a class="btn btn-sm btn-info text-white" *ngIf="this.service.choixmenu==1"    (click)="AddData(i,1)">
+          <a class="btn btn-sm btn-info text-white" (click)="AddData(i,1)">
               <i class="fa fa-pencil"></i></a>
           <a class="btn btn-sm btn-danger text-white" (click)="onDelete(item,item.id,i)">
             <i class="fa fa-trash-o"></i></a>      </td>
@@ -102,6 +86,7 @@
      </div>
   <div class="form-group">
     <button type="submit" class="btn btn-dark"><i class="fa fa-database"></i> Submit</button>
-    <a class="btn btn-outline-dark ml-1" routerLink="/depots"><i class="fa fa-plus-square"></i> Liste </a>
+    <a class="btn btn-outline-dark ml-1" routerLink="/factures"><i class="fa fa-plus-square"></i> Liste </a>
+
  </div>
 </form> 

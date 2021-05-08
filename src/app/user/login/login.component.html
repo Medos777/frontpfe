@@ -21,7 +21,7 @@
      </div>  
      <input type="text" class="form-control sty1"  id="username" formControlName="username" placeholder="nom d'utilisateur" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
      <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-         <div *ngIf="f.username.errors.required">username doit etre au minimum 4 caractères</div>
+         <div *ngIf="this.LoginForm.controls['username'].invalid && (this.LoginForm.controls['username'].dirty || this.LoginForm.controls['username'].touched)">username doit etre au minimum 4 caractères</div>
          </div>
          </div>
          
@@ -32,14 +32,13 @@
      </div>
       <input type="password" class="form-control sty1"  id="password" formControlName="password" placeholder="mot de passe" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
       <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-          <div *ngIf="f.password.errors.required">le mot de passe doit etre au minimum 8 caractères</div>
+          <div *ngIf="this.LoginForm.controls['password'].invalid && (this.LoginForm.controls['password'].dirty || this.LoginForm.controls['password'].touched)">le mot de passe doit etre au minimum 8 caractères</div>
      </div>  
-    </div>
-    <div class="form-group">
-      <div class="custom-control custom-checkbox small">
-        <input type="checkbox" class="custom-control-input" id="customCheck">
-        <label class="custom-control-label" for="customCheck">Remember Me</label>
+     <div *ngIf="submitted && errore && this.LoginForm.controls['username'].valid && this.LoginForm.controls['password'].valid " class="text-danger">
+      <small>{{msgerreur}}</small>
       </div>
+
+    
     </div>
       <button class="btn btn-primary btn-block "><i class="fa fa-sign-in"></i>&nbsp; connexion</button>
    

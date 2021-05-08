@@ -42,6 +42,11 @@ import { AddChauffeurComponent } from './chauffeur/add-chauffeur/add-chauffeur.c
 import { AddDepotComponent } from './depot/add-depot/add-depot.component';
 import { AddlDepotComponent } from './depot/addl-depot/addl-depot.component';
 import { ListlDepotComponent } from './depot/listl-depot/listl-depot.component';
+import { ListFactureComponent } from './facture/list-facture/list-facture.component';
+import { AddFactureComponent } from './facture/add-facture/add-facture.component';
+import { ListLfactureComponent } from './facture/list-lfacture/list-lfacture.component';
+import { AddLfactureComponent } from './facture/add-lfacture/add-lfacture.component';
+import { ProfilComponent } from './user/profil/profil.component';
 const MATERIAL_MODULES = [MatToolbarModule,
   MatIconModule
 ];
@@ -75,7 +80,12 @@ const MATERIAL_MODULES = [MatToolbarModule,
     AddChauffeurComponent,
     AddDepotComponent,
     AddlDepotComponent,
-    ListlDepotComponent
+    ListlDepotComponent,
+    ListFactureComponent,
+    AddFactureComponent,
+    ListLfactureComponent,
+    AddLfactureComponent,
+    ProfilComponent
   ],
   imports: [
     BrowserModule,
@@ -104,6 +114,7 @@ const MATERIAL_MODULES = [MatToolbarModule,
   entryComponents: [AjoutcategorieComponent,
     AjoutArticleComponent,
     AddUSerComponent,
-    AddlDepotComponent]
+    AddlDepotComponent,
+    AddLfactureComponent]
 })
 export class AppModule { }

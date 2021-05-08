@@ -1,0 +1,102 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="container emp-profile">
+            <form method="post">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="profile-img">
+                            <img src="https://www.webdo.tn/wp-content/uploads/2018/05/poste.jpg" alt=""/>
+                           
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="profile-head">
+                                    <h5>
+                                        {{user.nom}}
+                                    </h5>
+                                    <h6>
+                                        Client ( {{user.typec}})
+                                    </h6>
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">données</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Plus</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Modifier "/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        
+                    </div>
+                    <div class="col-md-8">
+                        <div class="tab-content profile-tab" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                       
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Nom</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{user.nom}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>adresse</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{user.adresse}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>tel</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{user.tel}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Type Client</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>( {{user.typec}})</p>
+                                            </div>
+                                        </div>
+                            </div>
+                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Username</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{user.username}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Email</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{user.email}}</p>
+                                            </div>
+                                        </div>
+                                        
+            
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>           
+        </div>
