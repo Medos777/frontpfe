@@ -12,6 +12,7 @@ export class FactureService {
   choixmenu : number = 1;
   list : any[];
   public formData:  FormGroup; 
+  facture : any;
 
   public dataForm:  FormGroup; 
   constructor(private http: HttpClient) { }
@@ -22,6 +23,9 @@ export class FactureService {
   }
   getDataByCode(code: String): Observable<Object> {
     return this.http.get(`${this.baseUrl}/code/${code}`);
+  }
+  getDataByClient(id: String): Observable<any> {
+    return this.http.get(`${this.baseUrl}/client/${id}`);
   }
   getDataByLib(lib: string): Observable<any> {
     return this.http.get(`${this.baseUrl}/lib/${lib}`);

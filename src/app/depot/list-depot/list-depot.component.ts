@@ -15,22 +15,39 @@ import { FormBuilder, FormGroup, FormControl, ReactiveFormsModule,Validators } f
   styleUrls: ['./list-depot.component.css']
 })
 export class ListDepotComponent implements OnInit {
-
+  role: any;
+  user: any;
   list : Depot[];
   SearchText :string;
-  constructor( private service :DepotService,private router:Router,
+  constructor( private service :DepotService,private router:Router,private tokenService: TokenStorageService,
+    
     private toastr :ToastrService,public fb: FormBuilder,
     private datePipe : DatePipe) { }
 
   ngOnInit() {
-    
+    if(this.tokenService.getToken())
+    {
+      this.role=this.tokenService.getUser().role;
+      this.user=this.tokenService.getUser();
+    }
+    console.log(this.role);
+    console.log(this.user);
     this.refreshListe();
     
   }
 refreshListe(){
+  if(this.role=="agent"){
+
+ 
   this.service.getAll().subscribe(
     response =>{this.list = response;}
    );
+  }
+  else if(this.role=="client"){
+    this.service.getDataByIdClient(this.user.id).subscribe(
+      response => { this.list = response; }
+    );
+  }
 
 }
 

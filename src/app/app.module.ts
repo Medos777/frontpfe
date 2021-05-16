@@ -47,6 +47,8 @@ import { AddFactureComponent } from './facture/add-facture/add-facture.component
 import { ListLfactureComponent } from './facture/list-lfacture/list-lfacture.component';
 import { AddLfactureComponent } from './facture/add-lfacture/add-lfacture.component';
 import { ProfilComponent } from './user/profil/profil.component';
+import { DetailFactureComponent } from './facture/detail-facture/detail-facture.component';
+import { UpdateprofilComponent } from './user/updateprofil/updateprofil.component';
 const MATERIAL_MODULES = [MatToolbarModule,
   MatIconModule
 ];
@@ -85,7 +87,9 @@ const MATERIAL_MODULES = [MatToolbarModule,
     AddFactureComponent,
     ListLfactureComponent,
     AddLfactureComponent,
-    ProfilComponent
+    ProfilComponent,
+    DetailFactureComponent,
+    UpdateprofilComponent
   ],
   imports: [
     BrowserModule,
@@ -115,6 +119,7 @@ const MATERIAL_MODULES = [MatToolbarModule,
     AjoutArticleComponent,
     AddUSerComponent,
     AddlDepotComponent,
-    AddLfactureComponent]
+    AddLfactureComponent,
+    UpdateprofilComponent]
 })
 export class AppModule { }

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+
+	</head>
+
+	<body  >
+		<div class="invoice-box" id="formpdf">
+			<table cellpadding="0" cellspacing="0">
+				<tr class="top">
+					<td colspan="2">
+						<table>
+							<tr>
+								<td class="title">
+									<img src="https://www.webdo.tn/wp-content/uploads/2018/05/poste.jpg" style="width: 100%; max-width: 130px" />
+								</td>
+
+								<td>
+									Facture num : {{facture.numero}}<br />
+									Date: {{facture.date_fct |date:'mediumDate'}}
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+
+				<tr class="information">
+					<td colspan="2">
+						<table>
+							<tr>
+								<td>
+									Client<br />
+									Adresse<br />
+									Email
+								</td>
+
+								<td>
+									 {{facture.libclient}}<br />
+									 {{client.adresse}}<br />
+									 {{client.email}}
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+
+				
+
+				<tr class="heading">
+					<td>Depot</td>
+
+					<td>Totttc</td>
+				</tr>
+
+				<tr class="item" *ngFor="let item of facture.lfactures">
+					<td>{{item.numdepot}}</td>
+
+					<td>{{item.totttc}}(Dt)</td>
+					
+				</tr>
+
+				
+			
+
+				<tr class="total">
+					<td></td>
+
+					<td>Tottht: {{facture.totht}} (Dt)</td>
+				</tr>
+				<tr class="total">
+					<td></td>
+
+					<td>Tottva:  {{facture.tottva}} (Dt)</td>
+				</tr>
+				<tr class="total">
+					<td></td>
+
+					<td>Tottc:  {{facture.totttc}} (Dt)</td>
+				</tr>
+			</table>
+
+		</div>
+		<a class="btn text-info"  (click)="printpdf()" ></a><i class="fa fa-print fa-2x"></i>
+
+	</body>
+</html>

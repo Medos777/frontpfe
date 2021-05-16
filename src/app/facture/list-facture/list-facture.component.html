@@ -19,7 +19,7 @@ placeholder="Recherche..." aria-label="Search" aria-describedby="basic-addon2">
 
 <th>Total TTC</th>
 <th>
-<a class="btn btn-outline-success" (click)="newFacture()"><i class="fa fa-plus-square"></i>
+<a class="btn btn-outline-success" *ngIf="this.role=='agent'" (click)="newFacture()"><i class="fa fa-plus-square"></i>
  Create New</a>
 </th>
 </thead>
@@ -34,13 +34,17 @@ placeholder="Recherche..." aria-label="Search" aria-describedby="basic-addon2">
 
 <td >{{fact.totttc}}</td>
 <td>
-<a class="btn text-danger" (click)="onDelete(fact.id)"><i class="fa fa-trash-o">
+  <a class="btn text-info" (click)="detailsfct(fact)"><i class="fa fa-info-circle">
+
+  </i> </a>
+  <a class="btn text-warning" *ngIf="this.role=='agent'" (click)="onSelect(fact)"><i class="fa fa-pencil fa-lg">
+
+  </i> </a>
+  
+<a class="btn text-danger" *ngIf="this.role=='agent'" (click)="onDelete(fact.id)"><i class="fa fa-trash-o">
 
 </i> </a>
-<a class="btn text-danger" (click)="onSelect(fact)"><i class="fa fa-pencil fa-lg">
 
-</i> </a>
-<button (click)="generatePdf()">Open PDF</button>
 
 </td>
 </tr>

@@ -32,6 +32,7 @@ import { AddDepotComponent } from './depot/add-depot/add-depot.component';
 import { AddlDepotComponent } from './depot/addl-depot/addl-depot.component';
 import { ListlDepotComponent } from './depot/listl-depot/listl-depot.component';
 import { ProfilComponent } from './user/profil/profil.component';
+import { DetailFactureComponent } from './facture/detail-facture/detail-facture.component';
 
 import { AddTarifComponent } from './tarif/add-tarif/add-tarif.component';
 import { ListVoitureComponent } from './voiture/list-voiture/list-voiture.component';
@@ -73,6 +74,8 @@ const routes : Routes = [
     {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'accueil', component: AccueilComponent},
+  {path: 'facturedetail', component: DetailFactureComponent},
+
 
 ];
 

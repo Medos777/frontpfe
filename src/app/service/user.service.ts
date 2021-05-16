@@ -19,6 +19,10 @@ export class UserService {
   listUser() :Observable<Object> {
     return this.http.get(`${this.baseUrl}/`);
   }
+  GetUserById( id:String) :Observable<any> {
+    return this.http.get(`${this.baseUrl}/id/${id}`);
+  }
+  
   UserExist(username:String) :Observable<any> {
     return this.http.get(`${this.baseUrl}/username/${username}`);
   }
@@ -29,6 +33,11 @@ export class UserService {
   updateUser(id: number, value: any): Observable<Object> {
 
     return this.http.put(`${this.baseUrl}/update/${id}`, value,{ responseType: 'text' });
+
+  }
+  updateUserProfil(id: number, value: any): Observable<Object> {
+
+    return this.http.put(`${this.baseUrl}/updateprofil/${id}`, value,{ responseType: 'text' });
 
   }
   deleteUser(id: number): Observable<any> {

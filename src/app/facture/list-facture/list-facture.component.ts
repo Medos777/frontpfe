@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-
+import { TokenStorageService } from '../../service/tokenStorage.service';
 import { Depot } from 'src/app/model/depot';
 import { Facture } from 'src/app/model/facture';
 import { FactureService } from 'src/app/service/facture.service';
@@ -13,22 +13,39 @@ import { FactureService } from 'src/app/service/facture.service';
   styleUrls: ['./list-facture.component.css']
 })
 export class ListFactureComponent implements OnInit {
-
+  role: any;
+  user: any;
   list: Facture[];
   SearchText: string;
-  constructor(private service: FactureService, private router: Router,
+  constructor(private service: FactureService, private router: Router,private tokenService: TokenStorageService,
     private toastr: ToastrService, public fb: FormBuilder,
     private datePipe: DatePipe) { }
 
   ngOnInit() {
+    if(this.tokenService.getToken())
+    {
+      this.role=this.tokenService.getUser().role;
+      this.user=this.tokenService.getUser();
+    }
+    console.log(this.role);
+    console.log(this.user);
 
     this.refreshListe();
 
   }
   refreshListe() {
-    this.service.getAll().subscribe(
-      response => { this.list = response; }
-    );
+    if(this.role=="agent")
+    {
+      this.service.getAll().subscribe(
+        response => { this.list = response; }
+      );
+    }
+    
+    else if(this.role=="client"){
+      this.service.getDataByClient(this.user.id).subscribe(
+        response => { this.list = response; }
+      );
+    }
 
   }
 
@@ -69,5 +86,9 @@ export class ListFactureComponent implements OnInit {
   transformDate(date) {
     return this.datePipe.transform(date, 'yyyy-MM-dd');
   }
+  detailsfct(item:Facture){
+    this.service.facture=item;
+    this.router.navigate(['/facturedetail']);
 
+  }
 }

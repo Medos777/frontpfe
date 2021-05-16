@@ -20,26 +20,8 @@
               </div>
 
             </div>
-            <div class="form-group">
-                <label>nom</label>
-                <input type="text" class="form-control" formControlName="nom" id="nom" [ngClass]="{ 'is-invalid': submitted && f.nom.errors }">
-                <div *ngIf="submitted && f.nom.errors" class="invalid-feedback">
-                    <div *ngIf="f.nom.errors.required">nom doit etre au minimum 4 caractères</div>
-              </div>
-
-            </div>
-            <div class="form-group" *ngIf="this.crudApi.choixmenu == 'A'">
-                <label>role</label>
-                <select class="form-control" formControlName="role" id="role" [ngClass]="{ 'is-invalid': submitted && f.role.errors }" (change)="onSelectRole($event.target)">
-                    <option value="agent">Agent</option>
-                    <option value="client">Client</option>
-                    <option value="facteur">Facteur</option>
-                </select>
-                <div *ngIf="submitted && f.role.errors" class="invalid-feedback">
-                    <div *ngIf="f.role.errors.required"> role obligatoire</div>
-              </div>
-
-            </div>
+       
+          
             <div class="form-group">
                 <label for="adresse">adresse</label>
                 <input type="text" class="form-control" formControlName="adresse" id="adresse" [ngClass]="{ 'is-invalid': submitted && f.adresse.errors }">
@@ -55,27 +37,12 @@
               </div>
 
             </div>
-            <div class="form-group"  *ngIf="isClient">
-                <label>matricule</label>
-                <input type="text" class="form-control" formControlName="matricule" id="matricule" [ngClass]="{ 'is-invalid': submitted && f.matricule.errors }" >
-                <div *ngIf="submitted && f.matricule.errors" class="invalid-feedback">
-                    <div *ngIf="f.matricule.errors.required">tel invalide</div>
-              </div>
-            </div>
-            <div class="form-group " *ngIf="isAgentorFacteur">
-                <label>Type Client</label>
-                <select class="form-control" formControlName="typec" id="typec" [ngClass]="{ 'is-invalid': submitted && f.typec.errors }">
-                    <option value="société">société</option>
-                    <option value="passager">passager</option>
-                </select>
-                <div *ngIf="submitted && f.typec.errors" class="invalid-feedback">
-                    <div *ngIf="f.typec.errors.required"> Type Client obligatoire</div>
-              </div>
-            </div>
+           
+            
             
             <div class="form-group" *ngIf="this.crudApi.choixmenu == 'A'">
-                <label>mot de passe</label>
-                <input type="password" class="form-control" formControlName="password" id="password"  [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+                <label>nouveau mot de passe</label>
+                <input placeholder="********" type="password" class="form-control" formControlName="password" id="password"  [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
                 <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                     <div *ngIf="f.password.errors.required">mot de passe invalide</div>
               </div>

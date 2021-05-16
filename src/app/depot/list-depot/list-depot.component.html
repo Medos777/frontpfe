@@ -20,7 +20,7 @@ placeholder="Recherche..." aria-label="Search" aria-describedby="basic-addon2">
 
 <th>Total TTC</th>
 <th>
-<a class="btn btn-outline-success" (click)="newDepot()"><i class="fa fa-plus-square"></i>
+<a class="btn btn-outline-success"  *ngIf="this.role=='agent'" (click)="newDepot()"><i class="fa fa-plus-square"></i>
  Create New</a>
 </th>
 </thead>
@@ -36,12 +36,13 @@ placeholder="Recherche..." aria-label="Search" aria-describedby="basic-addon2">
 
 <td >{{(dep.totttc).toFixed(2)}}</td>
 <td>
-<a class="btn text-danger" (click)="onDelete(dep.id)"><i class="fa fa-trash-o">
+  <a class="btn text-warning" *ngIf="this.role=='agent'" (click)="onSelect(dep)"><i class="fa fa-pencil fa-lg">
+
+  </i> </a>
+<a class="btn text-danger"  *ngIf="this.role=='agent'" (click)="onDelete(dep.id)"><i class="fa fa-trash-o">
 
 </i> </a>
-<a class="btn text-danger" (click)="onSelect(dep)"><i class="fa fa-pencil fa-lg">
 
-</i> </a>
 </td>
 </tr>
 <div class="row"><div class="col-sm-12 col-md-5"><div class="dataTables_info" id="dataTable_info" 
