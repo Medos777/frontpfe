@@ -74,9 +74,19 @@ refreshListe(){
     if(this.SearchText=='')
     this.refreshListe();
     else{
+      if (this.role=="agent")
+      {
       this.service.getDataByLib(this.SearchText).subscribe(
         response =>{this.list = response;}
        );
+      }
+       else 
+       {
+        this.service.getDataByLibandClient(this.SearchText,this.user.id).subscribe(
+          response =>{this.list = response;}
+         );
+
+       }
     }
 
     

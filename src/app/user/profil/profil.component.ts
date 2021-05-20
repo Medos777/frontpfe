@@ -4,8 +4,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormBuilder } from '@angular/forms';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatDialogConfig } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
-import { Categorie } from 'src/app/model/categorie';
-import { CategorieService } from 'src/app/service/categorie.service';
+
 import { UserService } from 'src/app/service/user.service';
 
 import { UpdateprofilComponent } from '../updateprofil/updateprofil.component'

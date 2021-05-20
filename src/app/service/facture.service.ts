@@ -30,6 +30,9 @@ export class FactureService {
   getDataByLib(lib: string): Observable<any> {
     return this.http.get(`${this.baseUrl}/lib/${lib}`);
   }
+  getDataByLibandClient(lib: string,id:string): Observable<any> {
+    return this.http.get(`${this.baseUrl}/libclient/${lib}/${id}`);
+  }
   createData(info: Object): Observable<Object> {
 
     return this.http.post(`${this.baseUrl}`, info);

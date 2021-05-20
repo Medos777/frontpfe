@@ -22,6 +22,12 @@ export class UserService {
   GetUserById( id:String) :Observable<any> {
     return this.http.get(`${this.baseUrl}/id/${id}`);
   }
+  existByUsername( username:String) :Observable<any> {
+    return this.http.get(`${this.baseUrl}/userexistbyusername/${username}`);
+  }
+  existByemail( email:String) :Observable<any> {
+    return this.http.get(`${this.baseUrl}/userexistbyemail/${email}`);
+  }
   
   UserExist(username:String) :Observable<any> {
     return this.http.get(`${this.baseUrl}/username/${username}`);

@@ -25,6 +25,9 @@ export class DepotService {
   getDataByLib(lib: string): Observable<any> {
     return this.http.get(`${this.baseUrl}/lib/${lib}`);
   }
+  getDataByLibandClient(lib: string,id:string): Observable<any> {
+    return this.http.get(`${this.baseUrl}/libclient/${lib}/${id}`);
+  }
   getDataByCode(code: String): Observable<Object> {
     return this.http.get(`${this.baseUrl}/code/${code}`);
   }

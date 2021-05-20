@@ -43,7 +43,6 @@ export class LoginComponent implements OnInit {
     
     if (this.LoginForm.invalid) {
         return console.log("errorform")   }
-        console.log(this.f.username.value,this.f.password.value)
      
 this.authentification.login(this.f.username.value,this.f.password.value).subscribe(
   data=>{
@@ -52,8 +51,7 @@ this.authentification.login(this.f.username.value,this.f.password.value).subscri
     this.tokenservice.saveUser(data);
     this.isLoggedIn=true;
     this.role=this.tokenservice.getUser().role;    
-    console.log(data);
-    console.log(this.role);
+  
     this.authentification.loginc=true;
     if(this.role=='admin')
     this.router.navigate(['clients']);
