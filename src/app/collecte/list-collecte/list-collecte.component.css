@@ -7,7 +7,12 @@ FLOAT: left;
 padding: 1%;
 overflow:scroll;
 }
-
+h1
+{
+    font-size: 80px; 
+    text-align: center;
+    /* Titres de 40 pixels */
+}
 label
 {
     font-weight: bold;
@@ -43,9 +48,4 @@ label
 
    color :"#0000FF";
 
-}
-#assure
-{
-    width:1.5vw;
-    padding: 0;
 }

@@ -5,7 +5,12 @@
   </div>
   <br>
   
+  <div  id="chauffbutton">
   
+    <a class="btn btn-info" style="color: white;" (click)="goChauffeurs()"><i class="fa fa-user"></i>
+      chauffeurs</a>
+  
+  </div>
   <div *ngIf="this.role=='admin'" class="row">
   
     <a class="btn btn-success" style="color: white;" (click)="addVoiture()"><i class="fa fa-plus-square"></i> Create New

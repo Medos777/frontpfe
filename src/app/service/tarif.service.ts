@@ -47,7 +47,7 @@ export class TarifService {
     return this.http.get(`${this.baseUrl}`);
   }
 
-  findTarifByInter(codedest: number,poids:number): Observable<Object> {
-    return this.http.get(`${this.baseUrl}/calcul/code/${codedest}/poids/${poids}`);
+  findTarifByInter(typecorr:number,codedest: number,poids:number): Observable<Object> {
+    return this.http.get(`${this.baseUrl}/calcul/typecorr/${typecorr}/code/${codedest}/poids/${poids}`);
   }
 }

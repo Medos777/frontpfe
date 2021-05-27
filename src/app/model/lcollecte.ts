@@ -1,5 +1,5 @@
 
-export class Ldepot {
+export class Lcollecte {
     id: number;
     numero : number;
     codeart : string;

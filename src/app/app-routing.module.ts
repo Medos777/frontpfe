@@ -29,8 +29,10 @@ import { ListDestinationComponent } from './destination/list-destination/list-de
 import { ListTarifComponent } from './tarif/list-tarif/list-tarif.component';
 import { ListDepotComponent } from './depot/list-depot/list-depot.component';
 import { AddDepotComponent } from './depot/add-depot/add-depot.component';
-import { AddlDepotComponent } from './depot/addl-depot/addl-depot.component';
-import { ListlDepotComponent } from './depot/listl-depot/listl-depot.component';
+
+import { AddCollecteComponent } from './collecte/add-collecte/add-collecte.component';
+import { ListCollecteComponent } from './collecte/list-collecte/list-collecte.component';
+
 import { ProfilComponent } from './user/profil/profil.component';
 import { DetailFactureComponent } from './facture/detail-facture/detail-facture.component';
 
@@ -42,6 +44,10 @@ import { AddChauffeurComponent } from './chauffeur/add-chauffeur/add-chauffeur.c
 
 import { AddFactureComponent } from './facture/add-facture/add-facture.component';
 import { ListFactureComponent } from './facture/list-facture/list-facture.component';
+
+import { ListReclamationComponent } from './reclamation/list-reclamation/list-reclamation.component';
+import { AddReclamationComponent } from './reclamation/add-reclamation/add-reclamation.component';
+import { ChatbotInterfaceComponent } from './reclamation/chatbot-interface/chatbot-interface.component';
 const routes : Routes = [
   {path: '', component:MenuComponent,children : [
   {path: 'categories', component: ListecategorieComponent},
@@ -59,12 +65,18 @@ const routes : Routes = [
   {path: 'tarifs', component: ListTarifComponent},
 
   {path: 'profil', component: ProfilComponent},
+  {path: 'listreclamation', component: ListReclamationComponent},
+  {path: 'addreclamation', component: AddReclamationComponent},
+  {path: 'chatbot', component: ChatbotInterfaceComponent},
 
   {path: 'addfactures', component: AddFactureComponent},
   {path: 'factures', component: ListFactureComponent},
 
   {path: 'adddepot', component: AddDepotComponent},
   {path: 'depots', component: ListDepotComponent},
+
+  {path: 'addcollectes', component: AddCollecteComponent},
+  {path: 'collectes', component: ListCollecteComponent},
   
   {path: 'voitures', component: ListVoitureComponent},
   {path: 'addvoitures', component: AddVoitureComponent},

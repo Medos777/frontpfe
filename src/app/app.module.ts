@@ -49,6 +49,13 @@ import { AddLfactureComponent } from './facture/add-lfacture/add-lfacture.compon
 import { ProfilComponent } from './user/profil/profil.component';
 import { DetailFactureComponent } from './facture/detail-facture/detail-facture.component';
 import { UpdateprofilComponent } from './user/updateprofil/updateprofil.component';
+import { ListReclamationComponent } from './reclamation/list-reclamation/list-reclamation.component';
+import { AddReclamationComponent } from './reclamation/add-reclamation/add-reclamation.component';
+import { ChatbotInterfaceComponent } from './reclamation/chatbot-interface/chatbot-interface.component';
+import { AddCollecteComponent } from './collecte/add-collecte/add-collecte.component';
+import { ListCollecteComponent } from './collecte/list-collecte/list-collecte.component';
+import { AddLcollecteComponent } from './collecte/add-lcollecte/add-lcollecte.component';
+import { ListLcollecteComponent } from './collecte/list-lcollecte/list-lcollecte.component';
 const MATERIAL_MODULES = [MatToolbarModule,
   MatIconModule
 ];
@@ -89,7 +96,14 @@ const MATERIAL_MODULES = [MatToolbarModule,
     AddLfactureComponent,
     ProfilComponent,
     DetailFactureComponent,
-    UpdateprofilComponent
+    UpdateprofilComponent,
+    ListReclamationComponent,
+    AddReclamationComponent,
+    ChatbotInterfaceComponent,
+    AddCollecteComponent,
+    ListCollecteComponent,
+    AddLcollecteComponent,
+    ListLcollecteComponent
   ],
   imports: [
     BrowserModule,
@@ -120,6 +134,8 @@ const MATERIAL_MODULES = [MatToolbarModule,
     AddUSerComponent,
     AddlDepotComponent,
     AddLfactureComponent,
-    UpdateprofilComponent]
+    UpdateprofilComponent,
+    AddLcollecteComponent
+  ]
 })
 export class AppModule { }

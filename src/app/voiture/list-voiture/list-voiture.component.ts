@@ -55,6 +55,10 @@ export class ListVoitureComponent implements OnInit {
   
   
   }
+  goChauffeurs(){
+    this.router.navigate(['chauffeurs']);
+
+  }
   
   
   removeData(id: number) {

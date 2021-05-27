@@ -37,6 +37,9 @@
         <a style="color: white;" *ngIf="this.role== 'admin' || this.role== 'agent'" class="nav-link" routerLink ="/destinations" routerLinkActive="active" title="destinations"> <i class="fas fa-train"></i><span class="ttip">Liste des destinations</span></a>
   </li>
   <li class="nav-item">
+    <a style="color: white;" *ngIf="this.role== 'admin' || this.role== 'agent'" class="nav-link" routerLink ="/voitures" routerLinkActive="active" title="voitures"> <i class="fas fa-shuttle-van"></i><span class="ttip">Liste des voitures</span></a>
+</li>
+  <li class="nav-item">
     <a style="color: white;" class="nav-link" routerLink ="/depots" *ngIf="this.role== 'client' || this.role== 'agent'" routerLinkActive="active" title="depots"> <i class="fas fa-envelope-square"></i><span class="ttip">Liste des depots</span></a>
 </li>
 <li class="nav-item">

@@ -14,12 +14,25 @@
     <label><strong>Libelle</strong></label>
     <input  type="text"  class="form-control" formControlName="libelle" id="libelle" >
   </div> 
+  <div class="form-group col-md-6" >
+    <label><strong>Type Courrier</strong></label>
+    <select class="form-control" formControlName="typecorr" id="typecorr" >
+        <option value="Lettre">Lettre</option>
+        <option value="Colis">Colis</option>
+        <option value="télégramme">télégramme</option>
+    </select>
+    <div *ngIf="f.typecorr.errors" class="invalid-feedback">
+        <div *ngIf="f.typecorr.errors.required"> type obligatoire</div>
+  </div>
+
+</div>
+  
   <div class="col-md-6 form-group">
-        <label>Date</label>
+        <label><strong>Date</strong></label>
       <input  type="date"  class="form-control" formControlName="date_mvt"  id="date_mvt">
   </div>
   <div class="col-md-6 form-group">
-    <label>destination</label>
+    <label><strong>Destination</strong></label>
     <select class="form-control" formControlName="destinationId" id="destinationId" 
     (change)="OnSelectDest($event.target)">
     <option value="0">-Select-</option>
@@ -27,7 +40,7 @@
     </select>
   </div>
   <div class="col-md-6 form-group">
-    <label>Client</label>
+    <label><strong>Client</strong></label>
     <select class="form-control" formControlName="idclient" id="idclient" 
     (change)="OnSelectClient($event.target)">
     <option value="0">-Select-</option>
@@ -35,16 +48,28 @@
     </select>
   </div>
   <div class="form-group col-md-6">
-    <label><strong>beneficier </strong></label>
+    <label><strong>Destinataire  </strong></label>
     <input  type="text"  class="form-control" formControlName="beneficier" id="beneficier" >
 </div>  
 <div class="form-group col-md-6">
-  <label><strong>telephone beneficier </strong></label>
+  <label><strong>Téléphone Destinataire </strong></label>
   <input  type="tel"  class="form-control" formControlName="telbeneficier" id="telbeneficier" >
 </div>  
 <div class="form-group col-md-6">
-  <label><strong>adresse beneficier</strong></label>
+  <label><strong>Adresse Destinataire</strong></label>
   <input  type="text"  class="form-control" formControlName="adressebeneficier" id="adressebeneficier" >
+</div> 
+<div class="form-group col-md-6">
+  <label><strong>Email Destinataire</strong></label>
+  <input  type="email"  class="form-control" formControlName="emailbeneficier" id="emailbeneficier" >
+</div> 
+<div class="form-group col-md-3">
+  <label><strong>Assuré</strong></label>
+  <input  type="checkbox"  class="form-control" formControlName="assure" id="assure" (change)="onChangeAssure($event.target)" >
+</div> 
+<div *ngIf="assure" class="form-group col-md-3">
+  <label><strong>Indemnisation</strong></label>
+  <input  type="text"  class="form-control" formControlName="indemnisation" id="indemnisation" >
 </div> 
   </div>
   <table class="table table-borderless">

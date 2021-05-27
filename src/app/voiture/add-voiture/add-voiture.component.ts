@@ -28,7 +28,7 @@ export class AddVoitureComponent implements OnInit {
     this.crudApi.dataForm = this.fb.group({
         id: null,
         code: ['', [Validators.required,Validators.minLength(1)]],
-        model: ['', [Validators.required,Validators.minLength(3)]],
+        model: ['', [Validators.required,Validators.minLength(1)]],
         marque: ['', [Validators.required,Validators.minLength(2)]],
         matricule: ['', [Validators.required,Validators.minLength(4)]],
 

@@ -3,6 +3,9 @@ import { MatDialog, MatDialogConfig, MAT_DIALOG_DATA,MatDialogRef } from '@angul
 import { UserService} from '../../service/user.service'
 import { TarifService} from '../../service/tarif.service'
 import { DestinationService} from '../../service/destination.service'
+import { VoitureService} from '../../service/voiture.service'
+import { ChauffeurService} from '../../service/chauffeur.service'
+
 import { CompteurService} from '../../service/compteur.service';
 
 
@@ -11,25 +14,27 @@ import { ToastrService } from 'ngx-toastr';
 import { Router, ActivatedRoute  } from '@angular/router';
 
 
-import { DepotService} from '../../service/depot.service';
-import { LdepotService} from '../../service/ldepot.service';
+import {CollecteService } from '../../service/collecte.service';
+import { LcollectService} from '../../service/lcollecteservice';
 import { DatePipe } from '@angular/common';
-import { AddlDepotComponent } from '../../depot/addl-depot/addl-depot.component';
+import { AddLcollecteComponent } from '../../collecte/add-lcollecte/add-lcollecte.component';
 import { FormBuilder, FormGroup, FormControl, ReactiveFormsModule,Validators }
 from '@angular/forms';
-import { Ldepot} from '../../model/ldepot';
+import {Lcollecte } from '../../model/lcollecte';
 @Component({
-  selector: 'app-add-depot',
-  templateUrl: './add-depot.component.html',
-  styleUrls: ['./add-depot.component.css']
+  selector: 'app-add-collecte',
+  templateUrl: './add-collecte.component.html',
+  styleUrls: ['./add-collecte.component.css']
 })
-export class AddDepotComponent implements OnInit {
+export class AddCollecteComponent implements OnInit {
+
   numligne:number=1;
-  assure:boolean=false;
 
 
   ClientList: any[];
   destinationList:any[];
+  VoituresList: any[];
+  ChauffeursList:any[];
   compteur : any={};
 
   isValid:boolean = true;
@@ -38,9 +43,9 @@ export class AddDepotComponent implements OnInit {
   Date;
 
   annee  = 0;
-  constructor(public service:DepotService,
+  constructor(public service:CollecteService,
     
-    public LdepotService:LdepotService,
+    public lcollectService:LcollectService,
     private dialog:MatDialog,public fb: FormBuilder,
     public userService :UserService,
     private toastr :ToastrService,
@@ -49,11 +54,15 @@ export class AddDepotComponent implements OnInit {
     private destinationService :DestinationService,
     private compteurService :CompteurService,
 
+    private voitureService :VoitureService,
+    private chauffeurService :ChauffeurService,
+
 
     private router :Router,
     private currentRoute: ActivatedRoute,
     private datePipe : DatePipe) { }
     get f() { return this.service.formData.controls }
+
     ngOnInit() {
 
       if (this.service.choixmenu == 1){
@@ -67,7 +76,7 @@ export class AddDepotComponent implements OnInit {
          else
        {
         
-                  this.LdepotService.getAllByNumero(this.service.formData.value.numero).subscribe(
+                  this.lcollectService.getAllByNumero(this.service.formData.value.numero).subscribe(
         response =>{
           console.log(response);
           this.service.list = response}
@@ -80,6 +89,18 @@ export class AddDepotComponent implements OnInit {
     );
     this.destinationService.getAll().subscribe(
       response =>{this.destinationList = response;
+       
+      }
+     );
+
+     this.voitureService.getAll().subscribe(
+      response =>{this.VoituresList = response;
+       
+      }
+     );
+
+     this.chauffeurService.getAll().subscribe(
+      response =>{this.ChauffeursList = response;
        
       }
      );
@@ -104,19 +125,21 @@ export class AddDepotComponent implements OnInit {
          libclient : '',
          totht : 0,
          tottva : 0,
-
-         totttc : 0,
-         beneficier:'',
-         telbeneficier:0,
-         adressebeneficier:'',
-         emailbeneficier:'',
-         destinationLibelle:'',
-         indemnisation:0,
-         assure:false,
-         destinationId:0,
          typecorr:'',
 
-         ldepots :[],
+         totttc : 0,
+        
+
+         beneficier:'',
+
+         codevoiture:'',
+
+         codechauff:0,
+         destinationLibelle:'',
+
+         destinationId:0,
+
+         lcollectes :[],
          });
        } 
      
@@ -124,7 +147,7 @@ export class AddDepotComponent implements OnInit {
          this.service.formData.reset();
      }
    
-   AddData(ldepotIndex,Id){  
+   AddData(lcollecteIndex,Id){  
        const dialogConfig = new MatDialogConfig();
        dialogConfig.autoFocus = true;
        dialogConfig.disableClose = true;
@@ -137,32 +160,21 @@ export class AddDepotComponent implements OnInit {
        let numl=this.numligne
        let typecorrier=this.service.formData.value.typecorr;
        console.log(typecorrier);
-       dialogConfig.data={typecorrier,ldepotIndex,Id,destcode,numl};
+       dialogConfig.data={typecorrier,lcollecteIndex,Id,destcode,numl};
        this.numligne= this.numligne+1
 
        
-       this.dialog.open(AddlDepotComponent, dialogConfig).afterClosed().subscribe(b10=>{
+       this.dialog.open(AddLcollecteComponent, dialogConfig).afterClosed().subscribe(b10=>{
          this.calcul();
        });
      }
    
-     onChangeAssure(event){
-      this.service.formData.value.indemnisation=0;
-       console.log(event)
-       if(event.checked)
-         this.assure=true;
-       else  
-       {
-         this.assure=false;
-        
-       }
-
-     }
-   onDelete(item : Ldepot,Id:number,i:number){
+   
+   onDelete(item : Lcollecte,Id:number,i:number){
        if(Id != null)
        this.service.formData.value.id+=Id ;
       this.service.list.splice(i,1);
-      this.LdepotService.deleteData(item.id).subscribe(
+      this.lcollectService.deleteData(item.id).subscribe(
        );
 
       this.calcul();
@@ -197,20 +209,20 @@ onSelectCompteur(annee: number)
  this.compteurService.getDatabyAnnee(annee).subscribe(
    response =>{
      this.compteur = response;
-     let numd=this.compteur.annee*10000+this.compteur.numdepot;
+     let numd=this.compteur.annee*10000+this.compteur.numcollect;
      this.f['numero'].setValue(numd);
      }
   );  
 } 
    onSubmit(){
 
-       this.f['ldepots'].setValue(this.service.list);
+       this.f['lcollectes'].setValue(this.service.list);
        console.log(this.service.formData.value);
 
          this.service.createData(this.service.formData.value).
          subscribe( data => {
            this.toastr.success( 'Validation Faite avec Success'); 
-           this.router.navigate(['/depots']);
+           this.router.navigate(['/collectes']);
          });
          this.service.list = [];
 
@@ -232,6 +244,24 @@ onSelectCompteur(annee: number)
          }
       }
 
+      OnSelectVoit(ctrl){
+        if(ctrl.selectedIndex == 0){
+          this.f['codevoiture'].setValue('');
+         }
+         else{
+            this.f['codevoiture'].setValue(this.VoituresList[ctrl.selectedIndex - 1].code);
+         }
+
+      }
+      OnSelectChauff(ctrl){
+        if(ctrl.selectedIndex == 0){
+          this.f['codechauff'].setValue(0);
+         }
+         else{
+            this.f['codechauff'].setValue(this.ChauffeursList[ctrl.selectedIndex - 1].code);
+         }
+        
+      }
    OnSelectClient(ctrl)
       {
          if(ctrl.selectedIndex == 0){
@@ -243,5 +273,4 @@ onSelectCompteur(annee: number)
             this.f['idclient'].setValue(this.ClientList[ctrl.selectedIndex - 1].id);
          }
        }
-      
-   }
+      }
