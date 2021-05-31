@@ -35,7 +35,7 @@ export class ListScategorieComponent implements OnInit {
   }
   addScategorie()
   {
- 
+    this.crudApi.choixmenu = "A";
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.disableClose = true;

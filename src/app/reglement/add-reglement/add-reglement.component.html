@@ -1,0 +1,30 @@
+<div class="col-md-6 col-md-offset-2">
+  <h1>Reglement</h1>    
+  <form [formGroup]="this.service.formData" (ngSubmit)="onSubmit()">
+  
+    <div class="form-group">
+      <label>Client</label>
+      <select class="form-control" formControlName="idclient" id="idclient" 
+      (change)="OnSelectClient($event.target)">
+      <option value="0">-Select-</option>
+      <option *ngFor="let client of this.ClientList" value="{{client.id}}">{{client.nom}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Facture</label>
+      <select class="form-control" formControlName="numerofacture" id="numerofacture" 
+      >
+      <option value="0">-Select-</option>
+      <option *ngFor="let fact of this.FactureList" value="{{fact.numero}}">{{fact.libelle}}</option>
+      </select>
+    </div>
+  
+    <div class="form-group">
+  
+      <button type="submit" class="btn btn-dark"><i class="fa fa-database"></i> Submit</button>
+      <button type="button" class="btn btn-outline-dark ml-1" [mat-dialog-close]><i class="fa fa-close"></i> Close</button>
+  
+
+</div>
+  </form>
+</div>

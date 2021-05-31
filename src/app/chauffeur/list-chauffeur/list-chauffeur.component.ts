@@ -37,7 +37,7 @@ export class ListChauffeurComponent implements OnInit {
   }
   addChauffeur()
   {
-  
+    this.crudApi.choixmenu = "A";
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.disableClose = true;

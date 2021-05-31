@@ -143,7 +143,12 @@ export class AddFactureComponent implements OnInit {
       }
    validateForm(){
         this.isValid = true ;
-       
+        let dated= new Date(this.service.formData.value.date_fct);
+        let currdate=new Date(Date.now());
+        console.log(dated)
+
+        if (currdate.getTime() < dated.getTime()) 
+        this.isValid =false;
         if(this.service.formData.value.idclient==0)
         this.isValid =false;
        
@@ -166,13 +171,15 @@ onSelectCompteur(annee: number)
 
        this.f['lfactures'].setValue(this.service.list);
        console.log(this.service.formData.value);
-
-         this.service.createData(this.service.formData.value).
-         subscribe( data => {
-           this.toastr.success( 'Validation Faite avec Success'); 
-           this.router.navigate(['/factures']);
-         });
-         this.service.list = [];
+if(this.validateForm()){
+  this.service.createData(this.service.formData.value).
+  subscribe( data => {
+    this.toastr.success( 'Validation Faite avec Success'); 
+    this.router.navigate(['/factures']);
+  });
+  this.service.list = [];
+}
+        
       }
      
    transformDate(date){

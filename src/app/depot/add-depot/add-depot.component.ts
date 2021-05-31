@@ -60,6 +60,7 @@ export class AddDepotComponent implements OnInit {
        this.InfoForm();
        this.service.list = [];
        this.Date = this.transformDate(new Date(Date.now()));
+       
        this.annee = (this.Date).toString().substring(0,4);
        this.f['annee'].setValue(this.annee);
        this.onSelectCompteur(this.annee);
@@ -183,7 +184,12 @@ export class AddDepotComponent implements OnInit {
       }
    validateForm(){
         this.isValid = true ;
-       
+        let dated= new Date(this.service.formData.value.date_mvt);
+        let currdate=new Date(Date.now());
+        console.log(dated)
+
+        if (currdate.getTime() < dated.getTime()) 
+        this.isValid =false;
         if(this.service.formData.value.idclient==0)
         this.isValid =false;
        
@@ -206,13 +212,15 @@ onSelectCompteur(annee: number)
 
        this.f['ldepots'].setValue(this.service.list);
        console.log(this.service.formData.value);
+if(this.validateForm()){
 
-         this.service.createData(this.service.formData.value).
-         subscribe( data => {
-           this.toastr.success( 'Validation Faite avec Success'); 
-           this.router.navigate(['/depots']);
-         });
-         this.service.list = [];
+  this.service.createData(this.service.formData.value).
+  subscribe( data => {
+    this.toastr.success( 'Validation Faite avec Success'); 
+    this.router.navigate(['/depots']);
+  });
+  this.service.list = [];
+}
 
       }
      

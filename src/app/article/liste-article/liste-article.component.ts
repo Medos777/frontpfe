@@ -36,14 +36,13 @@ export class ListeArticleComponent implements OnInit {
 
   addArticle()
   {
- 
+    this.crudApi.choixmenu = "A";
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.disableClose = true;
     dialogConfig.width="45%";
     dialogConfig.height="100%";
 
-    //dialogConfig.data="gdddd";
     this.matDialog.open(AjoutArticleComponent, dialogConfig);
   }
  

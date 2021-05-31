@@ -48,6 +48,9 @@ import { ListFactureComponent } from './facture/list-facture/list-facture.compon
 import { ListReclamationComponent } from './reclamation/list-reclamation/list-reclamation.component';
 import { AddReclamationComponent } from './reclamation/add-reclamation/add-reclamation.component';
 import { ChatbotInterfaceComponent } from './reclamation/chatbot-interface/chatbot-interface.component';
+
+import { AddReglementComponent } from './reglement/add-reglement/add-reglement.component';
+import { ListReglementComponent } from './reglement/list-reglement/list-reglement.component';
 const routes : Routes = [
   {path: '', component:MenuComponent,children : [
   {path: 'categories', component: ListecategorieComponent},
@@ -77,6 +80,9 @@ const routes : Routes = [
 
   {path: 'addcollectes', component: AddCollecteComponent},
   {path: 'collectes', component: ListCollecteComponent},
+
+  {path: 'addreglements', component: AddReglementComponent},
+  {path: 'reglements', component: ListReglementComponent},
   
   {path: 'voitures', component: ListVoitureComponent},
   {path: 'addvoitures', component: AddVoitureComponent},

@@ -37,7 +37,7 @@ export class ListVoitureComponent implements OnInit {
   }
   addVoiture()
   {
-  
+    this.crudApi.choixmenu = "A";
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.disableClose = true;

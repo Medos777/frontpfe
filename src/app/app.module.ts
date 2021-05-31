@@ -56,6 +56,8 @@ import { AddCollecteComponent } from './collecte/add-collecte/add-collecte.compo
 import { ListCollecteComponent } from './collecte/list-collecte/list-collecte.component';
 import { AddLcollecteComponent } from './collecte/add-lcollecte/add-lcollecte.component';
 import { ListLcollecteComponent } from './collecte/list-lcollecte/list-lcollecte.component';
+import { AddReglementComponent } from './reglement/add-reglement/add-reglement.component';
+import { ListReglementComponent } from './reglement/list-reglement/list-reglement.component';
 const MATERIAL_MODULES = [MatToolbarModule,
   MatIconModule
 ];
@@ -103,7 +105,9 @@ const MATERIAL_MODULES = [MatToolbarModule,
     AddCollecteComponent,
     ListCollecteComponent,
     AddLcollecteComponent,
-    ListLcollecteComponent
+    ListLcollecteComponent,
+    AddReglementComponent,
+    ListReglementComponent
   ],
   imports: [
     BrowserModule,
@@ -135,7 +139,8 @@ const MATERIAL_MODULES = [MatToolbarModule,
     AddlDepotComponent,
     AddLfactureComponent,
     UpdateprofilComponent,
-    AddLcollecteComponent
+    AddLcollecteComponent,
+    AddReglementComponent,
   ]
 })
 export class AppModule { }

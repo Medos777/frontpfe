@@ -2,40 +2,39 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { Facture } from '../model/facture';
+import { Reglement } from '../model/reglement';
+declare const Stripe;
 
 @Injectable({
   providedIn: 'root'
 })
-export class FactureService {
-  private baseUrl = 'http://localhost:8088/api/factures';
-  choixmenu : number = 1;
+export class ReglementService {
+  private baseUrl = 'http://localhost:8088/api/reglements';
+  choixmenu : String = 'A';
   list : any[];
   public formData:  FormGroup; 
-  facture : any;
 
   public dataForm:  FormGroup; 
+
   constructor(private http: HttpClient) { }
- 
+  redirectToCheckout() {
+    const stripe = Stripe('pk_test_51Ix0x2IhmzpvuzzgnZ6Oz7d09tYHiVg1qvUUq8OJKDfkwrL95aW6uS0aTSrIGIxizaryFzJ2apjjRyBGkf9C7vKp00yxWnfi15');
+    window.open('http://localhost:4200/reglements', "_blank");
+    stripe.redirectToCheckout({
+      sessionId: 'cs_test_123456',
+    });
+  }
  
   getData(id: number): Observable<Object> {
     return this.http.get(`${this.baseUrl}/id/${id}`);
   }
-  getDataByCode(code: String): Observable<Object> {
-    return this.http.get(`${this.baseUrl}/code/${code}`);
-  }
+
   getDataByClient(id: String): Observable<any> {
     return this.http.get(`${this.baseUrl}/client/${id}`);
   }
-  getDataByClientnonpaye(id: String): Observable<any> {
-    return this.http.get(`${this.baseUrl}/np/${id}`);
-  }
-  getDataByLib(lib: string): Observable<any> {
-    return this.http.get(`${this.baseUrl}/lib/${lib}`);
-  }
-  getDataByLibandClient(lib: string,id:string): Observable<any> {
-    return this.http.get(`${this.baseUrl}/libclient/${lib}/${id}`);
-  }
+  
+  
+  
   createData(info: Object): Observable<Object> {
 
     return this.http.post(`${this.baseUrl}`, info);
