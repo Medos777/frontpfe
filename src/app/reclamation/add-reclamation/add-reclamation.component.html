@@ -1,1 +1,30 @@
-<p>add-reclamation works!</p>
+<div class="col-md-12 col-md-offset-2">
+    <h1>Reclamation</h1>    
+    <form [formGroup]="this.service.dataForm" (ngSubmit)="onSubmit()">
+      <input type="hidden"  formControlName="id" id="id">
+      <div class="form-group">
+        <label>Libelle </label>
+        <input type="text" formControlName="libelle" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.libelle.errors }" />
+        <div *ngIf="submitted && f.libelle.errors" class="invalid-feedback">
+            <div *ngIf="f.code.errors.required">libelle doit etre au minimum 3 caractères</div>
+      </div>
+      </div>
+      <div class="form-group">
+        <label>Description </label>
+        <textarea  type="text" formControlName="description" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.description.errors }" ></textarea> 
+        <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+            <div *ngIf="f.description.errors.required">description doit etre au minimum 4 caractères</div>
+      </div>
+      </div>
+      <div class="form-group">
+    
+        <button type="submit" class="btn btn-dark"><i class="fa fa-database"></i> Submit</button>
+        <button type="button" class="btn btn-outline-dark ml-1" [mat-dialog-close]><i class="fa fa-close"></i> Close</button>
+    
+  
+  </div>
+    </form>
+  </div>
+  
+  
+  

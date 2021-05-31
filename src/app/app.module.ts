@@ -141,6 +141,7 @@ const MATERIAL_MODULES = [MatToolbarModule,
     UpdateprofilComponent,
     AddLcollecteComponent,
     AddReglementComponent,
+    AddReclamationComponent,
   ]
 })
 export class AppModule { }

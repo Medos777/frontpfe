@@ -12,6 +12,7 @@ export class ChatbotInterfaceComponent implements OnInit {
 
   ngOnInit(): void {
   }
- 
-
+  onKeypressEvent(event: any){
+    console.log(event.target.value);
+  }
 }

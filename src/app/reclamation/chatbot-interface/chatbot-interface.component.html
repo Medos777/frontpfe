@@ -1,6 +1,8 @@
-<iframe id="chatbot"  
+<iframe (keypress)="onKeypressEvent($event)" id="chatbot"  
     allow="microphone;"
     width="420"
     height="480"
     src="https://console.dialogflow.com/api-client/demo/embedded/3e4105c8-401f-4af3-81f2-b6ec524bfd5b">
 </iframe>
+  
+<input type="text" (keypress)="onKeypressEvent($event)" />

@@ -96,7 +96,6 @@ export class AddReglementComponent implements OnInit {
             this.toastr.success( 'Validation Faite avec Success'); 
             this.router.navigate(['/reglements']);
           });
-          this.service.list = [];
         
  
        }

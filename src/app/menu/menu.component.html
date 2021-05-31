@@ -34,7 +34,7 @@
             <a style="color: white;" *ngIf="this.role== 'admin' || this.role== 'agent'" class="nav-link" routerLink ="/scategories" routerLinkActive="active" title="sousCategories"> <i class="fas fa-th-large"></i><span class="ttip">Liste des sous categorie</span></a>
 		  </li>
       <li class="nav-item">
-        <a style="color: white;" *ngIf="this.role== 'admin' || this.role== 'agent'" class="nav-link" routerLink ="/destinations" routerLinkActive="active" title="destinations"> <i class="fas fa-train"></i><span class="ttip">Liste des destinations</span></a>
+        <a style="color: white;" *ngIf="this.role== 'admin' || this.role== 'agent'" class="nav-link" routerLink ="/destinations" routerLinkActive="active" title="destinations"> <i class="fas fa-map-marker-alt"></i><span class="ttip">Liste des destinations</span></a>
   </li>
   <li class="nav-item">
     <a style="color: white;" *ngIf="this.role== 'admin' || this.role== 'agent'" class="nav-link" routerLink ="/voitures" routerLinkActive="active" title="voitures"> <i class="fas fa-shuttle-van"></i><span class="ttip">Liste des voitures</span></a>
@@ -45,9 +45,18 @@
 <li class="nav-item">
   <a style="color: white;" class="nav-link" routerLink ="/factures" *ngIf="this.role== 'client' || this.role== 'agent'" routerLinkActive="active" title="facturation"> <i class="fas fa-file-invoice-dollar"></i><span class="ttip">Liste des factures</span></a>
 </li>
+<li class="nav-item">
+  <a style="color: white;" class="nav-link" routerLink ="/listreclamation" *ngIf="this.role== 'client' || this.role== 'admin'" routerLinkActive="active" title="reclamation"> <i class="fas fa-comment-alt"></i><span class="ttip">Liste des reclamations</span></a>
+</li>
+<li class="nav-item">
+  <a style="color: white;" class="nav-link" routerLink ="/reglements" *ngIf="this.role== 'client' || this.role== 'agent'" routerLinkActive="active" title="reglement"> <i class="fas fa-money-check-alt"></i><span class="ttip">Liste des reglements</span></a>
+</li>
         
         </ul>
         <ul class="navbar-nav ml-md-auto d-md-flex">
+          <li class="nav-item">
+            <a style="color: white; " class="nav-link" routerLink ="/chatbot"  *ngIf="this.role== 'client'" ><i class="fab fa-facebook-messenger"></i></a>
+          </li>
           <li class="nav-item">
             <a style="color: white;" class="nav-link" ><i class="fas fa-user"></i> &nbsp; {{this.user.username}} </a>
           </li>

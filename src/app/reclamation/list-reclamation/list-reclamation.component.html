@@ -1,1 +1,50 @@
-<p>list-reclamation works!</p>
+<div class="row">
+    <h1> <i class="fas fas fa-comment-alt"></i>&nbsp; Liste des Reclamations</h1>
+  
+  
+  </div>
+  <br>
+  
+  
+  <div *ngIf="this.role=='client'" class="row">
+  
+    <a class="btn btn-success" style="color: white;" (click)="addRecl()"><i class="fa fa-plus-square"></i> Create New
+        </a>
+  
+  </div>
+  <br><br>
+  <div class="row">
+  
+    <table class="table table-bordered  table-hover table-responsive-sm table-responsive-md   table-responsive-lg">
+  
+      <thead calss="thead-light">
+        <tr>
+          <th style="color: black;"scope="col">libelle</th>
+          <th style="color: black;"scope="col"> Client </th>
+     
+
+          <th *ngIf="this.role=='admin'" class="text-center" style="width: 13%; color: black;" scope="col">Action</th>
+  
+        </tr>
+      </thead>
+      <tbody>
+  
+  
+        <tr *ngFor="let item of crudApi.list | paginate: { itemsPerPage: 3, currentPage: p } ">
+          <td>{{item.libelle}}</td>
+          <td>{{item.libClient}}</td>
+        
+
+  
+  
+          <td *ngIf="this.role=='admin'"><button class="btn btn-warning" (click)="selectData(item)">
+              <i class="fa fa-pencil-square-o"></i></button> &nbsp;<button class="btn btn-danger"
+              (click)="removeData(item.id)">
+              <i class="fa fa-trash-o"></i></button></td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  
+  </div>
