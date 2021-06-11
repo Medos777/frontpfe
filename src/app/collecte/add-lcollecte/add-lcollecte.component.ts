@@ -53,7 +53,7 @@ export class AddLcollecteComponent implements OnInit {
 InfoForm() {
   this.formData = this.fb.group({
       id: null,
-      numero :this.data.numl+this.collecteService.list.length,
+      numero :this.collecteService.list.length+1,
       poids : 0,
       pu : 0,
       tva : 0,

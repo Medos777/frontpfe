@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthentificationService } from '../service/authentification.service';
 import { TokenStorageService } from '../service/tokenStorage.service';
+import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material/dialog';
+import { ChatbotInterfaceComponent } from '../reclamation/chatbot-interface/chatbot-interface.component';
 
 @Component({
   selector: 'app-menu',
@@ -12,7 +14,10 @@ export class MenuComponent implements OnInit {
 
   role: any;
   user: any;
-  constructor(private AuthentificationService : AuthentificationService,private tokenService: TokenStorageService, private router: Router,  ) { }
+  constructor(
+    private matDialog: MatDialog,
+    public dialogRef:MatDialogRef<ChatbotInterfaceComponent>,
+    private AuthentificationService : AuthentificationService,private tokenService: TokenStorageService, private router: Router,  ) { }
 
   ngOnInit(): void {
     
@@ -34,5 +39,19 @@ export class MenuComponent implements OnInit {
 
     
   }
+
+  openchatbot()
+{
+  const dialogConfig = new MatDialogConfig();
+  dialogConfig.autoFocus = true;
+  dialogConfig.disableClose = false;
+  dialogConfig.position = {
+    'top': '28vh',
+    left: '65vw'
+};
+
+
+  this.matDialog.open(ChatbotInterfaceComponent, dialogConfig);
+}
 
 }

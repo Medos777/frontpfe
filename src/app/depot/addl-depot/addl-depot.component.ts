@@ -53,7 +53,7 @@ export class AddlDepotComponent implements OnInit {
 InfoForm() {
   this.formData = this.fb.group({
       id: null,
-      numero :this.data.numl+this.depotService.list.length,
+      numero :this.depotService.list.length+1,
       poids : 0,
       pu : 0,
       tva : 0,

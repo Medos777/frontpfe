@@ -55,7 +55,7 @@
         </ul>
         <ul class="navbar-nav ml-md-auto d-md-flex">
           <li class="nav-item">
-            <a style="color: white; " class="nav-link" routerLink ="/chatbot"  *ngIf="this.role== 'client'" ><i class="fab fa-facebook-messenger"></i></a>
+            <a style="color: white; " class="nav-link" (click)="openchatbot()"  *ngIf="this.role== 'client'" ><i class="fab fa-facebook-messenger"></i></a>
           </li>
           <li class="nav-item">
             <a style="color: white;" class="nav-link" ><i class="fas fa-user"></i> &nbsp; {{this.user.username}} </a>

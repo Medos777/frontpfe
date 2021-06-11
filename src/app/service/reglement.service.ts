@@ -10,6 +10,8 @@ declare const Stripe;
 })
 export class ReglementService {
   private baseUrl = 'http://localhost:8088/api/reglements';
+  private stripeUrl = 'http://localhost:8088/api/payment';
+
   choixmenu : String = 'A';
   list : any[];
   public formData:  FormGroup; 
@@ -17,18 +19,23 @@ export class ReglementService {
   public dataForm:  FormGroup; 
 
   constructor(private http: HttpClient) { }
-  redirectToCheckout() {
+  redirectToCheckout(id) {
     const stripe = Stripe('pk_test_51Ix0x2IhmzpvuzzgnZ6Oz7d09tYHiVg1qvUUq8OJKDfkwrL95aW6uS0aTSrIGIxizaryFzJ2apjjRyBGkf9C7vKp00yxWnfi15');
+   
     window.open('http://localhost:4200/reglements', "_blank");
     stripe.redirectToCheckout({
-      sessionId: 'cs_test_123456',
+      sessionId: id,
     });
   }
  
   getData(id: number): Observable<Object> {
     return this.http.get(`${this.baseUrl}/id/${id}`);
   }
+  pay(info: Object): Observable<any> {
 
+    return this.http.post(`${this.stripeUrl}`, info);
+  }
+  
   getDataByClient(id: String): Observable<any> {
     return this.http.get(`${this.baseUrl}/client/${id}`);
   }

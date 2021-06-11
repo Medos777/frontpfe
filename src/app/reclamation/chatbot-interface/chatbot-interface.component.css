@@ -1,4 +1,6 @@
-#chatbot{
-    position:absolute;
-    left:35vw;
-}
+.mat-dialog-container {
+    padding: 0;
+  }
+  #btnclose{
+margin-left:8hw;
+  }

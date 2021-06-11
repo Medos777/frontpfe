@@ -49,7 +49,7 @@ export class AddLfactureComponent implements OnInit {
 InfoForm() {
   this.formData = this.fb.group({
       id: null,
-      numero :this.data.numl+this.factureService.list.length,
+      numero :this.factureService.list.length+1,
       numdepot:0,
       tva : 0,
       totht : 0,

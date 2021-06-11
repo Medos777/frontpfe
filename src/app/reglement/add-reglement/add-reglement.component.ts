@@ -86,10 +86,18 @@ export class AddReglementComponent implements OnInit {
           console.log("invalid")
          return;
         }
-        
-     
-        this.service.redirectToCheckout();
-        console.log("hey")
+        const info = {
+          name: "facture x",
+          currency: "EUR",
+          cancelUrl: "http://localhost:4200/articles",
+          successUrl: "http://localhost:4200/scategories",
+          amount: 10000*200,
+          quantity: '1',
+        };
+        this.service.pay(info).subscribe( data => {
+          this.service.redirectToCheckout(data.id);
+        });
+       
 
           this.service.createData(this.service.formData.value).
           subscribe( data => {
