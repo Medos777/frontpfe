@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit,ViewEncapsulation, HostListener} from '@angular/core';
 import { Router  } from '@angular/router';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
@@ -8,15 +8,21 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
   templateUrl: './chatbot-interface.component.html',
   styleUrls: ['./chatbot-interface.component.css']
 })
-export class ChatbotInterfaceComponent implements OnInit {
+export class ChatbotInterfaceComponent implements OnInit  {
+
 
   constructor(private router :Router,
     public dialogRef:MatDialogRef<ChatbotInterfaceComponent>,
     ) { }
 
   ngOnInit(): void {
+
   }
-  onKeypressEvent(event: any){
-    console.log(event.target.value);
-  }
+
+ 
+  
+ 
+
+
+  
 }

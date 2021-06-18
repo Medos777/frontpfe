@@ -1,0 +1,35 @@
+<h1 class="dislay-4">Facture </h1>
+<hr>
+<form [formGroup]="this.formData"  (ngSubmit)="onSubmit()">
+    <input type="hidden" class="form-control" formControlName="id" id="id">
+    
+    <div class="form-group">
+        <label>depot </label>
+        <select  class="form-control" formControlName="numerofacture" id="numerofacture" 
+         (change)="selectReglement($event.target)">
+            <option value="0">-Select-</option>
+            <option *ngFor="let item of FactureList" value="{{item.numero}}">{{item.libelle}} {{item.totttc}}(DT)</option>
+       </select>
+    </div>
+  
+
+ 
+    
+    
+    
+    <div class="form-group">
+      <label>Totht </label>
+      <div class="input-group">
+        <input type = "text" class="form-control" formControlName="totht" id="totht" readonly>
+     </div>
+    </div>
+    
+    <input type="hidden" class="form-control" formControlName="tottva" id="tottva" readonly>
+    <input type="hidden" class="form-control" formControlName="totttc" id="totttc" readonly>
+    
+    <div class="form-group">
+      <button type="submit" class="btn btn-dark"><i class="fa fa-database"></i> Submit</button>
+      <button type="button" class="btn btn-outline-dark ml-1" [mat-dialog-close]><i class="fa fa-close"></i> Close</button>
+    </div>
+  
+</form>

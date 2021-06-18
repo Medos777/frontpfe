@@ -51,6 +51,8 @@ import { ChatbotInterfaceComponent } from './reclamation/chatbot-interface/chatb
 
 import { AddReglementComponent } from './reglement/add-reglement/add-reglement.component';
 import { ListReglementComponent } from './reglement/list-reglement/list-reglement.component';
+import { AddLreglementComponent } from './reglement/add-lreglement/add-lreglement.component';
+
 const routes : Routes = [
   {path: '', component:MenuComponent,children : [
   {path: 'categories', component: ListecategorieComponent},
@@ -82,6 +84,8 @@ const routes : Routes = [
   {path: 'collectes', component: ListCollecteComponent},
 
   {path: 'addreglements', component: AddReglementComponent},
+  {path: 'addlreglement', component: AddLreglementComponent},
+
   {path: 'reglements', component: ListReglementComponent},
   
   {path: 'voitures', component: ListVoitureComponent},

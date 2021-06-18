@@ -12,7 +12,7 @@ export class ReglementService {
   private baseUrl = 'http://localhost:8088/api/reglements';
   private stripeUrl = 'http://localhost:8088/api/payment';
 
-  choixmenu : String = 'A';
+  choixmenu : number = 1;
   list : any[];
   public formData:  FormGroup; 
 
@@ -22,7 +22,6 @@ export class ReglementService {
   redirectToCheckout(id) {
     const stripe = Stripe('pk_test_51Ix0x2IhmzpvuzzgnZ6Oz7d09tYHiVg1qvUUq8OJKDfkwrL95aW6uS0aTSrIGIxizaryFzJ2apjjRyBGkf9C7vKp00yxWnfi15');
    
-    window.open('http://localhost:4200/reglements', "_blank");
     stripe.redirectToCheckout({
       sessionId: id,
     });
@@ -61,6 +60,6 @@ export class ReglementService {
    
     return this.http.get(`${this.baseUrl}`);
   }
-
+  
  
 }

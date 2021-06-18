@@ -1,13 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
-import { MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Reglement } from 'src/app/model/reglement';
 import { TokenStorageService } from 'src/app/service/tokenStorage.service';
 import { UserService } from 'src/app/service/user.service';
 import { ReglementService } from 'src/app/service/reglement.service';
-import { AddReglementComponent } from '../add-reglement/add-reglement.component';
 @Component({
   selector: 'app-list-reglement',
   templateUrl: './list-reglement.component.html',
@@ -22,9 +19,7 @@ export class ListReglementComponent implements OnInit {
     role: string;
   constructor(private userService: UserService,public crudApi: ReglementService, public toastr: ToastrService,
     private router : Router,public fb: FormBuilder,
-    private matDialog: MatDialog,
-    @Inject(MAT_DIALOG_DATA) public data: any,
-    public dialogRef:MatDialogRef<AddReglementComponent>,public tokenService: TokenStorageService) { }
+   public tokenService: TokenStorageService) { }
   
   ngOnInit() {
     
@@ -38,12 +33,9 @@ export class ListReglementComponent implements OnInit {
   }
   addRegl()
   {
-    this.crudApi.choixmenu = "A";
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.autoFocus = true;
-    dialogConfig.disableClose = true;
-    dialogConfig.width="50%";
-    this.matDialog.open(AddReglementComponent, dialogConfig);
+    this.crudApi.choixmenu = 1;
+    this.router.navigate(['/addreglements']);
+
   }
   
   

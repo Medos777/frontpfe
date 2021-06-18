@@ -98,10 +98,5 @@ onSubmit() {
 this.dialogRef.close();
 }
 
-validateForm(formData:Ldepot){
-  this.isValid=true;
- 
-  
-    return this.isValid;
-}
+
 }

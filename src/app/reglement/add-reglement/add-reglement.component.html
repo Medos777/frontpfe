@@ -1,24 +1,77 @@
-<div class="col-md-6 col-md-offset-2">
-  <h1>Reglement</h1>    
+
+  <div>
+    <h1>Gestion Reglement</h1> 
+    </div>
+
   <form [formGroup]="this.service.formData" (ngSubmit)="onSubmit()">
-  
-    <div class="form-group">
-      <label>Client</label>
+    <div class="form-group row col-md-12">
+
+      <div class="form-group col-md-6">
+        <label>Client</label>
       <select class="form-control" formControlName="idclient" id="idclient" 
       (change)="OnSelectClient($event.target)">
       <option value="0">-Select-</option>
       <option *ngFor="let client of this.ClientList" value="{{client.id}}">{{client.nom}}</option>
       </select>
     </div>
-    <div class="form-group">
-      <label>Facture</label>
-      <select class="form-control" formControlName="numerofacture" id="numerofacture" 
-      >
-      <option value="0">-Select-</option>
-      <option *ngFor="let fact of this.FactureList" value="{{fact.numero}}">{{fact.libelle}}</option>
-      </select>
-    </div>
-  
+    <div class="form-group col-md-6">
+      <label><strong>Libelle</strong></label>
+      <input  type="text"  class="form-control" formControlName="libelle" id="libelle" >
+    </div> 
+  </div>
+
+  <table class="table table-borderless">
+    <thead class="thead-light">
+      <th>Numero facture</th>
+      <th>Tott Ht</th>
+      <th>Tottva </th>
+      <th>Totttc</th>
+      <th>
+        <a class="btn btn-sm btn-success text-white" (click)="AddData(null,1)">
+            <i class="fa fa-plus"></i>Ajouter </a>
+      </th>
+    </thead>
+    <tbody>
+        <tr *ngIf="service.list.length==0" 
+         [class.text-danger]="!isValid && service.list.length ==0">
+            <td class="font-italic text-center" colspan="5">
+              Aucune facture sélectionnée ...
+            </td>
+          </tr>
+      <tr *ngFor="let item of service.list;let i=index;">
+      <td>{{item.numerofacture}}</td>
+      <td>{{item.totht}}</td>
+      <td>{{item.tottva}}</td>
+      <td>{{item.totttc}}</td>
+
+      <td>
+          <a class="btn btn-sm btn-info text-white" *ngIf="this.service.choixmenu==1"  (click)="AddData(i,1)">
+              <i class="fa fa-pencil"></i></a>
+          <a class="btn btn-sm btn-danger text-white" (click)="onDelete(item,item.id,i)">
+            <i class="fa fa-trash-o"></i></a>      </td>
+    </tr>
+    </tbody>
+  </table>
+  <div class="form-group row">
+        <div class="col-sm-4 mb-3 mb-sm-0">
+        <div class="form-group">
+            <label>Total Ht : </label>
+            <input type="text" class="form-control" id="totht" formControlName="totht" readonly>
+        </div>
+        </div> 
+        <div class="col-sm-4 mb-3 mb-sm-0">
+        <div class="form-group">
+            <label>Total Tva  : </label>
+            <input type="text" class="form-control" id="tottva" formControlName="tottva" readonly>
+        </div>
+        </div>
+        <div class="col-sm-4 mb-3 mb-sm-0">
+        <div class="form-group">
+        <label>Total TTC : </label>
+        <input type="text" class="form-control" id="totttc" formControlName="totttc" readonly>
+        </div>
+        </div>        
+     </div>
     <div class="form-group">
   
       <button type="submit" class="btn btn-dark"><i class="fa fa-database"></i> Submit</button>
@@ -26,5 +79,5 @@
   
 
 </div>
+
   </form>
-</div>
