@@ -116,6 +116,8 @@ export class AddDepotComponent implements OnInit {
          assure:false,
          destinationId:0,
          typecorr:'',
+         codebarre:212121,
+
 
          ldepots :[],
          });
