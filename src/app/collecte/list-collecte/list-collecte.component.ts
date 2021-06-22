@@ -37,7 +37,6 @@ export class ListCollecteComponent implements OnInit {
     
   }
 refreshListe(){
-  if(this.role=="agent"){
 
  
   this.service.getAll().subscribe(
@@ -45,12 +44,8 @@ refreshListe(){
       console.log(response);
     }
    );
-  }
-  else if(this.role=="client"){
-    this.service.getDataByIdClient(this.user.id).subscribe(
-      response => { this.list = response; }
-    );
-  }
+  
+ 
 
 }
 

@@ -4,18 +4,19 @@ export class Collecte{
     id :number;
     annee : number;
     numero : number;
-    idclient : number;
-    libclient : String;
+   
 
     date_mvt : any;
 
     totht : number;
     tottva : number;
     totttc : number;
-
     codevoiture: number;
+
+    codefacteur: number;
     codechauff: String;
  
+    destinationLibelle: String;
 
     lcollectes :Array<Lcollecte> =[];
     

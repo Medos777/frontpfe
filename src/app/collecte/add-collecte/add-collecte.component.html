@@ -39,18 +39,8 @@
         <option *ngFor="let destination of this.destinationList" value="{{destination.id}}">{{destination.libelle}}</option>
         </select>
       </div>
-      <div class="col-md-6 form-group">
-        <label><strong>Client</strong></label>
-        <select class="form-control" formControlName="idclient" id="idclient" 
-        (change)="OnSelectClient($event.target)">
-        <option value="0">-Select-</option>
-        <option *ngFor="let client of this.ClientList" value="{{client.id}}">{{client.nom}}</option>
-        </select>
-      </div>
-      <div class="form-group col-md-6">
-        <label><strong>Destinataire  </strong></label>
-        <input  type="text"  class="form-control" formControlName="beneficier" id="beneficier" >
-    </div>  
+      
+      
     <div class="col-md-6 form-group">
       <label><strong>Voiture</strong></label>
       <select class="form-control" formControlName="codevoiture" id="codevoiture" 

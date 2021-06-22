@@ -60,8 +60,8 @@ this.authentification.login(this.f.username.value,this.f.password.value).subscri
 
     
     else if  (this.role=='facteur')
-    this.router.navigate(['/']);
-    else this.router.navigate(['/']);
+    this.router.navigate(['collectes']);
+    else this.router.navigate(['factures']);
 
 
     

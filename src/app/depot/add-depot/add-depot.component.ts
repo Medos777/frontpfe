@@ -4,6 +4,7 @@ import { UserService} from '../../service/user.service'
 import { TarifService} from '../../service/tarif.service'
 import { DestinationService} from '../../service/destination.service'
 import { CompteurService} from '../../service/compteur.service';
+var checkdigit = require('checkdigit');
 
 
 
@@ -55,6 +56,7 @@ export class AddDepotComponent implements OnInit {
     private datePipe : DatePipe) { }
     get f() { return this.service.formData.controls }
     ngOnInit() {
+      console.log(checkdigit.mod10.create('234567') )
 
       if (this.service.choixmenu == 1){
        this.InfoForm();
@@ -116,7 +118,7 @@ export class AddDepotComponent implements OnInit {
          assure:false,
          destinationId:0,
          typecorr:'',
-         codebarre:212121,
+         codebarre:619199123456,
 
 
          ldepots :[],
@@ -211,7 +213,7 @@ onSelectCompteur(annee: number)
   );  
 } 
    onSubmit(){
-
+this.generatecodebaree()
        this.f['ldepots'].setValue(this.service.list);
        console.log(this.service.formData.value);
 if(this.validateForm()){
@@ -225,6 +227,10 @@ if(this.validateForm()){
 }
 
       }
+  generatecodebaree() {
+    let code=(619199*1000000)+this.compteur.numdepot;
+    
+  }
      
    transformDate(date){
         return this.datePipe.transform(date, 'yyyy-MM-dd');

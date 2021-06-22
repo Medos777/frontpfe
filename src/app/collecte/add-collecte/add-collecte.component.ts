@@ -21,6 +21,7 @@ import { AddLcollecteComponent } from '../../collecte/add-lcollecte/add-lcollect
 import { FormBuilder, FormGroup, FormControl, ReactiveFormsModule,Validators }
 from '@angular/forms';
 import {Lcollecte } from '../../model/lcollecte';
+import { TokenStorageService } from 'src/app/service/tokenStorage.service';
 @Component({
   selector: 'app-add-collecte',
   templateUrl: './add-collecte.component.html',
@@ -41,6 +42,8 @@ export class AddCollecteComponent implements OnInit {
   destinationCode:number;
   articleService: any;
   Date;
+  user: any;
+
 
   annee  = 0;
   constructor(public service:CollecteService,
@@ -56,7 +59,7 @@ export class AddCollecteComponent implements OnInit {
 
     private voitureService :VoitureService,
     private chauffeurService :ChauffeurService,
-
+    private tokenService: TokenStorageService,
 
     private router :Router,
     private currentRoute: ActivatedRoute,
@@ -64,7 +67,10 @@ export class AddCollecteComponent implements OnInit {
     get f() { return this.service.formData.controls }
 
     ngOnInit() {
-
+      if(this.tokenService.getToken())
+      {
+        this.user=this.tokenService.getUser();
+      }
       if (this.service.choixmenu == 1){
        this.InfoForm();
        this.service.list = [];
@@ -121,8 +127,7 @@ export class AddCollecteComponent implements OnInit {
          numero : 0,
          libelle:'',
          date_mvt : '',
-         idclient : 0,
-         libclient : '',
+    
          totht : 0,
          tottva : 0,
          typecorr:'',
@@ -130,12 +135,13 @@ export class AddCollecteComponent implements OnInit {
          totttc : 0,
         
 
-         beneficier:'',
 
          codevoiture:'',
 
          codechauff:0,
          destinationLibelle:'',
+         codefacteur:0,
+
 
          destinationId:0,
 
@@ -215,6 +221,7 @@ onSelectCompteur(annee: number)
   );  
 } 
    onSubmit(){
+    this.f['codefacteur'].setValue(this.user.id);
 
        this.f['lcollectes'].setValue(this.service.list);
        console.log(this.service.formData.value);
@@ -262,15 +269,5 @@ onSelectCompteur(annee: number)
          }
         
       }
-   OnSelectClient(ctrl)
-      {
-         if(ctrl.selectedIndex == 0){
-          this.f['libclient'].setValue('');
-          this.f['idclient'].setValue('');
-         }
-         else{
-            this.f['libclient'].setValue(this.ClientList[ctrl.selectedIndex - 1].nom);
-            this.f['idclient'].setValue(this.ClientList[ctrl.selectedIndex - 1].id);
-         }
-       }
+   
       }
