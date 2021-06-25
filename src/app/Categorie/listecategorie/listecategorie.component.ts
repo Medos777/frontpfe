@@ -36,6 +36,11 @@ ngOnInit() {
 
 
 }
+goScateg(){
+  this.router.navigate(['/scategories']);
+
+}
+
 addCategorie()
 {
   this.crudApi.choixmenu = "A";

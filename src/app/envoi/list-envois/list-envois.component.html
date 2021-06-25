@@ -1,1 +1,55 @@
-<p>list-envois works!</p>
+
+<div class="row">
+    <h1> <i class="fas fa-user"></i>&nbsp; Liste des Envois</h1>
+  
+  
+  </div>
+  <br>
+  
+  
+  <div class="row">
+  
+    <a class="btn btn-success" style="color: white;" (click)="newEnvoi()"><i class="fa fa-plus-square"></i> Create New
+        </a>
+  
+  </div>
+  <br><br>
+  <div class="row">
+  
+    <table class="table table-bordered  table-hover table-responsive-sm table-responsive-md   table-responsive-lg">
+  
+      <thead calss="thead-light">
+        <tr>
+          <th style="color: black;"scope="col">numero</th>
+          <th style="color: black;"scope="col">date envoi </th>
+          <th style="color: black;"scope="col">beneficier</th>
+          
+
+          <th  class="text-center" style="width: 13%; color: black;" scope="col">Action</th>
+  
+        </tr>
+      </thead>
+      <tbody>
+  
+  
+        <tr *ngFor="let item of envoiservice.list">
+          <td>{{item.numero}}</td>
+          <td>{{item.date_envoi}}</td>
+          <td>{{item.beneficier}}</td>
+     
+  
+  
+          <td><button class="btn btn-warning" (click)="selectData(item)">
+              <i class="fa fa-pencil-square-o"></i></button> &nbsp;<button class="btn btn-danger"
+              (click)="removeData(item.id)">
+              <i class="fa fa-trash-o"></i></button></td>
+        </tr>
+      </tbody>
+    </table>
+  
+  
+  </div>
+
+
+
+

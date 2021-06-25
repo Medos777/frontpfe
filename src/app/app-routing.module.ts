@@ -53,6 +53,9 @@ import { AddReglementComponent } from './reglement/add-reglement/add-reglement.c
 import { ListReglementComponent } from './reglement/list-reglement/list-reglement.component';
 import { AddLreglementComponent } from './reglement/add-lreglement/add-lreglement.component';
 
+
+import { ListEnvoisComponent } from './envoi/list-envois/list-envois.component';
+import { AddEnvoisComponent } from './envoi/add-envois/add-envois.component';
 const routes : Routes = [
   {path: '', component:MenuComponent,children : [
   {path: 'categories', component: ListecategorieComponent},
@@ -85,6 +88,10 @@ const routes : Routes = [
 
   {path: 'addreglements', component: AddReglementComponent},
   {path: 'addlreglement', component: AddLreglementComponent},
+
+
+  {path: 'envois', component: ListEnvoisComponent},
+  {path: 'addenvoi', component: AddEnvoisComponent},
 
   {path: 'reglements', component: ListReglementComponent},
   

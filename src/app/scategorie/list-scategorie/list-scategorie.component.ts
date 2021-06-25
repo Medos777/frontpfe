@@ -43,7 +43,6 @@ export class ListScategorieComponent implements OnInit {
     this.matDialog.open(AjoutScategorieComponent, dialogConfig);
   }
  
-  
 
   
   getData() {

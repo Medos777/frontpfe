@@ -162,7 +162,7 @@ onSelectCompteur(annee: number)
  this.compteurService.getDatabyAnnee(annee).subscribe(
    response =>{
      this.compteur = response;
-     let numd=this.compteur.annee*10000+this.compteur.numdepot;
+     let numd=this.compteur.annee*10000+this.compteur.numfacture;
      this.f['numero'].setValue(numd);
      }
   );  

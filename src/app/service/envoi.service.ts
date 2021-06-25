@@ -6,11 +6,10 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class DepotService {
-  private baseUrl = 'http://localhost:8088/api/depots';
+export class EnvoiService {
+  private baseUrl = 'http://localhost:8088/api/envois';
   choixmenu : number = 1;
   list : any[];
-  listldep: any[];
   public formData:  FormGroup; 
 
   public dataForm:  FormGroup; 
@@ -20,21 +19,15 @@ export class DepotService {
   getData(id: number): Observable<Object> {
     return this.http.get(`${this.baseUrl}/id/${id}`);
   }
-  getDataByIdClient(id: number): Observable<any> {
+  
+  getDataByClient(id: String): Observable<any> {
     return this.http.get(`${this.baseUrl}/client/${id}`);
   }
-  getDataByCodeb(codeb: number): Observable<any> {
-    return this.http.get(`${this.baseUrl}/codeb/${codeb}`);
-  }
+ 
   getDataByLib(lib: string): Observable<any> {
     return this.http.get(`${this.baseUrl}/lib/${lib}`);
   }
-  getDataByLibandClient(lib: string,id:string): Observable<any> {
-    return this.http.get(`${this.baseUrl}/libclient/${lib}/${id}`);
-  }
-  getDataByCode(code: String): Observable<Object> {
-    return this.http.get(`${this.baseUrl}/code/${code}`);
-  }
+  
   createData(info: Object): Observable<Object> {
 
     return this.http.post(`${this.baseUrl}`, info);
@@ -45,8 +38,9 @@ export class DepotService {
   }
  
   deleteData(id: number): Observable<any> {
-   
+   console.log(id);
     return this.http.delete(`${this.baseUrl}/${id}`, { responseType: 'text' });
+
   }
 
   getAll(): Observable<any> {

@@ -4,7 +4,6 @@ import { UserService} from '../../service/user.service'
 import { TarifService} from '../../service/tarif.service'
 import { DestinationService} from '../../service/destination.service'
 import { CompteurService} from '../../service/compteur.service';
-var checkdigit = require('checkdigit');
 
 
 
@@ -56,7 +55,6 @@ export class AddDepotComponent implements OnInit {
     private datePipe : DatePipe) { }
     get f() { return this.service.formData.controls }
     ngOnInit() {
-      console.log(checkdigit.mod10.create('234567') )
 
       if (this.service.choixmenu == 1){
        this.InfoForm();

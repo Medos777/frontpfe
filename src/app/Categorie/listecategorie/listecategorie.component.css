@@ -49,3 +49,9 @@ label
    color :"#0000FF";
 
 }
+
+#scategbutton{
+    position: fixed;
+    left:90vw;
+    top:15vh;
+    }

@@ -1,0 +1,108 @@
+<div>
+    <h1>Gestion Envoi</h1> 
+    </div>
+    
+<form [formGroup]="this.service.formData" (ngSubmit)="onSubmit()" >
+<div class="form-group row col-md-12">
+  <div class="form-group col-md-6">
+      <label><strong>Num Envoi : </strong></label>
+      <input  type="text"  class="form-control" formControlName="numero" id="numero" readonly>
+  </div>  
+  
+  <div class="col-md-6 form-group">
+        <label>Date Envoi</label>
+      <input  type="date"  class="form-control" formControlName="date_envoi"  id="date_envoi">
+  </div>
+  
+
+  <div class="form-group col-md-6">
+    <label><strong>code à barres: </strong></label>
+    <input  type="text"  class="form-control" (focusout)="onCodebarre($event.target)"
+    formControlName="codebarre" id="codebarre" >
+</div>  
+<div class="form-group col-md-6"*ngIf="appear&&!intern">
+    <label><strong>Num Vol: </strong></label>
+    <input  type="text"  class="form-control"  
+    formControlName="numerovol" id="numerovol" >
+</div>  
+<div class="form-group col-md-6" *ngIf="appear&&!intern">
+    <label><strong>Date Vol: </strong></label>
+    <input  type="date"  class="form-control"  
+    formControlName="date_vol" id="date_vol" >
+</div>  
+<div class="form-group col-md-6" *ngIf="appear">
+    <label><strong>Client: </strong></label>
+    <input  type="text"  class="form-control"  readonly
+    formControlName="clientlib" id="clientlib" >
+</div>  
+<div class="form-group col-md-6" *ngIf="appear">
+    <label><strong>Destinataire: </strong></label>
+    <input  type="text"  class="form-control"  readonly
+    formControlName="beneficier" id="beneficier" >
+</div>  
+<div class="form-group col-md-6" *ngIf="appear">
+    <label><strong>Adresse Destinataire: </strong></label>
+    <input  type="text"  class="form-control"  readonly
+    formControlName="adressebeneficier" id="adressebeneficier" >
+
+  </div>
+</div>
+
+
+
+
+
+  <table *ngIf="appear" class="table table-borderless">
+    <thead class="thead-light">
+      <th>numero</th>
+      <th>designation</th>
+      <th>Tott Ht</th>
+      <th>Tottva </th>
+      <th>Totttc</th>
+     
+    </thead>
+    <tbody>
+        <tr *ngIf="depotservice.listldep.length==0" 
+         [class.text-danger]="!isValid && service.list.length ==0">
+            <td class="font-italic text-center" colspan="5">
+              Aucune Depot sélectionnée ...
+            </td>
+          </tr>
+      <tr *ngFor="let item of depotservice.listldep;let i=index;">
+      <td>{{item.numero}}</td>  
+      <td>{{item.designation}}</td>
+      <td>{{item.totht}}</td>
+      <td>{{item.tottva}}</td>
+      <td>{{item.totttc}}</td>
+
+      <td>
+         
+    </tr>
+    </tbody>
+  </table>
+  <div class="form-group row"  *ngIf="appear" >
+        <div class="col-sm-4 mb-3 mb-sm-0">
+        <div class="form-group">
+            <label>Total Ht : </label>
+            <input type="text" class="form-control" id="totht" formControlName="totht" readonly>
+        </div>
+        </div> 
+        <div class="col-sm-4 mb-3 mb-sm-0">
+        <div class="form-group">
+            <label>Total Tva  : </label>
+            <input type="text" class="form-control" id="tottva" formControlName="tottva" readonly>
+        </div>
+        </div>
+        <div class="col-sm-4 mb-3 mb-sm-0">
+        <div class="form-group">
+        <label>Total TTC : </label>
+        <input type="text" class="form-control" id="totttc" formControlName="totttc" readonly>
+        </div>
+        </div>        
+     </div>
+  <div class="form-group">
+    <button type="submit" class="btn btn-dark"><i class="fa fa-database"></i> Submit</button>
+    <a class="btn btn-outline-dark ml-1" routerLink="/envois"><i class="fa fa-plus-square"></i> Liste </a>
+
+ </div>
+</form> 

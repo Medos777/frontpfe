@@ -60,6 +60,7 @@ import { AddReglementComponent } from './reglement/add-reglement/add-reglement.c
 import { ListReglementComponent } from './reglement/list-reglement/list-reglement.component';
 import { AddLreglementComponent } from './reglement/add-lreglement/add-lreglement.component';
 import { ListEnvoisComponent } from './envoi/list-envois/list-envois.component';
+import { AddEnvoisComponent } from './envoi/add-envois/add-envois.component';
 const MATERIAL_MODULES = [MatToolbarModule,
   MatIconModule
 ];
@@ -111,7 +112,8 @@ const MATERIAL_MODULES = [MatToolbarModule,
     AddReglementComponent,
     ListReglementComponent,
     AddLreglementComponent,
-    ListEnvoisComponent
+    ListEnvoisComponent,
+    AddEnvoisComponent
   ],
   imports: [
     BrowserModule,

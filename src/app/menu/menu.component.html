@@ -23,7 +23,7 @@
           <li  class="nav-item">
             <a style="color: white;" *ngIf="this.role== 'admin' || this.role== 'agent'" class="nav-link"routerLink ="/agents" routerLinkActive="active" title="clients"> <i class="fas fa-users"></i><span class="ttip">Liste des users</span></a>
 		  </li>
-      
+     
  
 		 
           <li class="nav-item">
@@ -32,9 +32,7 @@
 		  <li class="nav-item">
             <a style="color: white;" *ngIf="this.role== 'admin' || this.role== 'agent'" class="nav-link" routerLink ="/categories" routerLinkActive="active" title="Categories"> <i class="fas fa-cubes"></i><span class="ttip">Liste des categorie</span></a>
 		  </li>
-		  <li class="nav-item">
-            <a style="color: white;" *ngIf="this.role== 'admin' || this.role== 'agent'" class="nav-link" routerLink ="/scategories" routerLinkActive="active" title="sousCategories"> <i class="fas fa-th-large"></i><span class="ttip">Liste des sous categorie</span></a>
-		  </li>
+		  
       <li class="nav-item">
         <a style="color: white;" *ngIf="this.role== 'admin' || this.role== 'agent'" class="nav-link" routerLink ="/destinations" routerLinkActive="active" title="destinations"> <i class="fas fa-map-marker-alt"></i><span class="ttip">Liste des destinations</span></a>
   </li>
@@ -43,6 +41,9 @@
 </li>
   <li class="nav-item">
     <a style="color: white;" class="nav-link" routerLink ="/depots" *ngIf="this.role== 'client' || this.role== 'agent'" routerLinkActive="active" title="depots"> <i class="fas fa-envelope-square"></i><span class="ttip">Liste des depots</span></a>
+</li>
+<li  class="nav-item">
+  <a style="color: white;" *ngIf="this.role== 'agent'" class="nav-link"routerLink ="/envois" routerLinkActive="active" title="envois"> <i class="fa fa-paper-plane"></i><span class="ttip">Liste des envois</span></a>
 </li>
 <li class="nav-item">
   <a style="color: white;" class="nav-link" routerLink ="/factures" *ngIf="this.role== 'client' || this.role== 'agent'" routerLinkActive="active" title="facturation"> <i class="fas fa-file-invoice-dollar"></i><span class="ttip">Liste des factures</span></a>
