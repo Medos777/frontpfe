@@ -27,7 +27,6 @@ export class AddDepotComponent implements OnInit {
   numligne:number=1;
   assure:boolean=false;
 
-
   ClientList: any[];
   destinationList:any[];
   compteur : any={};
@@ -105,7 +104,7 @@ export class AddDepotComponent implements OnInit {
          libclient : '',
          totht : 0,
          tottva : 0,
-
+         etat:'nenvoye',
          totttc : 0,
          beneficier:'',
          telbeneficier:0,
@@ -116,7 +115,7 @@ export class AddDepotComponent implements OnInit {
          assure:false,
          destinationId:0,
          typecorr:'',
-         codebarre:619199123456,
+         codebarre:0,
 
 
          ldepots :[],
@@ -227,6 +226,8 @@ if(this.validateForm()){
       }
   generatecodebaree() {
     let code=(619199*1000000)+this.compteur.numdepot;
+    this.f['codebarre'].setValue(code);
+
     
   }
      

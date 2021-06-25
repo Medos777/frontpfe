@@ -22,7 +22,8 @@ export class Depot {
     emailbeneficier: String;
     destinationId:number;
     destinationLibelle:String;
-
+    codebarre:number;
+    etat:string;
     ldepots :Array<Ldepot> =[];
     
     
