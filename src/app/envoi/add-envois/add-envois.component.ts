@@ -62,7 +62,7 @@ export class AddEnvoisComponent implements OnInit {
         id :null,
         annee : 0,
         numero : 0,
-
+        codebarre:0,
         date_envoi: '',
         numerovol : '',
         date_vol:'',
@@ -72,6 +72,8 @@ export class AddEnvoisComponent implements OnInit {
         telbeneficier:'',
         adressebeneficier : 0,
         clientlib:'',
+        etatenvoi:'',
+
         totht : 0,
         tottva : 0,
 
@@ -83,6 +85,7 @@ export class AddEnvoisComponent implements OnInit {
   resetForm() {
         this.service.formData.reset();
     }
+    
     onSelectCompteur(annee: number)
     {
      this.compteurService.getDatabyAnnee(annee).subscribe(
@@ -109,8 +112,20 @@ export class AddEnvoisComponent implements OnInit {
     
            console.log(this.service.formData.value);
     if(this.validateForm()){
+      console.log("test0");
+
       this.service.createData(this.service.formData.value).
       subscribe( data => {
+        console.log("test1");
+
+        this.depotservice.getDataByCodeb(this.service.formData.value.codebarre).subscribe( data2 => {
+          data2.etat=this.service.formData.value.etatenvoi;
+          console.log(data2);
+          console.log("test2");
+
+          this.depotservice.updatedata(data2.id,data2).subscribe( data3 => {
+          });
+        });
         this.toastr.success( 'Validation Faite avec Success'); 
         this.router.navigate(['/envois']);
       });
@@ -150,6 +165,7 @@ export class AddEnvoisComponent implements OnInit {
                 this.f['totht'].setValue(data.totht);
                 this.f['tottva'].setValue(data.tottva);
                 this.f['totttc'].setValue(data.totttc);
+
                 this.LdepotService.getAllByNumero(this.service.formData.value.numdepot).subscribe(
                   response2 =>{
                     console.log(this.service.formData.value.numdepot,response2);

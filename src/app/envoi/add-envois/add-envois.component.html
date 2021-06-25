@@ -13,7 +13,17 @@
         <label>Date Envoi</label>
       <input  type="date"  class="form-control" formControlName="date_envoi"  id="date_envoi">
   </div>
-  
+  <div class="form-group col-md-6" *ngIf="appear" >
+    <label><strong>Etat Courrier</strong></label>
+    <select class="form-control" formControlName="etatenvoi" id="etatenvoi" >
+        <option value="elivre">Envoi Livré</option>
+        <option value="evpt">Envoyer vers le prochain point de traitement </option>
+        <option value="rbliv">Recevoir envoi au bureau de livraison </option>
+        <option value="rpclient">Recevoir les envois du client </option>
+    </select>
+    
+
+</div>
 
   <div class="form-group col-md-6">
     <label><strong>code à barres: </strong></label>
